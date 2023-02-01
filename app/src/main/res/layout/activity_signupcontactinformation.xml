@@ -4,46 +4,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
-    tools:context=".MainActivity">
+    android:padding="20dp">
 
-    <Button
-        android:id="@+id/btnAdminSignUp"
+    <EditText
+        android:id="@+id/editTxtEmailAddressSignUp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ADMINISTRATOR"
+        android:ems="10"
+        android:hint="Enter E-mail Address"
+        android:inputType="textEmailAddress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
+        app:layout_constraintVertical_bias="0.607" />
 
-    <Button
-        android:id="@+id/btnUserSignUp"
+    <EditText
+        android:id="@+id/editTxtTelephoneNumberSignUp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="USER"
+        android:ems="10"
+        android:hint="Enter Telephone Number"
+        android:inputType="phone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.651" />
+        app:layout_constraintVertical_bias="0.733" />
 
-    <TextView
-        android:id="@+id/txtAdminOrUser"
+    <Button
+        android:id="@+id/btnNextSignUpSetPIN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="- OR -"
-        android:textSize="12sp"
+        android:text="Next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.949"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.572" />
+        app:layout_constraintVertical_bias="0.976" />
 
     <Button
-        android:id="@+id/btnBackToLoginPage"
+        android:id="@+id/btnBackToJobDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Back"
@@ -53,5 +56,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.976" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

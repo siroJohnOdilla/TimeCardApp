@@ -4,54 +4,68 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
-    tools:context=".MainActivity">
+    android:padding="20dp">
 
-    <Button
-        android:id="@+id/btnAdminSignUp"
+    <EditText
+        android:id="@+id/editTxtEmailAddressSignIn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ADMINISTRATOR"
+        android:ems="10"
+        android:hint="Phone Number"
+        android:inputType="textEmailAddress"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.376" />
+
+    <EditText
+        android:id="@+id/editTxtPINSignIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="PIN"
+        android:inputType="numberPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
+        app:layout_constraintVertical_bias="0.516" />
 
     <Button
-        android:id="@+id/btnUserSignUp"
+        android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="USER"
+        android:text="Login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.651" />
+        app:layout_constraintVertical_bias="0.645" />
 
     <TextView
-        android:id="@+id/txtAdminOrUser"
+        android:id="@+id/txtCreateAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="- OR -"
-        android:textSize="12sp"
+        android:text="Don't have an account?..."
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.572" />
+        app:layout_constraintVertical_bias="0.883" />
 
     <Button
-        android:id="@+id/btnBackToLoginPage"
-        android:layout_width="wrap_content"
+        android:id="@+id/btnCreateAccount"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Back"
+        android:text="Create account"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.976" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

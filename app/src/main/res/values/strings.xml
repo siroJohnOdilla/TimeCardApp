@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">TimeCardApp</string>
+    <string name="selected_item">Select item:</string>
+
+    <string-array name="Genders">
+        <item>Male</item>
+        <item>    </item>
+        <item>Female</item>
+        <item>    </item>
+        <item>Non- Binary</item>
+        <item>    </item>
+        <item>Other</item>
+        <item>    </item>
+    </string-array>
 </resources>
