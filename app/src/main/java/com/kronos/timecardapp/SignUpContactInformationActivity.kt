@@ -13,14 +13,24 @@ class SignUpContactInformationActivity : AppCompatActivity(){
         setContentView(R.layout.activity_signupcontactinformation)
 
         val editTxtTelephoneNumberSignUp = findViewById<EditText>(R.id.editTxtTelephoneNumberSignUp)
+        val editTxtEmailAddressSignUp = findViewById<EditText>(R.id.editTxtEmailAddressSignUp)
 
         val btnNextSignUpSetPIN = findViewById<Button>(R.id.btnNextSignUpSetPIN)
         btnNextSignUpSetPIN.setOnClickListener {
+            val passEmailAddress = editTxtEmailAddressSignUp.text.toString().trim()
+            val passTelephoneNumber = editTxtTelephoneNumberSignUp.text.toString().trim()
+
             val intent = Intent(this, SignUpSetPINActivity::class.java)
             if (editTxtTelephoneNumberSignUp.text.toString().trim() == ""){
                 Toast.makeText(this,"Telephone Number is required", Toast.LENGTH_SHORT).show()
             } else{
+                intent.putExtra("emailAddress",passEmailAddress)
+                intent.putExtra("telephoneNumber",passTelephoneNumber)
+
                 startActivity(intent)
+
+                editTxtEmailAddressSignUp.text.clear()
+                editTxtTelephoneNumberSignUp.text.clear()
             }
         }
         val btnBackToJobDescription = findViewById<Button>(R.id.btnBackToJobDescription)

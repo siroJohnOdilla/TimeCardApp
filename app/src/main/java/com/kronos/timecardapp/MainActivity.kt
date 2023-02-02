@@ -19,15 +19,17 @@ class MainActivity : AppCompatActivity() {
 
         val btnAdminSignUp = findViewById<Button>(R.id.btnAdminSignUp)
         btnAdminSignUp.setOnClickListener {
+            val accountTag: String = "Administrator"
             val intent = Intent(this, SignUpNameActivity::class.java)
+            intent.putExtra("account_type",accountTag)
             startActivity(intent)
-            Toast.makeText(this,"Administrator Sign Up",Toast.LENGTH_LONG).show()
         }
         val btnUserSignUp = findViewById<Button>(R.id.btnUserSignUp)
         btnUserSignUp.setOnClickListener {
+            val accountTag: String = "User"
             val intent = Intent(this, SignUpNameActivity::class.java)
+            intent.putExtra("account_type",accountTag)
             startActivity(intent)
-            Toast.makeText(this,"User Sign Up",Toast.LENGTH_LONG).show()
         }
     }
 

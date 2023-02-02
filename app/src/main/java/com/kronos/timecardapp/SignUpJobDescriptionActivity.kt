@@ -18,7 +18,11 @@ class SignUpJobDescriptionActivity : AppCompatActivity(){
 
         val btnNextSignUpContactInformation = findViewById<Button>(R.id.btnNextSignUpContactInformation)
         btnNextSignUpContactInformation.setOnClickListener {
-            intent = Intent(this,SignUpContactInformationActivity::class.java)
+            val passOfficeSiteBranch = editTxtOfficeBranchSignUp.text.toString().trim().uppercase()
+            val passDepartment = editTxtDepartmentSignUp.text.toString().trim().uppercase()
+            val passJobTitle = editTxtDepartmentSignUp.text.toString().trim().uppercase()
+
+            val intent = Intent(this,SignUpContactInformationActivity::class.java)
             if (editTxtOfficeBranchSignUp.text.toString().trim() == ""){
                 Toast.makeText(this,"Office/ Site Branch is required",Toast.LENGTH_SHORT).show()
             } else if (editTxtDepartmentSignUp.text.toString().trim() == ""){
@@ -26,7 +30,15 @@ class SignUpJobDescriptionActivity : AppCompatActivity(){
             } else if (editTxtJobTitleSignUp.text.toString().trim() == ""){
                 Toast.makeText(this,"Job Title is Required",Toast.LENGTH_SHORT).show()
             } else {
+                intent.putExtra("officeSiteBranch",passOfficeSiteBranch)
+                intent.putExtra("department",passDepartment)
+                intent.putExtra("jobTitle",passJobTitle)
+
                 startActivity(intent)
+
+                editTxtOfficeBranchSignUp.text.clear()
+                editTxtDepartmentSignUp.text.clear()
+                editTxtJobTitleSignUp.text.clear()
             }
         }
         val btnBackToPersonalDetails = findViewById<Button>(R.id.btnBackToPersonalDetails)

@@ -7,8 +7,6 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import java.util.Calendar
 import android.app.DatePickerDialog
-import java.util.*
-
 class SignUpPersonalDetailsActivity : AppCompatActivity(){
     lateinit var editTxtDateOfBirthSignUp : EditText
 
@@ -49,7 +47,7 @@ class SignUpPersonalDetailsActivity : AppCompatActivity(){
 
             val datePickerDialog = DatePickerDialog(
                 this,
-                {view, year, monthOfYear, dayOfMonth ->
+                { _, year, monthOfYear, dayOfMonth ->
                     val date = (dayOfMonth.toString() + "-" + (monthOfYear + 1) + "-" + year)
                     editTxtDateOfBirthSignUp.setText(date)
                 },
@@ -62,13 +60,24 @@ class SignUpPersonalDetailsActivity : AppCompatActivity(){
 
         val btnNextSignUpJobDescription = findViewById<Button>(R.id.btnNextSignUpJobDescription)
         btnNextSignUpJobDescription.setOnClickListener {
+            val passGender: String = spinnerGenderSignUp.selectedItem.toString().trim().uppercase()
+            val passNationalId: String = editTxtNationalIDNo.text.toString().trim().uppercase()
+            val passDateOfBirth: String = editTxtDateOfBirthSignUp.text.toString().trim().uppercase()
+
             val intent = Intent(this,SignUpJobDescriptionActivity::class.java)
             if ((editTxtNationalIDNo.text.toString().trim() == "")){
                 Toast.makeText(this,"National ID is required", Toast.LENGTH_SHORT).show()
             } else if ((editTxtDateOfBirthSignUp.text.toString().trim() == "")){
                 Toast.makeText(this,"Date of Birth is required", Toast.LENGTH_SHORT).show()
             } else{
+                intent.putExtra("gender",passGender)
+                intent.putExtra("nationalId",passNationalId)
+                intent.putExtra("dateOfBirth",passDateOfBirth)
+
                 startActivity(intent)
+
+                editTxtNationalIDNo.text.clear()
+                editTxtDateOfBirthSignUp.text.clear()
             }
         }
         val btnBackToSignUpName = findViewById<Button>(R.id.btnBackToSignUpName)
