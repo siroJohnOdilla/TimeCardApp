@@ -14,6 +14,12 @@ class SignUpPersonalDetailsActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signuppersonaldetails)
 
+        val bundle : Bundle? = intent.extras
+
+        val accountTag2 = bundle!!.getString("accountTag1")
+        val name1 = bundle.getString("nameKey")
+
+
         val genders = resources.getStringArray(R.array.Genders) //create variable to access listed items in string.xml
 
         val spinnerGenderSignUp = findViewById<Spinner>(R.id.spinnerGenderSignUp) //create variable to store spinner selection
@@ -60,24 +66,27 @@ class SignUpPersonalDetailsActivity : AppCompatActivity(){
 
         val btnNextSignUpJobDescription = findViewById<Button>(R.id.btnNextSignUpJobDescription)
         btnNextSignUpJobDescription.setOnClickListener {
-            val passGender: String = spinnerGenderSignUp.selectedItem.toString().trim().uppercase()
-            val passNationalId: String = editTxtNationalIDNo.text.toString().trim().uppercase()
-            val passDateOfBirth: String = editTxtDateOfBirthSignUp.text.toString().trim().uppercase()
 
             val intent = Intent(this,SignUpJobDescriptionActivity::class.java)
-            if ((editTxtNationalIDNo.text.toString().trim() == "")){
+
+            if ((editTxtNationalIDNo.text.toString().trim().uppercase() == "")){
                 Toast.makeText(this,"National ID is required", Toast.LENGTH_SHORT).show()
-            } else if ((editTxtDateOfBirthSignUp.text.toString().trim() == "")){
+            } else if ((editTxtDateOfBirthSignUp.text.toString().trim().uppercase() == "")){
                 Toast.makeText(this,"Date of Birth is required", Toast.LENGTH_SHORT).show()
             } else{
-                intent.putExtra("gender",passGender)
-                intent.putExtra("nationalId",passNationalId)
-                intent.putExtra("dateOfBirth",passDateOfBirth)
+                val passGender = spinnerGenderSignUp.selectedItem.toString().trim().uppercase()
+                val passNationalId = editTxtNationalIDNo.text.toString().trim().uppercase()
+                val passDateOfBirth = editTxtDateOfBirthSignUp.text.toString().trim().uppercase()
+
+                intent.putExtra("accountTagKey2",accountTag2)
+                intent.putExtra("nameKey1",name1)
+                intent.putExtra("genderKey",passGender)
+                intent.putExtra("nationalIdKey",passNationalId)
+                intent.putExtra("dateOfBirthKey",passDateOfBirth)
 
                 startActivity(intent)
-
-                editTxtNationalIDNo.text.clear()
-                editTxtDateOfBirthSignUp.text.clear()
+                /*editTxtNationalIDNo.text.clear()
+                editTxtDateOfBirthSignUp.text.clear()*/
             }
         }
         val btnBackToSignUpName = findViewById<Button>(R.id.btnBackToSignUpName)
