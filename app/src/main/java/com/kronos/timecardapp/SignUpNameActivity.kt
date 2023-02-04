@@ -14,13 +14,11 @@ class SignUpNameActivity : AppCompatActivity (){
         setContentView(R.layout.activity_signupname)
 
         val bundle : Bundle? = intent.extras
-        val accountTag1 = bundle!!.getString("accountTagKey").toString()
-
-        Toast.makeText(this,accountTag1,Toast.LENGTH_SHORT).show()
+        val displayAccountTag1 = bundle!!.getString("accountTagKey")
 
         val txtAccountTypeSignUp = findViewById<TextView>(R.id.txtAccountTypeSignUp)
-        txtAccountTypeSignUp.text = accountTag1
-
+        txtAccountTypeSignUp.text = displayAccountTag1
+        val accountTag1 = txtAccountTypeSignUp.text.toString()
 
         val editTxtFirstNameSignUp = findViewById<EditText>(R.id.editTxtFirstNameSignUp)
         val editTxtMiddleNameSignUp = findViewById<EditText>(R.id.editTxtMiddleNameSignUp)
@@ -28,7 +26,6 @@ class SignUpNameActivity : AppCompatActivity (){
 
         val btnNextSignUpPersonalDetails = findViewById<Button>(R.id.btnNextSignUpPersonalDetails)
         btnNextSignUpPersonalDetails.setOnClickListener{
-
             val intent = Intent(this,SignUpPersonalDetailsActivity::class.java)
 
             if((editTxtFirstNameSignUp.text.toString().trim().uppercase() == "")){
@@ -38,11 +35,11 @@ class SignUpNameActivity : AppCompatActivity (){
             } else if ((editTxtLastNameSignUp.text.toString().trim().uppercase() == "")){
                 Toast.makeText(this, "Last Name is empty", Toast.LENGTH_SHORT).show()
             } else {
+
                 val passName = ((editTxtFirstNameSignUp.text.toString().trim().uppercase()) + " " + (editTxtMiddleNameSignUp.text.toString().trim().uppercase()) + " " + (editTxtLastNameSignUp.text.toString().trim().uppercase()))
 
                 intent.putExtra("accountTagKey1",accountTag1)
                 intent.putExtra("nameKey",passName)
-
 
                 startActivity(intent)
                 /*editTxtFirstNameSignUp.text.clear()

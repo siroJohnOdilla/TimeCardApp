@@ -16,9 +16,8 @@ class SignUpPersonalDetailsActivity : AppCompatActivity(){
 
         val bundle : Bundle? = intent.extras
 
-        val accountTag2 = bundle!!.getString("accountTag1")
-        val name1 = bundle.getString("nameKey")
-
+        val name1 = bundle!!.getString("nameKey")
+        val accountTag2 = bundle.getString("accountTagKey1")
 
         val genders = resources.getStringArray(R.array.Genders) //create variable to access listed items in string.xml
 

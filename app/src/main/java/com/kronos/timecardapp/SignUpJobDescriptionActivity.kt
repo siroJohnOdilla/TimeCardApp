@@ -14,11 +14,12 @@ class SignUpJobDescriptionActivity : AppCompatActivity(){
 
         val bundle : Bundle? = intent.extras
 
-        val accountTag3 = bundle!!.getString("accountTagKey2")
-        val name2 = bundle.getString("nameKey1")
-        val gender1 = bundle.getString("genderKey")
+        val gender1 = bundle!!.getString("genderKey")
         val nationalId1 = bundle.getString("nationalIdKey")
         val dateOfBirth1 = bundle.getString("dateOfBirthKey")
+        val name2 = bundle.getString("nameKey1")
+        val accountTag3 = bundle.getString("accountTagKey2")
+
 
         val editTxtOfficeBranchSignUp = findViewById<EditText>(R.id.editTxtOfficeBranchSignUp)
         val editTxtDepartmentSignUp = findViewById<EditText>(R.id.editTxtDepartmentSignUp)

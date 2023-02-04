@@ -14,14 +14,16 @@ class SignUpContactInformationActivity : AppCompatActivity(){
 
         val bundle : Bundle? = intent.extras
 
-        val accountTag4 = bundle!!.getString("accountTagKey3")
-        val name3 = bundle.getString("nameKey2")
+        val officeSiteBranch1 = bundle!!.getString("officeSiteBranchKey")
+        val department1 = bundle.getString("departmentKey")
+        val jobTitle1 = bundle.getString("jobTitleKey")
         val gender2 = bundle.getString("genderKey1")
         val nationalId2 = bundle.getString("nationalIdKey1")
         val dateOfBirth2 = bundle.getString("dateOfBirthKey1")
-        val officeSiteBranch1 = bundle.getString("officeSiteBranchKey")
-        val department1 = bundle.getString("departmentKey")
-        val jobTitle1 = bundle.getString("jobTitleKey")
+        val name3 = bundle.getString("nameKey2")
+        val accountTag4 = bundle.getString("accountTagKey3")
+
+
 
         val editTxtTelephoneNumberSignUp = findViewById<EditText>(R.id.editTxtTelephoneNumberSignUp)
         val editTxtEmailAddressSignUp = findViewById<EditText>(R.id.editTxtEmailAddressSignUp)

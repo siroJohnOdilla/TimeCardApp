@@ -10,7 +10,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var passAccountTag: String?
+        var displayAccountTag: String
 
         val btnBackToLoginPage = findViewById<Button>(R.id.btnBackToLoginPage)
         btnBackToLoginPage.setOnClickListener {
@@ -21,7 +21,8 @@ class MainActivity : AppCompatActivity() {
 
         val btnAdminSignUp = findViewById<Button>(R.id.btnAdminSignUp)
         btnAdminSignUp.setOnClickListener {
-            passAccountTag = "Administrator"
+            displayAccountTag = "ADMINISTRATOR"
+            val passAccountTag = displayAccountTag
             val intent = Intent(this, SignUpNameActivity::class.java)
             intent.putExtra("accountTagKey",passAccountTag)
 
@@ -29,7 +30,8 @@ class MainActivity : AppCompatActivity() {
         }
         val btnUserSignUp = findViewById<Button>(R.id.btnUserSignUp)
         btnUserSignUp.setOnClickListener {
-            passAccountTag = "User"
+            displayAccountTag = "USER"
+            val passAccountTag = displayAccountTag
             val intent = Intent(this, SignUpNameActivity::class.java)
             intent.putExtra("accountTagKey",passAccountTag)
 

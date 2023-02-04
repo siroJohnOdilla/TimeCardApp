@@ -18,6 +18,7 @@
         <activity android:name=".SignUpJobDescriptionActivity"></activity>
         <activity android:name=".SignUpContactInformationActivity"></activity>
         <activity android:name=".SignUpSetPINActivity"></activity>
+        <activity android:name=".HomePageActivity"></activity>
         <activity
             android:name=".LoginActivity"
             android:exported="true">

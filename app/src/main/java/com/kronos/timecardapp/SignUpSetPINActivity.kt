@@ -14,16 +14,18 @@ class SignUpSetPINActivity : AppCompatActivity(){
 
         val bundle: Bundle? = intent.extras
 
-        val accountTag = bundle!!.getString("accountTagKey4").toString()
-        val name = bundle.getString("nameKey3").toString()
-        val gender = bundle.getString("genderKey2").toString()
-        val nationalId = bundle.getString("nationalIdKey2").toString()
-        val dateOfBirth = bundle.getString("dateOfBirthKey2").toString()
+        val emailAddress = bundle!!.getString("emailAddressKey").toString()
+        val telephoneNumber = bundle.getString("telephoneNumberKey").toString()
         val officeSiteBranch = bundle.getString("officeSiteBranchKey1").toString()
         val department = bundle.getString("departmentKey1").toString()
         val jobTitle = bundle.getString("jobTitleKey1").toString()
-        val emailAddress = bundle.getString("emailAddressKey").toString()
-        val telephoneNumber = bundle.getString("telephoneNumberKey").toString()
+        val gender = bundle.getString("genderKey2").toString()
+        val nationalId = bundle.getString("nationalIdKey2").toString()
+        val dateOfBirth = bundle.getString("dateOfBirthKey2").toString()
+        val name = bundle.getString("nameKey3").toString()
+        val accountTag = bundle.getString("accountTagKey4").toString()
+
+
 
 
         val editTxtPINSignUp = findViewById<EditText>(R.id.editTxtPINSignUp)
