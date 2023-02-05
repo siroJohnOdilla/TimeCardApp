@@ -26,6 +26,7 @@ class SignUpNameActivity : AppCompatActivity (){
 
         val btnNextSignUpPersonalDetails = findViewById<Button>(R.id.btnNextSignUpPersonalDetails)
         btnNextSignUpPersonalDetails.setOnClickListener{
+
             val intent = Intent(this,SignUpPersonalDetailsActivity::class.java)
 
             if((editTxtFirstNameSignUp.text.toString().trim().uppercase() == "")){
@@ -42,9 +43,6 @@ class SignUpNameActivity : AppCompatActivity (){
                 intent.putExtra("nameKey",passName)
 
                 startActivity(intent)
-                /*editTxtFirstNameSignUp.text.clear()
-                editTxtMiddleNameSignUp.text.clear()
-                editTxtLastNameSignUp.text.clear()*/
             }
         }
         val btnBackToAccountSelection = findViewById<Button>(R.id.btnBackToAccountSelection)

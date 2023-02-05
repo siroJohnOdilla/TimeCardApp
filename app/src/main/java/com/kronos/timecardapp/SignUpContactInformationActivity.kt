@@ -23,8 +23,6 @@ class SignUpContactInformationActivity : AppCompatActivity(){
         val name3 = bundle.getString("nameKey2")
         val accountTag4 = bundle.getString("accountTagKey3")
 
-
-
         val editTxtTelephoneNumberSignUp = findViewById<EditText>(R.id.editTxtTelephoneNumberSignUp)
         val editTxtEmailAddressSignUp = findViewById<EditText>(R.id.editTxtEmailAddressSignUp)
 
@@ -50,8 +48,6 @@ class SignUpContactInformationActivity : AppCompatActivity(){
                 intent.putExtra("telephoneNumberKey",passTelephoneNumber)
 
                 startActivity(intent)
-                /*editTxtEmailAddressSignUp.text.clear()
-                editTxtTelephoneNumberSignUp.text.clear()*/
             }
         }
         val btnBackToJobDescription = findViewById<Button>(R.id.btnBackToJobDescription)

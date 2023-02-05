@@ -25,27 +25,26 @@ class SignUpSetPINActivity : AppCompatActivity(){
         val name = bundle.getString("nameKey3").toString()
         val accountTag = bundle.getString("accountTagKey4").toString()
 
-
-
-
         val editTxtPINSignUp = findViewById<EditText>(R.id.editTxtPINSignUp)
         val editTxtConfirmPINSignUp = findViewById<EditText>(R.id.editTxtConfirmPINSignUp)
 
         val btnFinishSignUp = findViewById<Button>(R.id.btnFinishSignUp)
         btnFinishSignUp.setOnClickListener {
             val intent = Intent(this,LoginActivity::class.java)
-            if(editTxtPINSignUp.text.toString().trim() != editTxtConfirmPINSignUp.text.toString().trim()){
+            if (editTxtPINSignUp.text.toString().trim().length != 4){
+                Toast.makeText(this,"Please enter 4- Digit PIN",Toast.LENGTH_SHORT).show()
+
+            } else if(editTxtPINSignUp.text.toString().trim() != editTxtConfirmPINSignUp.text.toString().trim()) {
                 Toast.makeText(this,"Enter Matching PINs",Toast.LENGTH_SHORT).show()
+
             } else{
                 val pinNumber: String = editTxtConfirmPINSignUp.text.toString().trim()
 
                 val db = DBHelper(this, null)
-
                 db.addDetails(name, accountTag, gender, nationalId, dateOfBirth, officeSiteBranch, department, jobTitle, emailAddress, telephoneNumber, pinNumber)
 
                 startActivity(intent)
-                /*editTxtPINSignUp.text.clear()
-                editTxtConfirmPINSignUp.text.clear()*/
+
                 Toast.makeText(this,"ACCOUNT SUCCESSFULLY CREATED",Toast.LENGTH_SHORT).show()
             }
         }

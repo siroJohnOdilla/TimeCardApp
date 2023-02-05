@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import java.util.Calendar
 import android.app.DatePickerDialog
 class SignUpPersonalDetailsActivity : AppCompatActivity(){
-    lateinit var editTxtDateOfBirthSignUp : EditText
+    private lateinit var editTxtDateOfBirthSignUp : EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +46,7 @@ class SignUpPersonalDetailsActivity : AppCompatActivity(){
         editTxtDateOfBirthSignUp.setOnClickListener {
             val c = Calendar.getInstance()
 
-            val year = c.get(Calendar. YEAR)
+            val year1 = c.get(Calendar. YEAR)
             val month = c.get(Calendar. MONTH)
             val day = c.get(Calendar. DAY_OF_MONTH)
 
@@ -56,7 +56,7 @@ class SignUpPersonalDetailsActivity : AppCompatActivity(){
                     val date = (dayOfMonth.toString() + "-" + (monthOfYear + 1) + "-" + year)
                     editTxtDateOfBirthSignUp.setText(date)
                 },
-                year,
+                year1,
                 month,
                 day
             )
@@ -84,8 +84,6 @@ class SignUpPersonalDetailsActivity : AppCompatActivity(){
                 intent.putExtra("dateOfBirthKey",passDateOfBirth)
 
                 startActivity(intent)
-                /*editTxtNationalIDNo.text.clear()
-                editTxtDateOfBirthSignUp.text.clear()*/
             }
         }
         val btnBackToSignUpName = findViewById<Button>(R.id.btnBackToSignUpName)

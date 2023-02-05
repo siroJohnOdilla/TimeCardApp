@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,19 +21,33 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        val editTxtAdminKey = findViewById<EditText>(R.id.editTxtAdminKey)
         val btnAdminSignUp = findViewById<Button>(R.id.btnAdminSignUp)
         btnAdminSignUp.setOnClickListener {
-            displayAccountTag = "ADMINISTRATOR"
-            val passAccountTag = displayAccountTag
-            val intent = Intent(this, SignUpNameActivity::class.java)
-            intent.putExtra("accountTagKey",passAccountTag)
+            val adminKeyHolder = "K1LL-81LL-V0L12"
 
-            startActivity(intent)
+            if(editTxtAdminKey.text.toString().trim().uppercase() == adminKeyHolder){
+                displayAccountTag = "ADMINISTRATOR"
+                val passAccountTag = displayAccountTag
+
+                val intent = Intent(this, SignUpNameActivity::class.java)
+                intent.putExtra("accountTagKey",passAccountTag)
+
+                editTxtAdminKey.text.clear()
+
+                startActivity(intent)
+            } else if (editTxtAdminKey.text.toString().trim().uppercase() == ""){
+                Toast.makeText(this,"INSERT ADMIN KEY", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this,"INSERT VALID ADMIN KEY",Toast.LENGTH_SHORT).show()
+            }
+
         }
         val btnUserSignUp = findViewById<Button>(R.id.btnUserSignUp)
         btnUserSignUp.setOnClickListener {
             displayAccountTag = "USER"
             val passAccountTag = displayAccountTag
+
             val intent = Intent(this, SignUpNameActivity::class.java)
             intent.putExtra("accountTagKey",passAccountTag)
 

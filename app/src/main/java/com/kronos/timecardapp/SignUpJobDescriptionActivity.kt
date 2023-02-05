@@ -50,9 +50,6 @@ class SignUpJobDescriptionActivity : AppCompatActivity(){
                 intent.putExtra("jobTitleKey",passJobTitle)
 
                 startActivity(intent)
-                /*editTxtOfficeBranchSignUp.text.clear()
-                editTxtDepartmentSignUp.text.clear()
-                editTxtJobTitleSignUp.text.clear()*/
             }
         }
         val btnBackToPersonalDetails = findViewById<Button>(R.id.btnBackToPersonalDetails)
