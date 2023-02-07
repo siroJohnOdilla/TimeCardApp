@@ -22,7 +22,10 @@ class DBHelper(context: Context, factory: SQLiteDatabase.CursorFactory?) : SQLit
                      JOB_TITLE_NAME + " TEXT, " +
                      EMAIL_ADDRESS_NAME + " TEXT, " +
                      TELEPHONE_NUMBER + " TEXT, " +
-                     PIN_NUMBER + " TEXT " + " )" )
+                     PIN_NUMBER + " TEXT, " +
+                     COMPANY_NAME + " TEXT, " +
+                     COMPANY_INITIALS + " TEXT, " +
+                     COMPANY_ADM_KEY + " TEXT " + " )" )
         db.execSQL(query)
     }
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -39,7 +42,10 @@ class DBHelper(context: Context, factory: SQLiteDatabase.CursorFactory?) : SQLit
                 jobTitle: String,
                 emailAddress: String,
                 telephoneNumber: String,
-                pinNumber: String){
+                pinNumber: String,
+                company: String,
+                companyInitials: String,
+                companyAdmissionKey: String){
         val values = ContentValues()
         values.put(NAME_COL, name)
         values.put(ACCOUNT_TAG, accountTag)
@@ -52,16 +58,28 @@ class DBHelper(context: Context, factory: SQLiteDatabase.CursorFactory?) : SQLit
         values.put(EMAIL_ADDRESS_NAME, emailAddress)
         values.put(TELEPHONE_NUMBER, telephoneNumber)
         values.put(PIN_NUMBER, pinNumber)
+        values.put(COMPANY_NAME, company)
+        values.put(COMPANY_INITIALS, companyInitials )
+        values.put(COMPANY_ADM_KEY, companyAdmissionKey)
 
         val db = this.writableDatabase
 
         db.insert(TABLE_NAME, null, values)
         db.close()
     }
+    fun updateCompany(id: Long, company: String, companyInitials: String, companyAdmissionKey: String): Int{
+        val values = ContentValues()
+        values.put(COMPANY_NAME, company)
+        values.put(COMPANY_INITIALS, companyInitials)
+        values.put(COMPANY_ADM_KEY, companyAdmissionKey)
+        val whereclause = "$ID_COL=?"
+        val whereargs = arrayOf(id.toString())
+        return this.writableDatabase.update(TABLE_NAME, values, whereclause, whereargs)
+
+    }
     fun getLoginDetails() : Cursor? {
         val db = this.readableDatabase
         return db.rawQuery("SELECT * FROM $TABLE_NAME", null,null)
-
     }
     companion object {
         private const val DATABASE_NAME = "EMPLOYEE DATABASE"
@@ -79,6 +97,8 @@ class DBHelper(context: Context, factory: SQLiteDatabase.CursorFactory?) : SQLit
         const val EMAIL_ADDRESS_NAME = "emailAddress"
         const val TELEPHONE_NUMBER = "telephoneNumber"
         const val PIN_NUMBER = "pinNumber"
-
+        const val COMPANY_NAME = "companyName"
+        const val COMPANY_INITIALS = "companyInitials"
+        const val COMPANY_ADM_KEY = "companyAdmissionKey"
     }
 }

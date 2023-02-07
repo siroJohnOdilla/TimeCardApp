@@ -39,9 +39,12 @@ class SignUpSetPINActivity : AppCompatActivity(){
 
             } else{
                 val pinNumber: String = editTxtConfirmPINSignUp.text.toString().trim()
+                val company = "to be set"
+                val companyInitials = "to be set"
+                val companyAdmissionKey = "to be set"
 
                 val db = DBHelper(this, null)
-                db.addDetails(name, accountTag, gender, nationalId, dateOfBirth, officeSiteBranch, department, jobTitle, emailAddress, telephoneNumber, pinNumber)
+                db.addDetails(name, accountTag, gender, nationalId, dateOfBirth, officeSiteBranch, department, jobTitle, emailAddress, telephoneNumber, pinNumber, company, companyInitials, companyAdmissionKey)
 
                 startActivity(intent)
 
