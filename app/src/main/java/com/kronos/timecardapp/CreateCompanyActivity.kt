@@ -74,5 +74,15 @@ class CreateCompanyActivity : AppCompatActivity() {
             val intent = Intent(this,LoginActivity::class.java)
             startActivity(intent)
         }
+
+        val btnJoinCompany2 = findViewById<Button>(R.id.btnJoinCompany2)
+        btnJoinCompany2.setOnClickListener {
+            val intent = Intent(this,JoinCompanyActivity::class.java)
+            intent.putExtra("nameLogInKey1",passLogInName)
+            intent.putExtra("displayOfficeSiteBranchKey1",passLoginOfficeSiteBranch)
+            intent.putExtra("displayDepartmentKey1",passLogInDepartment)
+            intent.putExtra("displayJobTitleKey1",passJobTitle)
+            startActivity(intent)
+        }
     }
 }

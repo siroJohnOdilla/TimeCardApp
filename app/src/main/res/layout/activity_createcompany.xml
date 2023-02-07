@@ -12,13 +12,14 @@
         android:layout_height="wrap_content"
         android:backgroundTint="#700DEA"
         android:ems="10"
-        android:textColor="#F8DD30"
         android:hint="Enter Company Name"
+        android:textColor="#F8DD30"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.45" />
+        app:layout_constraintVertical_bias="0.271" />
 
     <EditText
         android:id="@+id/editTxtCompanyNameInitials"
@@ -26,57 +27,82 @@
         android:layout_height="wrap_content"
         android:backgroundTint="#700DEA"
         android:ems="10"
-        android:textColor="#F8DD30"
         android:hint="Enter Company Initials (3 Letters Max.)"
+        android:textColor="#F8DD30"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.574" />
+        app:layout_constraintVertical_bias="0.389" />
 
     <EditText
         android:id="@+id/editTxtCompanyAdmissionKey"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:backgroundTint="#700DEA"
-        android:textColor="#F8DD30"
+        android:ems="10"
         android:hint="Enter Admission Key (6 Letter Word)"
+        android:textColor="#F8DD30"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.203"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.708" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnFinishCompanyNameRegistration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Finish"
         android:backgroundTint="#39C83B"
+        android:text="Finish"
         android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.949"
+        app:layout_constraintHorizontal_bias="0.95"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.976" />
+        app:layout_constraintVertical_bias="0.603" />
 
     <Button
         android:id="@+id/btnBackToLoginPage2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#700DEA"
         android:text="Back"
         android:textColor="#F8DD30"
-        android:backgroundTint="#700DEA"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.063"
+        app:layout_constraintHorizontal_bias="0.009"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.597" />
+
+    <Button
+        android:id="@+id/btnJoinCompany2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#700DEA"
+        android:text="Join Company"
+        android:textColor="#F8DD30"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.976" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Already have a company?..."
+        android:textColor="#F8DD30"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.896" />
 </androidx.constraintlayout.widget.ConstraintLayout>

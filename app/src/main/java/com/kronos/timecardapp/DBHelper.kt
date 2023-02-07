@@ -3,11 +3,8 @@ package com.kronos.timecardapp
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
-//import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-
-
 class DBHelper(context: Context, factory: SQLiteDatabase.CursorFactory?) : SQLiteOpenHelper (context, DATABASE_NAME, factory, DATABASE_VERSION) {
     override fun onCreate(db: SQLiteDatabase) {
         val query = ("CREATE TABLE " + TABLE_NAME + " ("
@@ -75,7 +72,6 @@ class DBHelper(context: Context, factory: SQLiteDatabase.CursorFactory?) : SQLit
         val whereclause = "$ID_COL=?"
         val whereargs = arrayOf(id.toString())
         return this.writableDatabase.update(TABLE_NAME, values, whereclause, whereargs)
-
     }
     fun getLoginDetails() : Cursor? {
         val db = this.readableDatabase
