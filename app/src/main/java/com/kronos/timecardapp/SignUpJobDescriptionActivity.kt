@@ -49,6 +49,10 @@ class SignUpJobDescriptionActivity : AppCompatActivity(){
                 intent.putExtra("departmentKey",passDepartment)
                 intent.putExtra("jobTitleKey",passJobTitle)
 
+                editTxtOfficeBranchSignUp.text.clear()
+                editTxtDepartmentSignUp.text.clear()
+                editTxtJobTitleSignUp.text.clear()
+
                 startActivity(intent)
             }
         }

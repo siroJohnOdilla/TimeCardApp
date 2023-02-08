@@ -46,6 +46,9 @@ class SignUpSetPINActivity : AppCompatActivity(){
                 val db = DBHelper(this, null)
                 db.addDetails(name, accountTag, gender, nationalId, dateOfBirth, officeSiteBranch, department, jobTitle, emailAddress, telephoneNumber, pinNumber, company, companyInitials, companyAdmissionKey)
 
+                editTxtPINSignUp.text.clear()
+                editTxtConfirmPINSignUp.text.clear()
+
                 startActivity(intent)
 
                 Toast.makeText(this,"ACCOUNT SUCCESSFULLY CREATED",Toast.LENGTH_SHORT).show()

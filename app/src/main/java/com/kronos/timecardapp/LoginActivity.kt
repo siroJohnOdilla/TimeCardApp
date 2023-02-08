@@ -97,6 +97,7 @@ class LoginActivity : AppCompatActivity(){
                         //intent.putExtra("checkNationalIdKey",checkNationalId)
                         editTxtFullNameNationalIdLogIn.text.clear()
                         editTxtPINLogIn.text.clear()
+
                         startActivity(intent)
 
                     } else if(editTxtFullNameNationalIdLogIn.text.toString().trim().uppercase() == nameLogIn.toString() && editTxtPINLogIn.text.toString().trim() == pinLogIn.toString() && companyNameLogIn.toString() != "to be set" && (accountTagLogIn.toString() == "ADMINISTRATOR" || accountTagLogIn.toString() == "USER")){

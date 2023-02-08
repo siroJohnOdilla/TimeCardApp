@@ -42,6 +42,10 @@ class SignUpNameActivity : AppCompatActivity (){
                 intent.putExtra("accountTagKey1",accountTag1)
                 intent.putExtra("nameKey",passName)
 
+                editTxtFirstNameSignUp.text.clear()
+                editTxtMiddleNameSignUp.text.clear()
+                editTxtLastNameSignUp.text.clear()
+
                 startActivity(intent)
             }
         }

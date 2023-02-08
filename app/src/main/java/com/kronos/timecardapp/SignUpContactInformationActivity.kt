@@ -47,6 +47,9 @@ class SignUpContactInformationActivity : AppCompatActivity(){
                 intent.putExtra("emailAddressKey",passEmailAddress)
                 intent.putExtra("telephoneNumberKey",passTelephoneNumber)
 
+                editTxtEmailAddressSignUp.text.clear()
+                editTxtTelephoneNumberSignUp.text.clear()
+
                 startActivity(intent)
             }
         }

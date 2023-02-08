@@ -51,6 +51,7 @@ class JoinCompanyActivity : AppCompatActivity() {
 
                                     if(passLogInName.toString() == nameLogin.toString()){
                                         val id = idLogin.toLong()
+
                                         dbGetCompanyDetails.updateCompany(id, companyNameUser, companyInitialsUser, companyAdmissionKey)
                                         dbGetCompanyDetails.close()
 

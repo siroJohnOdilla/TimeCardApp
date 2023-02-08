@@ -33,11 +33,11 @@ class SignUpPersonalDetailsActivity : AppCompatActivity(){
                     position: Int,
                     id: Long
                 ) {
-                    Toast.makeText(this@SignUpPersonalDetailsActivity,getString(R.string.selected_item) + " " + " " + genders[position], Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(this@SignUpPersonalDetailsActivity,getString(R.string.selected_item) + " " + " " + genders[position], Toast.LENGTH_SHORT).show()
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>?) {
-
+                    //Toast.makeText(this@SignUpPersonalDetailsActivity,"GENDER REQUIRED",Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -82,6 +82,9 @@ class SignUpPersonalDetailsActivity : AppCompatActivity(){
                 intent.putExtra("genderKey",passGender)
                 intent.putExtra("nationalIdKey",passNationalId)
                 intent.putExtra("dateOfBirthKey",passDateOfBirth)
+
+                editTxtNationalIDNo.text.clear()
+                editTxtDateOfBirthSignUp.text.clear()
 
                 startActivity(intent)
             }
