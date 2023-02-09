@@ -48,11 +48,17 @@ class DBHelper2 (context: Context, factory: SQLiteDatabase.CursorFactory?) : SQL
         db.insert(TABLE_NAME, null, values)
         db.close()
     }
-    fun updateClockIn(id: Long, timeOut: String, totalTimeWorked: String): Int{
+    fun updateDetails(id: Long, date1: String, name1: String, jobTitle1: String, department1: String , officeBranchSite1: String, timeIn1: String, timeOut1: String, totalTimeWorked1: String): Int{
         val values = ContentValues()
-        values.put(TIME_OUT_COL,timeOut)
-        values.put(TOTAL_TIME_WORKED_COL,totalTimeWorked)
-        val whereclause = "${DBHelper.ID_COL}=?"
+        values.put(DATE_COL,date1)
+        values.put(NAME_COL,name1)
+        values.put(JOB_TITLE_COL,jobTitle1)
+        values.put(DEPARTMENT_COL,department1)
+        values.put(OFFICE_SITE_COL,officeBranchSite1)
+        values.put(TIME_IN_COL,timeIn1)
+        values.put(TIME_OUT_COL,timeOut1)
+        values.put(TOTAL_TIME_WORKED_COL,totalTimeWorked1)
+        val whereclause = "$ID_COL=?"
         val whereargs = arrayOf(id.toString())
         return this.writableDatabase.update(TABLE_NAME, values, whereclause, whereargs)
     }

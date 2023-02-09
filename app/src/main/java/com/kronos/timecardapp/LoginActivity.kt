@@ -118,7 +118,7 @@ class LoginActivity : AppCompatActivity(){
                         editTxtPINLogIn.text.clear()
                         startActivity(intent)
 
-                        Toast.makeText(this,"LOGIN SUCCESSFUL; WELCOME $displayAccountName",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this,"LOGIN SUCCESSFUL;\nWELCOME $displayAccountName",Toast.LENGTH_SHORT).show()
 
                     } else if (editTxtFullNameNationalIdLogIn.text.toString().trim() == nationalIdLogIn.toString() && editTxtPINLogIn.text.toString().trim() == pinLogIn.toString() && companyNameLogIn.toString() != "to be set" && (accountTagLogIn.toString() == "ADMINISTRATOR" || accountTagLogIn.toString() == "USER")){
                         val displayAccountName = nameLogIn.toString()
@@ -138,7 +138,7 @@ class LoginActivity : AppCompatActivity(){
                         editTxtPINLogIn.text.clear()
                         startActivity(intent)
 
-                        Toast.makeText(this,"LOGIN SUCCESSFUL; WELCOME $displayAccountName",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this,"LOGIN SUCCESSFUL;\nWELCOME $displayAccountName",Toast.LENGTH_SHORT).show()
                     }
                 } while(cursor.moveToNext())
             }
