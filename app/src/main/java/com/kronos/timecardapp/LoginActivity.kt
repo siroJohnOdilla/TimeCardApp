@@ -6,17 +6,27 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+//import androidx.fragment.app.FragmentManager
+//import androidx.fragment.app.FragmentTransaction
 
 class LoginActivity : AppCompatActivity(){
+    private lateinit var editTxtFullNameNationalIdLogIn: EditText
+    private lateinit var editTxtPINLogIn: EditText
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        val editTxtFullNameNationalIdLogIn = findViewById<EditText>(R.id.editTxtFullNameNationalIdLogIn)
-        val editTxtPINLogIn = findViewById<EditText>(R.id.editTxtPINLogIn)
+        //title = "fragment"
+        //val fragmentManager: FragmentManager = supportFragmentManager
+        //val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+        //val myFragment = Home()
+
+        editTxtFullNameNationalIdLogIn = findViewById(R.id.editTxtFullNameNationalIdLogIn)
+        editTxtPINLogIn = findViewById(R.id.editTxtPINLogIn)
 
         val btnLogin = findViewById<Button>(R.id.btnLogin)
         btnLogin.setOnClickListener {
+
             val db = DBHelper(this,null)
             val cursor = db.getLoginDetails()
 
@@ -107,12 +117,12 @@ class LoginActivity : AppCompatActivity(){
                         val displayJobTitle = jobTitleLogIn.toString()
                         val displayCompanyName = companyNameLogIn.toString()
 
-                        val intent = Intent(this,HomePageActivity::class.java)
-                        intent.putExtra("nameLogInKey",displayAccountName)
-                        intent.putExtra("displayOfficeSiteBranchKey",displayOfficeSiteBranch)
-                        intent.putExtra("displayDepartmentKey",displayDepartment)
-                        intent.putExtra("displayJobTitleKey",displayJobTitle)
-                        intent.putExtra("displayCompanyNameKey",displayCompanyName)
+                        val intent = Intent(this,HomePageDrawerActivity::class.java)
+                        intent.putExtra("nameLogInKey1",displayAccountName)
+                        intent.putExtra("displayOfficeSiteBranchKey1",displayOfficeSiteBranch)
+                        intent.putExtra("displayDepartmentKey1",displayDepartment)
+                        intent.putExtra("displayJobTitleKey1",displayJobTitle)
+                        intent.putExtra("displayCompanyNameKey1",displayCompanyName)
 
                         editTxtFullNameNationalIdLogIn.text.clear()
                         editTxtPINLogIn.text.clear()
@@ -127,12 +137,12 @@ class LoginActivity : AppCompatActivity(){
                         val displayJobTitle = jobTitleLogIn.toString()
                         val displayCompanyName = companyNameLogIn.toString()
 
-                        val intent = Intent(this,HomePageActivity::class.java)
-                        intent.putExtra("nameLogInKey",displayAccountName)
-                        intent.putExtra("displayOfficeSiteBranchKey",displayOfficeSiteBranch)
-                        intent.putExtra("displayDepartmentKey",displayDepartment)
-                        intent.putExtra("displayJobTitleKey",displayJobTitle)
-                        intent.putExtra("displayCompanyNameKey",displayCompanyName)
+                        val intent = Intent(this,HomePageDrawerActivity::class.java)
+                        intent.putExtra("nameLogInKey1",displayAccountName)
+                        intent.putExtra("displayOfficeSiteBranchKey1",displayOfficeSiteBranch)
+                        intent.putExtra("displayDepartmentKey1",displayDepartment)
+                        intent.putExtra("displayJobTitleKey1",displayJobTitle)
+                        intent.putExtra("displayCompanyNameKey1",displayCompanyName)
 
                         editTxtFullNameNationalIdLogIn.text.clear()
                         editTxtPINLogIn.text.clear()

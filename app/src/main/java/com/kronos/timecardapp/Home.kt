@@ -2,52 +2,60 @@ package com.kronos.timecardapp
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.abs
 
-class HomePageActivity : AppCompatActivity() {
+class Home : Fragment(){
     private lateinit var txtDisplayCurrentDate: TextView
     private lateinit var txtDisplayCurrentDay: TextView
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_homepage)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
 
-        val bundle: Bundle? = intent.extras
+    ): View? {
+        // Inflate the layout for this fragment
+        val v = inflater.inflate(R.layout.fragment_home, container, false)
+
+        val bundle = arguments
+
         val displayLoginName = bundle!!.getString("nameLogInKey")
         val displayLoginOfficeSiteBranch = bundle.getString("displayOfficeSiteBranchKey")
         val displayLogInDepartment = bundle.getString("displayDepartmentKey")
         val displayJobTitle = bundle.getString("displayJobTitleKey")
         val displayCompanyName = bundle.getString("displayCompanyNameKey")
 
-        val txtDisplayNameLogin = findViewById<TextView>(R.id.txtDisplayNameLogin)
+        val txtDisplayNameLogin = v.findViewById<TextView>(R.id.txtDisplayNameLogin)
         txtDisplayNameLogin.text = displayLoginName
 
-        val txtDisplayJobTitle = findViewById<TextView>(R.id.txtDisplayJobTitle)
+        val txtDisplayJobTitle = v.findViewById<TextView>(R.id.txtDisplayJobTitle)
         txtDisplayJobTitle.text = "${displayJobTitle.toString()} (${displayLogInDepartment.toString()})"
 
-        val txtDisplayCompanyName = findViewById<TextView>(R.id.txtDisplayCompanyName)
+        val txtDisplayCompanyName = v.findViewById<TextView>(R.id.txtDisplayCompanyName)
         txtDisplayCompanyName.text = displayCompanyName
 
-        val txtDisplayOfficeSiteBranch = findViewById<TextView>(R.id.txtDisplayOfficeSiteBranch)
+        val txtDisplayOfficeSiteBranch = v.findViewById<TextView>(R.id.txtDisplayOfficeSiteBranch)
         txtDisplayOfficeSiteBranch.text = displayLoginOfficeSiteBranch
 
-        txtDisplayCurrentDay = findViewById(R.id.txtDisplayCurrentDay)
+        txtDisplayCurrentDay = v.findViewById(R.id.txtDisplayCurrentDay)
         val dayDisplay = SimpleDateFormat(" EEEE ", Locale.getDefault())
         val getCurrentDay = dayDisplay.format(Date())
         txtDisplayCurrentDay.text = getCurrentDay
 
-        txtDisplayCurrentDate = findViewById(R.id.txtDisplayCurrentDate)
+        txtDisplayCurrentDate = v.findViewById(R.id.txtDisplayCurrentDate)
         val dateDisplay = SimpleDateFormat(" MMMM dd, yyyy ", Locale.getDefault())
         val getCurrentDate = dateDisplay.format(Date())
         txtDisplayCurrentDate.text = getCurrentDate
 
-        val btnClockIn = findViewById<Button>(R.id.btnClockIn)
+        val btnClockIn = v.findViewById<Button>(R.id.btnClockIn)
         btnClockIn.setOnClickListener {
             val makeDateFormat1 = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
             val checkDate = makeDateFormat1.format(Date())
@@ -55,7 +63,7 @@ class HomePageActivity : AppCompatActivity() {
             val makeDateFormat2 = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
             val checkTime = makeDateFormat2.format(Date())
 
-            val db = DBHelper2(this,null)
+            val db = DBHelper2(v.context,null)
             val cursor = db.getDetails()
 
             if(cursor!!.moveToFirst()){
@@ -67,10 +75,10 @@ class HomePageActivity : AppCompatActivity() {
                     if (displayLoginName.toString() == nameCheck.toString() && checkDate.toString() == dateCheck.toString() && checkTime.toString() != timeInCheck.toString()){
                         val nameToThrow = nameCheck.toString()
 
-                        val intent = Intent(this,LoginActivity::class.java)
+                        val intent = Intent(v.context,LoginActivity::class.java)
                         startActivity(intent)
 
-                        Toast.makeText(this,"$nameToThrow\nHAS ALREADY CLOCKED IN",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(v.context,"$nameToThrow\nHAS ALREADY CLOCKED IN", Toast.LENGTH_SHORT).show()
                         break
                     }
                 } while (cursor.moveToNext())
@@ -93,18 +101,18 @@ class HomePageActivity : AppCompatActivity() {
 
             db.addDetails(date, name, jobTitle, department, officeBranchSite, timeIn, timeOut, totalTimeWorked)
 
-            val intent = Intent(this,LoginActivity::class.java)
+            val intent = Intent(v.context,LoginActivity::class.java)
             startActivity(intent)
 
-            Toast.makeText(this,"$displayLoginName;\nTIME IN: $timeIn",Toast.LENGTH_SHORT).show()
+            Toast.makeText(v.context,"$displayLoginName;\nTIME IN: $timeIn", Toast.LENGTH_SHORT).show()
         }
 
-        val btnClockOut = findViewById<Button>(R.id.btnClockOut)
+        val btnClockOut = v.findViewById<Button>(R.id.btnClockOut)
         btnClockOut.setOnClickListener {
             val makeDateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
             val dateCheck = makeDateFormat.format(Date())
 
-            val db = DBHelper2(this, null)
+            val db = DBHelper2(v.context, null)
             val cursor = db.getDetails()
 
             if (cursor!!.moveToFirst()) {
@@ -146,21 +154,23 @@ class HomePageActivity : AppCompatActivity() {
                         db.updateDetails(id, date1, name1, jobTitle1, department1, officeBranchSite1, timeIn1, timeOut1, totalTimeWorked1)
                         db.close()
 
-                        val intent = Intent(this, LoginActivity::class.java)
+                        val intent = Intent(v.context, LoginActivity::class.java)
                         startActivity(intent)
-                        Toast.makeText(this, "$name1;\nTIME OUT: $timeOut1", Toast.LENGTH_SHORT).show()
-                        Toast.makeText(this, "TOTAL TIME WORKED:\n$totalTimeWorked1", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(v.context, "$name1;\nTIME OUT: $timeOut1", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(v.context, "TOTAL TIME WORKED:\n$totalTimeWorked1", Toast.LENGTH_SHORT).show()
 
                     } else if (displayLoginName.toString() == nameCheck.toString() && dateCheck.toString() == checkDate.toString() && totalTimeWorkedCheck.toString() != "to be set") {
                         val nameToThrow = nameCheck.toString()
-                        val intent = Intent(this,LoginActivity::class.java)
+                        val intent = Intent(v.context,LoginActivity::class.java)
                         startActivity(intent)
-                        Toast.makeText(this,"$nameToThrow\nHAS ALREADY CLOCKED OUT",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(v.context,"$nameToThrow\nHAS ALREADY CLOCKED OUT", Toast.LENGTH_SHORT).show()
                         break
                     }
                 } while (cursor.moveToNext())
             }
             cursor.close()
         }
+        return v
     }
 }
+
