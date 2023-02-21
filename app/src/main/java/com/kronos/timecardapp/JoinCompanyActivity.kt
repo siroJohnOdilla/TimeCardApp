@@ -24,7 +24,7 @@ class JoinCompanyActivity : AppCompatActivity() {
 
         val btnSubmitAdmissionKey = findViewById<Button>(R.id.btnSubmitAdmissionKey)
         btnSubmitAdmissionKey.setOnClickListener {
-            val intent = Intent(this,HomePageActivity::class.java)
+            val intent = Intent(this,HomePageDrawerActivity::class.java)
             if(editTxtJoinCompanyAdmissionKey.text.toString().trim().uppercase() == ""){
                 Toast.makeText(this,"COMPANY ADMISSION KEY REQUIRED", Toast.LENGTH_SHORT).show()
             } else {

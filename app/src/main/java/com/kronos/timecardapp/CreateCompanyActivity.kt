@@ -26,7 +26,7 @@ class CreateCompanyActivity : AppCompatActivity() {
 
         val btnFinishCompanyNameRegistration = findViewById<Button>(R.id.btnFinishCompanyNameRegistration)
         btnFinishCompanyNameRegistration.setOnClickListener {
-            val intent = Intent(this,HomePageActivity::class.java)
+            val intent = Intent(this,HomePageDrawerActivity::class.java)
             if(editTxtCompanyNameCreate.text.toString().trim().uppercase() == ""){
                 Toast.makeText(this,"COMPANY NAME REQUIRED",Toast.LENGTH_SHORT).show()
             } else if (editTxtCompanyNameInitials.text.toString().trim().uppercase() == ""){

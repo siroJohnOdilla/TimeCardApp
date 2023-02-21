@@ -12,8 +12,8 @@
     <ListView
         android:id="@+id/listView"
         android:layout_gravity = "start"
-        android:layout_width="150dp"
-        android:background="#FFF"
+        android:layout_width="170dp"
+        android:background="#700DEA"
         android:layout_height="match_parent"></ListView>
 
 

@@ -12,17 +12,19 @@ import android.widget.Toast
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.abs
-
 class Home : Fragment(){
     private lateinit var txtDisplayCurrentDate: TextView
     private lateinit var txtDisplayCurrentDay: TextView
-
+    private lateinit var txtDisplayNameLogin: TextView
+    private lateinit var txtDisplayJobTitle: TextView
+    private lateinit var txtDisplayCompanyName: TextView
+    private lateinit var txtDisplayOfficeSiteBranch: TextView
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
 
     ): View? {
-        // Inflate the layout for this fragment
+
         val v = inflater.inflate(R.layout.fragment_home, container, false)
 
         val bundle = arguments
@@ -33,16 +35,16 @@ class Home : Fragment(){
         val displayJobTitle = bundle.getString("displayJobTitleKey")
         val displayCompanyName = bundle.getString("displayCompanyNameKey")
 
-        val txtDisplayNameLogin = v.findViewById<TextView>(R.id.txtDisplayNameLogin)
+        txtDisplayNameLogin = v.findViewById(R.id.txtDisplayNameLogin)
         txtDisplayNameLogin.text = displayLoginName
 
-        val txtDisplayJobTitle = v.findViewById<TextView>(R.id.txtDisplayJobTitle)
+        txtDisplayJobTitle = v.findViewById(R.id.txtDisplayJobTitle)
         txtDisplayJobTitle.text = "${displayJobTitle.toString()} (${displayLogInDepartment.toString()})"
 
-        val txtDisplayCompanyName = v.findViewById<TextView>(R.id.txtDisplayCompanyName)
+        txtDisplayCompanyName = v.findViewById(R.id.txtDisplayCompanyName)
         txtDisplayCompanyName.text = displayCompanyName
 
-        val txtDisplayOfficeSiteBranch = v.findViewById<TextView>(R.id.txtDisplayOfficeSiteBranch)
+        txtDisplayOfficeSiteBranch = v.findViewById(R.id.txtDisplayOfficeSiteBranch)
         txtDisplayOfficeSiteBranch.text = displayLoginOfficeSiteBranch
 
         txtDisplayCurrentDay = v.findViewById(R.id.txtDisplayCurrentDay)
@@ -55,12 +57,13 @@ class Home : Fragment(){
         val getCurrentDate = dateDisplay.format(Date())
         txtDisplayCurrentDate.text = getCurrentDate
 
+
         val btnClockIn = v.findViewById<Button>(R.id.btnClockIn)
         btnClockIn.setOnClickListener {
             val makeDateFormat1 = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
             val checkDate = makeDateFormat1.format(Date())
 
-            val makeDateFormat2 = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+            val makeDateFormat2 = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
             val checkTime = makeDateFormat2.format(Date())
 
             val db = DBHelper2(v.context,null)
@@ -70,7 +73,7 @@ class Home : Fragment(){
                 do {
                     val nameCheck = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper2.NAME_COL))
                     val dateCheck = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper2.DATE_COL))
-                    val timeInCheck = cursor.getBlob(cursor.getColumnIndexOrThrow(DBHelper2.TIME_IN_COL))
+                    val timeInCheck = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper2.TIME_IN_COL))
 
                     if (displayLoginName.toString() == nameCheck.toString() && checkDate.toString() == dateCheck.toString() && checkTime.toString() != timeInCheck.toString()){
                         val nameToThrow = nameCheck.toString()
@@ -79,6 +82,9 @@ class Home : Fragment(){
                         startActivity(intent)
 
                         Toast.makeText(v.context,"$nameToThrow\nHAS ALREADY CLOCKED IN", Toast.LENGTH_SHORT).show()
+
+                        cursor.close()
+                        db.close()
                         break
                     }
                 } while (cursor.moveToNext())
