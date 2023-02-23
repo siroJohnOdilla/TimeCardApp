@@ -53,7 +53,7 @@ class Home : Fragment(){
         txtDisplayCurrentDay.text = getCurrentDay
 
         txtDisplayCurrentDate = v.findViewById(R.id.txtDisplayCurrentDate)
-        val dateDisplay = SimpleDateFormat(" MMMM dd, yyyy ", Locale.getDefault())
+        val dateDisplay = SimpleDateFormat(" MMMM d, yyyy ", Locale.getDefault())
         val getCurrentDate = dateDisplay.format(Date())
         txtDisplayCurrentDate.text = getCurrentDate
 
@@ -82,9 +82,6 @@ class Home : Fragment(){
                         startActivity(intent)
 
                         Toast.makeText(v.context,"$nameToThrow\nHAS ALREADY CLOCKED IN", Toast.LENGTH_SHORT).show()
-
-                        cursor.close()
-                        db.close()
                         break
                     }
                 } while (cursor.moveToNext())

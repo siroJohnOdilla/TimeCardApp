@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HorizontalScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/txtTableTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Text"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="#700DEA"></TextView>
+
+        <TableRow
+            android:background="#700DEA"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="DATE"
+                android:textAlignment="textStart"
+                android:textColor="#F8DD30"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="NAME"
+                android:textAlignment="textStart"
+                android:textColor="#F8DD30"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="SITE/ BRANCH"
+                android:textAlignment="textStart"
+                android:textColor="#F8DD30"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="DEPARTMENT"
+                android:textAlignment="textStart"
+                android:textColor="#F8DD30"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="JOB TITLE"
+                android:textAlignment="textStart"
+                android:textColor="#F8DD30"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TIME IN"
+                android:textAlignment="textEnd"
+                android:textColor="#F8DD30"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TIME OUT"
+                android:textAlignment="textEnd"
+                android:textColor="#F8DD30"
+                android:textStyle="bold" />
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TOTAL TIME WORKED"
+                android:textStyle="bold"
+                android:textColor="#F8DD30"
+                android:textAlignment="textEnd"/>
+        </TableRow>
+        <TableRow
+            android:background="#F8DD30"
+            android:padding="10dp">
+            <TextView
+                android:id="@+id/DateTable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#700DEA"
+                android:textAlignment="textStart"/>
+            <TextView
+                android:id="@+id/NameTable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#700DEA"
+                android:textAlignment="textStart"/>
+            <TextView
+                android:id="@+id/siteBranchTable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#700DEA"
+                android:textAlignment="textStart"/>
+            <TextView
+                android:id="@+id/DepartmentTable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#700DEA"
+                android:textAlignment="textStart"/>
+            <TextView
+                android:id="@+id/JobTitleTable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#700DEA"
+                android:textAlignment="textStart"/>
+            <TextView
+                android:id="@+id/TimeInTable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#700DEA"
+                android:textAlignment="textEnd"/>
+            <TextView
+                android:id="@+id/TimeOutTable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#700DEA"
+                android:textAlignment="textEnd"/>
+            <TextView
+                android:id="@+id/TotalTimeWorkedTable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#700DEA"
+                android:textAlignment="textEnd"/>
+
+        </TableRow>
+
+    </TableLayout>
+
+</HorizontalScrollView>
