@@ -5,7 +5,7 @@
     android:layout_height="match_parent" >
 
     <TableLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginTop="10dp"
         android:padding="20dp">
@@ -17,7 +17,7 @@
             android:text="Text"
             android:textSize="20dp"
             android:textStyle="bold"
-            android:textColor="#700DEA"></TextView>
+            android:textColor="#700DEA"/>
 
         <TableRow
             android:background="#700DEA"
@@ -28,43 +28,43 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="DATE"
-                android:textAlignment="textStart"
+                android:textAlignment="center"
                 android:textColor="#F8DD30"
                 android:textStyle="bold" />
 
             <TextView
-                android:layout_width="150dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="NAME"
-                android:textAlignment="textStart"
+                android:textAlignment="center"
                 android:textColor="#F8DD30"
                 android:textStyle="bold" />
 
             <TextView
-                android:layout_width="150dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="SITE/ BRANCH"
-                android:textAlignment="textStart"
+                android:textAlignment="center"
                 android:textColor="#F8DD30"
                 android:textStyle="bold" />
 
             <TextView
-                android:layout_width="150dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="DEPARTMENT"
-                android:textAlignment="textStart"
+                android:textAlignment="center"
                 android:textColor="#F8DD30"
                 android:textStyle="bold" />
 
             <TextView
-                android:layout_width="150dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="JOB TITLE"
-                android:textAlignment="textStart"
+                android:textAlignment="center"
                 android:textColor="#F8DD30"
                 android:textStyle="bold" />
 
@@ -73,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="TIME IN"
-                android:textAlignment="textEnd"
+                android:textAlignment="center"
                 android:textColor="#F8DD30"
                 android:textStyle="bold" />
 
@@ -82,72 +82,72 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="TIME OUT"
-                android:textAlignment="textEnd"
+                android:textAlignment="center"
                 android:textColor="#F8DD30"
                 android:textStyle="bold" />
             <TextView
-                android:layout_width="150dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="TOTAL TIME WORKED"
                 android:textStyle="bold"
                 android:textColor="#F8DD30"
-                android:textAlignment="textEnd"/>
+                android:textAlignment="center"/>
         </TableRow>
         <TableRow
             android:background="#F8DD30"
             android:padding="10dp">
-            <TextView
-                android:id="@+id/DateTable"
+            <ListView
+                android:id="@+id/dateListView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColor="#700DEA"
                 android:textAlignment="textStart"/>
-            <TextView
-                android:id="@+id/NameTable"
+            <ListView
+                android:id="@+id/nameListView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColor="#700DEA"
                 android:textAlignment="textStart"/>
-            <TextView
-                android:id="@+id/siteBranchTable"
+            <ListView
+                android:id="@+id/siteBranchListView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColor="#700DEA"
                 android:textAlignment="textStart"/>
-            <TextView
-                android:id="@+id/DepartmentTable"
+            <ListView
+                android:id="@+id/departmentListView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColor="#700DEA"
                 android:textAlignment="textStart"/>
-            <TextView
-                android:id="@+id/JobTitleTable"
+            <ListView
+                android:id="@+id/jobTitleListView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColor="#700DEA"
                 android:textAlignment="textStart"/>
-            <TextView
-                android:id="@+id/TimeInTable"
+            <ListView
+                android:id="@+id/timeInListView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColor="#700DEA"
                 android:textAlignment="textEnd"/>
-            <TextView
-                android:id="@+id/TimeOutTable"
+            <ListView
+                android:id="@+id/timeOutListView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColor="#700DEA"
                 android:textAlignment="textEnd"/>
-            <TextView
-                android:id="@+id/TotalTimeWorkedTable"
+            <ListView
+                android:id="@+id/totalTimeWorkedListView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

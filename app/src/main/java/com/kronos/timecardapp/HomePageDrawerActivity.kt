@@ -42,29 +42,6 @@ class HomePageDrawerActivity : AppCompatActivity() {
         myHomeFragment.arguments = bundle1
         fragmentTransaction.replace(R.id.frame, myHomeFragment).commit()
 
-        /*val bundle: Bundle? = intent.extras
-
-        val passLoginName = bundle!!.getString("nameLogInKey1")
-        val passLoginOfficeSiteBranch = bundle.getString("displayOfficeSiteBranchKey1")
-        val passLogInDepartment = bundle.getString("displayDepartmentKey1")
-        val passJobTitle = bundle.getString("displayJobTitleKey1")
-        val passCompanyName = bundle.getString("displayCompanyNameKey1")
-
-        val fragmentManager: FragmentManager = supportFragmentManager
-        val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-
-        val myFragment = Home()
-        val bundle1 = Bundle()
-
-        bundle1.putString("nameLogInKey",passLoginName)
-        bundle1.putString("displayOfficeSiteBranchKey",passLoginOfficeSiteBranch)
-        bundle1.putString("displayDepartmentKey",passLogInDepartment)
-        bundle1.putString("displayJobTitleKey",passJobTitle)
-        bundle1.putString("displayCompanyNameKey",passCompanyName)
-
-        myFragment.arguments = bundle1
-        fragmentTransaction.add(R.id.frame, myFragment).commit()*/
-
         val drawer = findViewById<DrawerLayout>(R.id.drawer)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
