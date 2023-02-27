@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_margin="10dp"
+    android:padding="20dp"
+    app:cardElevation="6dp">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableRow
+            android:background="#700DEA"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/txtViewTimeAttendanceDate"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="DATE"
+                android:textAlignment="center"
+                android:textColor="#F8DD30"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtViewTimeAttendanceName"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="NAME"
+                android:textAlignment="center"
+                android:textColor="#F8DD30"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtViewTimeAttendanceSiteBranch"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="SITE/ BRANCH"
+                android:textAlignment="center"
+                android:textColor="#F8DD30"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtViewTimeAttendanceDepartment"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="DEPARTMENT"
+                android:textAlignment="center"
+                android:textColor="#F8DD30"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtViewTimeAttendanceJobTitle"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="JOB TITLE"
+                android:textAlignment="center"
+                android:textColor="#F8DD30"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtViewTimeAttendanceTimeIn"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TIME IN"
+                android:textAlignment="center"
+                android:textColor="#F8DD30"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtViewTimeAttendanceTimeOut"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TIME OUT"
+                android:textAlignment="center"
+                android:textColor="#F8DD30"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/txtViewTimeAttendanceTimeWorked"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TOTAL TIME WORKED"
+                android:textStyle="bold"
+                android:textColor="#F8DD30"
+                android:textAlignment="center"/>
+        </TableRow>
+
+    </TableLayout>
+
+</androidx.cardview.widget.CardView>

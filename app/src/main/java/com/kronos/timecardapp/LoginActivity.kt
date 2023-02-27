@@ -16,11 +16,6 @@ class LoginActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        //title = "fragment"
-        //val fragmentManager: FragmentManager = supportFragmentManager
-        //val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-        //val myFragment = Home()
-
         editTxtFullNameNationalIdLogIn = findViewById(R.id.editTxtFullNameNationalIdLogIn)
         editTxtPINLogIn = findViewById(R.id.editTxtPINLogIn)
 
