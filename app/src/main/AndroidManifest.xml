@@ -22,6 +22,8 @@
         <activity android:name=".JoinCompanyActivity"></activity>
         <activity android:name=".HomePageDrawerActivity"></activity>
         <activity android:name=".TimeAttendanceViewActivity"></activity>
+        <activity android:name=".ApplyLeaveActivity"></activity>
+        <activity android:name=".ApproveLeaveActivity"></activity>
         <activity
             android:name=".LoginActivity"
             android:exported="true">

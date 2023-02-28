@@ -147,7 +147,6 @@ class Home : Fragment(){
                         val d2: Date = makeTimeFormat.parse(timeOut1) as Date
 
                         val difference: Long = abs(d2.time - d1.time)
-                        //val differenceDays= difference / (24*60*60*1000)
                         val differenceHours = (difference / (1000 * 60 * 60)) % 24
                         val differenceMinutes = (difference / (1000 * 60)) % 60
                         val differenceSeconds = (difference / 1000) % 60
