@@ -149,7 +149,22 @@ class ApplyLeaveActivity : AppCompatActivity() {
 
         val btnNextApproveLeave = findViewById<Button>(R.id.btnNextApproveLeave)
         btnNextApproveLeave.setOnClickListener {
-            if(editTxtStartDate.text.toString().isNotEmpty() && editTxtEndDate.text.toString().isNotEmpty()){
+            val intent1 = intent
+            val nameCheckPass = intent1.getStringExtra("nameToCheck").toString()
+
+            if(spinnerEmployeeName.selectedItem.toString() != nameCheckPass || spinnerEmployeeName.selectedItem.toString().isEmpty()){
+                Toast.makeText(this,"PLEASE SELECT YOUR ACCOUNT NAME",Toast.LENGTH_SHORT).show()
+            } else if(spinnerLeaveSelection.selectedItem.toString().isEmpty()){
+                Toast.makeText(this,"SELECT YOUR LEAVE TYPE",Toast.LENGTH_SHORT).show()
+            } else if(editTxtStartDate.text.toString().isEmpty()){
+                Toast.makeText(this,"SELECT START DATE",Toast.LENGTH_SHORT).show()
+            } else if(editTxtEndDate.text.toString().isEmpty()){
+                Toast.makeText(this,"SELECT END DATE",Toast.LENGTH_SHORT).show()
+            } else if(spinnerRelieverNames.selectedItem.toString().isEmpty()){
+                Toast.makeText(this,"SELECT YOUR RELIEVER NAME",Toast.LENGTH_SHORT).show()
+            } else if(spinnerEmployeeName.selectedItem.toString() == spinnerRelieverNames.selectedItem.toString()){
+                Toast.makeText(this,"YOU CANT BE YOUR OWN RELIEVER",Toast.LENGTH_SHORT).show()
+            } else if(editTxtStartDate.text.toString().isNotEmpty() && editTxtEndDate.text.toString().isNotEmpty() && spinnerEmployeeName.selectedItem.toString() == nameCheckPass){
                 val startDate = editTxtStartDate.text.toString()
                 val endDate = editTxtEndDate.text.toString()
 
@@ -162,29 +177,30 @@ class ApplyLeaveActivity : AppCompatActivity() {
 
                 val differenceDays = (difference / (24*60*60*1000)) % 365
                 noOfDays = differenceDays.toString()
+
+                val passName = spinnerEmployeeName.selectedItem.toString()
+                val passLeave = spinnerLeaveSelection.selectedItem.toString()
+                val passStartDate = editTxtStartDate.text.toString()
+                val passEndDate = editTxtEndDate.text.toString()
+                val passReliever = spinnerRelieverNames.selectedItem.toString()
+                val passNoOfDays = noOfDays
+
+                val intent = Intent(this,ApproveLeaveActivity::class.java)
+
+                intent.putExtra("Name",passName)
+                intent.putExtra("Leave",passLeave)
+                intent.putExtra("StartDate",passStartDate)
+                intent.putExtra("EndDate",passEndDate)
+                intent.putExtra("Reliever",passReliever)
+                intent.putExtra("NoOfDays",passNoOfDays)
+
+                startActivity(intent)
+                Toast.makeText(this,"WAITING APPROVAL...",Toast.LENGTH_SHORT).show()
             }
-            val passName = spinnerEmployeeName.selectedItem.toString().trim()
-            val passLeave = spinnerLeaveSelection.selectedItem.toString().trim()
-            val passStartDate = editTxtStartDate.text.toString()
-            val passEndDate = editTxtEndDate.text.toString()
-            val passReliever = spinnerRelieverNames.selectedItem.toString().trim()
-            val passNoOfDays = noOfDays
-
-            val intent = Intent(this,HomePageDrawerActivity::class.java)
-
-            intent.putExtra("Name",passName)
-            intent.putExtra("Leave",passLeave)
-            intent.putExtra("StartDate",passStartDate)
-            intent.putExtra("EndDate",passEndDate)
-            intent.putExtra("Reliever",passReliever)
-            intent.putExtra("NoOfDays",passNoOfDays)
-
-            startActivity(intent)
-            Toast.makeText(this,"WAITING APPROVAL...",Toast.LENGTH_SHORT).show()
         }
         val btnBackToLeaveSchedule = findViewById<Button>(R.id.btnBackToLeaveSchedule)
         btnBackToLeaveSchedule.setOnClickListener {
-            val intent = Intent(this,LeaveSchedule::class.java)
+            val intent = Intent(this,HomePageDrawerActivity::class.java)
             startActivity(intent)
         }
 

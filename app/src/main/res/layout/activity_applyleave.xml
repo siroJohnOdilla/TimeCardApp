@@ -87,7 +87,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#700DEA"
-        android:text="NEXT"
+        android:text="APPLY"
         android:textColor="#F8DD30"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -40,6 +40,7 @@ class HomePageDrawerActivity : AppCompatActivity() {
         bundle1.putString("displayCompanyNameKey",passCompanyName)
 
         myHomeFragment.arguments = bundle1
+
         fragmentTransaction.replace(R.id.frame, myHomeFragment).commit()
 
         val drawer = findViewById<DrawerLayout>(R.id.drawer)
@@ -75,7 +76,20 @@ class HomePageDrawerActivity : AppCompatActivity() {
                     fragmentTransaction.replace(R.id.frame, myHomeFragment).commit()
                 }
                 1 -> {supportFragmentManager.beginTransaction().replace(R.id.frame,TimeAttendance()).commit()}
-                2 -> {supportFragmentManager.beginTransaction().replace(R.id.frame,LeaveSchedule()).commit()}
+                2 -> {
+                    val fragmentManager1: FragmentManager = supportFragmentManager
+                    val fragmentTransaction1: FragmentTransaction = fragmentManager1.beginTransaction()
+
+                    val myLeaveScheduleFragment = LeaveSchedule()
+
+                    val bundle2 = Bundle()
+                    val passName = passLoginName.toString()
+
+                    bundle2.putString("nameLogIn",passName)
+
+                    myLeaveScheduleFragment.arguments = bundle2
+                    fragmentTransaction1.replace(R.id.frame, myLeaveScheduleFragment).commit()
+                }
                 3 -> {supportFragmentManager.beginTransaction().replace(R.id.frame,Profile()).commit()}
                 4 -> {supportFragmentManager.beginTransaction().replace(R.id.frame,Settings()).commit()}
                 5 -> {

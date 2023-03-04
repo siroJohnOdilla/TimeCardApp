@@ -62,14 +62,6 @@ class DBHelper2 (context: Context, factory: SQLiteDatabase.CursorFactory?) : SQL
         val whereargs = arrayOf(id.toString())
         return this.writableDatabase.update(TABLE_NAME, values, whereclause, whereargs)
     }
-    /*fun updateDetailsClockIn(id: Long, timeIn1: String): Int{
-        val values = ContentValues()
-        values.put(TIME_IN_COL,timeIn1)
-        val whereclause = "$ID_COL=?"
-        val whereargs = arrayOf(id.toString())
-        return this.writableDatabase.update(TABLE_NAME, values, whereclause, whereargs)
-    }*/
-
     fun getDetails() : Cursor? {
         val db = this.readableDatabase
         return db.rawQuery("SELECT * FROM $TABLE_NAME", null,null)

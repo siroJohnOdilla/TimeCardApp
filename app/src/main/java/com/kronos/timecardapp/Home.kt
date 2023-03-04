@@ -39,7 +39,8 @@ class Home : Fragment(){
         txtDisplayNameLogin.text = displayLoginName
 
         txtDisplayJobTitle = v.findViewById(R.id.txtDisplayJobTitle)
-        txtDisplayJobTitle.text = "${displayJobTitle.toString()} (${displayLogInDepartment.toString()})"
+        val display = "${displayJobTitle.toString()} (${displayLogInDepartment.toString()})"
+        txtDisplayJobTitle.text = display
 
         txtDisplayCompanyName = v.findViewById(R.id.txtDisplayCompanyName)
         txtDisplayCompanyName.text = displayCompanyName

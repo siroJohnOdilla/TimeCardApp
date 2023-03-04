@@ -18,10 +18,17 @@ class LeaveSchedule : Fragment() {
 
         val v = inflater.inflate(R.layout.fragment_leaveschedule, container, false)
 
+        val bundle = arguments
+
+        val loginNameCheck = bundle!!.getString("nameLogIn")
+
         val btnApplyForLeave = v.findViewById<Button>(R.id.btnApplyForLeave)
         btnApplyForLeave.setOnClickListener {
             val intent = Intent(v.context,ApplyLeaveActivity::class.java)
+
+            intent.putExtra("nameToCheck",loginNameCheck)
             startActivity(intent)
+
             Toast.makeText(v.context,"APPLY FOR LEAVE",Toast.LENGTH_SHORT).show()
         }
         val btnViewLeaveSchedule = v.findViewById<Button>(R.id.btnViewLeaveSchedule)
@@ -30,7 +37,6 @@ class LeaveSchedule : Fragment() {
             startActivity(intent)
             Toast.makeText(v.context,"LEAVE SCHEDULE",Toast.LENGTH_SHORT).show()
         }
-
         return v
     }
 
