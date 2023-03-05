@@ -41,7 +41,7 @@ class DBHelper3 (context: Context, factory: SQLiteDatabase.CursorFactory?) : SQL
     }
     fun getDetails() : Cursor? {
         val db = this.readableDatabase
-        return db.rawQuery("SELECT * FROM ${DBHelper2.TABLE_NAME}", null,null)
+        return db.rawQuery("SELECT * FROM $TABLE_NAME", null,null)
     }
 
     companion object {

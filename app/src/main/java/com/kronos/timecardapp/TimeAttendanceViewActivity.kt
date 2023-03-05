@@ -20,6 +20,7 @@ class TimeAttendanceViewActivity : AppCompatActivity() {
 
         val startDateRange = intent.getStringExtra("StartDate").toString()
         val endDateRange = intent.getStringExtra("EndDate").toString()
+        val nameFilter = intent.getStringExtra("FullName").toString()
 
         val dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy",Locale.getDefault())
         val startDate: LocalDate = LocalDate.parse(startDateRange,dtf) as LocalDate
@@ -58,7 +59,7 @@ class TimeAttendanceViewActivity : AppCompatActivity() {
                 val timeOutPrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper2.TIME_OUT_COL))
                 val timeWorkedPrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper2.TOTAL_TIME_WORKED_COL))
 
-                if(namePrint.toString().isNotEmpty() && timeWorkedPrint.toString() != "to be set" && (testDate.isAfter(startDate) || testDate.isEqual(startDate)) && (testDate.isBefore(endDate) || testDate.isEqual(endDate))){
+                if(((nameFilter == namePrint.toString()) || (nameFilter.isEmpty())) && timeWorkedPrint.toString() != "to be set" && (testDate.isAfter(startDate) || testDate.isEqual(startDate)) && (testDate.isBefore(endDate) || testDate.isEqual(endDate))){
                     date = datePrint.toString()
                     name = namePrint.toString()
                     officeSiteBranch = siteBranchPrint.toString()

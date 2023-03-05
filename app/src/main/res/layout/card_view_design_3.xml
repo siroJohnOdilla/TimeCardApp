@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_margin="10dp"
+    android:padding="20dp"
+    app:cardElevation="6dp">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableRow
+            android:background="#700DEA"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/txtViewLeaveScheduleName"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="NAME"
+                android:textAlignment="center"
+                android:textColor="#F8DD30"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtViewLeaveScheduleLeave"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="LEAVE"
+                android:textAlignment="center"
+                android:textColor="#F8DD30"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtViewLeaveScheduleStartDate"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="START DATE"
+                android:textAlignment="center"
+                android:textColor="#F8DD30"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtViewLeaveScheduleEndDate"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="END DATE"
+                android:textAlignment="center"
+                android:textColor="#F8DD30"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtViewLeaveScheduleNoOfDays"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="NO. OF DAYS"
+                android:textAlignment="center"
+                android:textColor="#F8DD30"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtViewLeaveScheduleReliever"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="RELIEVER"
+                android:textAlignment="center"
+                android:textColor="#F8DD30"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtViewLeaveScheduleAuthorizedBy"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="AUTHORIZED BY"
+                android:textAlignment="center"
+                android:textColor="#F8DD30"
+                android:textStyle="bold" />
+
+        </TableRow>
+
+    </TableLayout>
+
+</androidx.cardview.widget.CardView>
