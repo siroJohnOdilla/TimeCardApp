@@ -16,6 +16,12 @@ class TimeAttendanceViewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_timeattendanceview)
 
+        val actionBar = supportActionBar
+        actionBar!!.title = ""
+
+        actionBar.setDisplayHomeAsUpEnabled(true)
+        actionBar.setDisplayHomeAsUpEnabled(true)
+
         val intent = intent
 
         val startDateRange = intent.getStringExtra("StartDate").toString()
@@ -78,5 +84,9 @@ class TimeAttendanceViewActivity : AppCompatActivity() {
         val adapter = CustomAdapter2(data)
         recyclerViewTimeAttendance.adapter = adapter
 
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

@@ -12,6 +12,12 @@ class CreateCompanyActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_createcompany)
 
+        val actionBar = supportActionBar
+        actionBar!!.title = ""
+
+        actionBar.setDisplayHomeAsUpEnabled(true)
+        actionBar.setDisplayHomeAsUpEnabled(true)
+
         val bundle : Bundle? = intent.extras
 
         val passLogInName = bundle!!.getString("nameLogInKey1")
@@ -69,11 +75,6 @@ class CreateCompanyActivity : AppCompatActivity() {
                 cursor.close()
             }
         }
-        val btnBackToLoginPage2 = findViewById<Button>(R.id.btnBackToLoginPage2)
-        btnBackToLoginPage2.setOnClickListener {
-            val intent = Intent(this,LoginActivity::class.java)
-            startActivity(intent)
-        }
 
         val btnJoinCompany2 = findViewById<Button>(R.id.btnJoinCompany2)
         btnJoinCompany2.setOnClickListener {
@@ -84,5 +85,9 @@ class CreateCompanyActivity : AppCompatActivity() {
             intent.putExtra("displayJobTitleKey1",passJobTitle)
             startActivity(intent)
         }
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

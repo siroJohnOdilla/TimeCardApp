@@ -12,6 +12,12 @@ class SignUpContactInformationActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signupcontactinformation)
 
+        val actionBar = supportActionBar
+        actionBar!!.title = ""
+
+        actionBar.setDisplayHomeAsUpEnabled(true)
+        actionBar.setDisplayHomeAsUpEnabled(true)
+
         val bundle : Bundle? = intent.extras
 
         val officeSiteBranch1 = bundle!!.getString("officeSiteBranchKey")
@@ -53,11 +59,10 @@ class SignUpContactInformationActivity : AppCompatActivity(){
                 startActivity(intent)
             }
         }
-        val btnBackToJobDescription = findViewById<Button>(R.id.btnBackToJobDescription)
-        btnBackToJobDescription.setOnClickListener {
-            val intent = Intent(this, SignUpJobDescriptionActivity::class.java)
-            startActivity(intent)
-        }
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }
 

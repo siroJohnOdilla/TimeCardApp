@@ -12,6 +12,12 @@ class ApproveLeaveActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_approveleave)
 
+        val actionBar = supportActionBar
+        actionBar!!.title = ""
+
+        actionBar.setDisplayHomeAsUpEnabled(true)
+        actionBar.setDisplayHomeAsUpEnabled(true)
+
         val bundle: Bundle? = intent.extras
 
         val name = bundle!!.getString("Name").toString()
@@ -79,5 +85,9 @@ class ApproveLeaveActivity : AppCompatActivity() {
                 cursor.close()
             }
         }
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

@@ -27,6 +27,7 @@ class Home : Fragment(){
 
         val v = inflater.inflate(R.layout.fragment_home, container, false)
 
+
         val bundle = arguments
 
         val displayLoginName = bundle!!.getString("nameLogInKey")

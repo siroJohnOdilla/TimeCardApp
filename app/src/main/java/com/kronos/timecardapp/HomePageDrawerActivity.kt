@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.widget.ArrayAdapter
 import android.widget.ListView
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
@@ -14,9 +13,14 @@ import androidx.fragment.app.FragmentTransaction
 
 class HomePageDrawerActivity : AppCompatActivity() {
     private lateinit var toggle: ActionBarDrawerToggle
+    private lateinit var displayActionBarTitle: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_homepagedrawer)
+
+        val actionBar = supportActionBar
+        displayActionBarTitle = "HOME"
+        actionBar!!.title = displayActionBarTitle
 
         val bundle: Bundle? = intent.extras
 
@@ -59,6 +63,9 @@ class HomePageDrawerActivity : AppCompatActivity() {
             drawer.closeDrawers()
             when(i){
                 0 -> {
+                    displayActionBarTitle = "HOME"
+                    actionBar.title = displayActionBarTitle
+
                     val fragmentManager: FragmentManager = supportFragmentManager
                     val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
 
@@ -75,8 +82,16 @@ class HomePageDrawerActivity : AppCompatActivity() {
                     myHomeFragment.arguments = bundle1
                     fragmentTransaction.replace(R.id.frame, myHomeFragment).commit()
                 }
-                1 -> {supportFragmentManager.beginTransaction().replace(R.id.frame,TimeAttendance()).commit()}
+                1 -> {
+                    displayActionBarTitle = "TIME ATTENDANCE"
+                    actionBar.title = displayActionBarTitle
+
+                    supportFragmentManager.beginTransaction().replace(R.id.frame,TimeAttendance()).commit()
+                }
                 2 -> {
+                    displayActionBarTitle = "LEAVE SCHEDULE"
+                    actionBar.title = displayActionBarTitle
+
                     val fragmentManager1: FragmentManager = supportFragmentManager
                     val fragmentTransaction1: FragmentTransaction = fragmentManager1.beginTransaction()
 
@@ -90,13 +105,20 @@ class HomePageDrawerActivity : AppCompatActivity() {
                     myLeaveScheduleFragment.arguments = bundle2
                     fragmentTransaction1.replace(R.id.frame, myLeaveScheduleFragment).commit()
                 }
-                3 -> {supportFragmentManager.beginTransaction().replace(R.id.frame,Profile()).commit()}
-                4 -> {supportFragmentManager.beginTransaction().replace(R.id.frame,Settings()).commit()}
-                5 -> {
-                    val intent = Intent(this,LoginActivity::class.java)
-                    startActivity(intent)
+                3 -> {
+                    displayActionBarTitle = "PROFILE"
+                    actionBar.title = displayActionBarTitle
 
-                    Toast.makeText(this,"$passLoginName\nHAS SIGNED OUT",Toast.LENGTH_SHORT).show()
+                    supportFragmentManager.beginTransaction().replace(R.id.frame,Profile()).commit()
+                }
+                4 -> {
+                    displayActionBarTitle = "SETTINGS"
+                    actionBar.title = displayActionBarTitle
+
+                    supportFragmentManager.beginTransaction().replace(R.id.frame,Settings()).commit()
+                }
+                5 -> {
+                    onBackPressed()
                 }
             }
         }
@@ -107,5 +129,11 @@ class HomePageDrawerActivity : AppCompatActivity() {
             return true
         }
         return super.onOptionsItemSelected(item)
+    }
+    @Deprecated("Deprecated in Java")
+    override fun onBackPressed() {
+        val intent = Intent(this@HomePageDrawerActivity,PopUpWindowSignOutActivity::class.java)
+        intent.putExtra("darkStatusBar", false)
+        startActivity(intent)
     }
 }

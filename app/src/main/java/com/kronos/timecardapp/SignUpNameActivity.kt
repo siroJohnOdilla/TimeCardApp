@@ -13,6 +13,12 @@ class SignUpNameActivity : AppCompatActivity (){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signupname)
 
+        val actionBar = supportActionBar
+        actionBar!!.title = ""
+
+        actionBar.setDisplayHomeAsUpEnabled(true)
+        actionBar.setDisplayHomeAsUpEnabled(true)
+
         val bundle : Bundle? = intent.extras
         val displayAccountTag1 = bundle!!.getString("accountTagKey")
 
@@ -49,10 +55,9 @@ class SignUpNameActivity : AppCompatActivity (){
                 startActivity(intent)
             }
         }
-        val btnBackToAccountSelection = findViewById<Button>(R.id.btnBackToAccountSelection)
-        btnBackToAccountSelection.setOnClickListener {
-            val intent = Intent(this,MainActivity::class.java)
-            startActivity(intent)
-        }
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

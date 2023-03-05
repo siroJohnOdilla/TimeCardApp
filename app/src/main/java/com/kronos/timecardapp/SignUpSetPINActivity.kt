@@ -12,6 +12,12 @@ class SignUpSetPINActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signupsetpin)
 
+        val actionBar = supportActionBar
+        actionBar!!.title = ""
+
+        actionBar.setDisplayHomeAsUpEnabled(true)
+        actionBar.setDisplayHomeAsUpEnabled(true)
+
         val bundle: Bundle? = intent.extras
 
         val emailAddress = bundle!!.getString("emailAddressKey").toString()
@@ -54,10 +60,9 @@ class SignUpSetPINActivity : AppCompatActivity(){
                 Toast.makeText(this,"ACCOUNT SUCCESSFULLY CREATED",Toast.LENGTH_SHORT).show()
             }
         }
-        val btnBackToContactInformation = findViewById<Button>(R.id.btnBackToContactInformation)
-        btnBackToContactInformation.setOnClickListener {
-            val intent = Intent(this,SignUpContactInformationActivity::class.java)
-            startActivity(intent)
-        }
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

@@ -12,6 +12,12 @@ class JoinCompanyActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_joincompany)
 
+        val actionBar = supportActionBar
+        actionBar!!.title = ""
+
+        actionBar.setDisplayHomeAsUpEnabled(true)
+        actionBar.setDisplayHomeAsUpEnabled(true)
+
         val bundle : Bundle? = intent.extras
 
         val passLogInName = bundle!!.getString("nameLogInKey1")
@@ -72,10 +78,11 @@ class JoinCompanyActivity : AppCompatActivity() {
                     } while (cursor.moveToNext())
                 }
                 cursor.close()
-
-
-
             }
         }
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

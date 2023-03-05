@@ -16,6 +16,12 @@ class LeaveScheduleView2Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leavescheduleview2)
 
+        val actionBar = supportActionBar
+        actionBar!!.title = ""
+
+        actionBar.setDisplayHomeAsUpEnabled(true)
+        actionBar.setDisplayHomeAsUpEnabled(true)
+
         val bundle: Bundle? = intent.extras
 
         val startDateRange = bundle!!.getString("StartDate").toString()
@@ -78,5 +84,9 @@ class LeaveScheduleView2Activity : AppCompatActivity() {
 
         val adapter = CustomAdapter3(data)
         recyclerViewLeaveSchedule.adapter = adapter
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

@@ -12,6 +12,12 @@ class SignUpJobDescriptionActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signupjobdescription)
 
+        val actionBar = supportActionBar
+        actionBar!!.title = ""
+
+        actionBar.setDisplayHomeAsUpEnabled(true)
+        actionBar.setDisplayHomeAsUpEnabled(true)
+
         val bundle : Bundle? = intent.extras
 
         val gender1 = bundle!!.getString("genderKey")
@@ -56,10 +62,9 @@ class SignUpJobDescriptionActivity : AppCompatActivity(){
                 startActivity(intent)
             }
         }
-        val btnBackToPersonalDetails = findViewById<Button>(R.id.btnBackToPersonalDetails)
-        btnBackToPersonalDetails.setOnClickListener {
-            val intent = Intent(this,SignUpPersonalDetailsActivity::class.java)
-            startActivity(intent)
-        }
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

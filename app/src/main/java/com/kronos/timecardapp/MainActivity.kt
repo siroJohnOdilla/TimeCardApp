@@ -3,7 +3,6 @@ package com.kronos.timecardapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -13,16 +12,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val actionBar = supportActionBar
+        actionBar!!.title = "Choose Account"
+
+        actionBar.setDisplayHomeAsUpEnabled(true)
+        actionBar.setDisplayHomeAsUpEnabled(true)
+
         var displayAccountTag: String
 
-        val btnBackToLoginPage = findViewById<Button>(R.id.btnBackToLoginPage)
-        btnBackToLoginPage.setOnClickListener {
-            val intent = Intent(this,LoginActivity::class.java)
-
-            startActivity(intent)
-        }
-
         val editTxtAdminKey = findViewById<EditText>(R.id.editTxtAdminKey)
+
         val btnAdminSignUp = findViewById<Button>(R.id.btnAdminSignUp)
         btnAdminSignUp.setOnClickListener {
             val adminKeyHolder = "K1LL-81LL-V0L12"
@@ -37,6 +36,7 @@ class MainActivity : AppCompatActivity() {
                 editTxtAdminKey.text.clear()
 
                 startActivity(intent)
+
             } else if (editTxtAdminKey.text.toString().trim().uppercase() == ""){
                 Toast.makeText(this,"INSERT ADMIN KEY", Toast.LENGTH_SHORT).show()
             } else {
@@ -44,6 +44,7 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
+
         val btnUserSignUp = findViewById<Button>(R.id.btnUserSignUp)
         btnUserSignUp.setOnClickListener {
             displayAccountTag = "USER"
@@ -55,17 +56,8 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
-
-    override fun onContextItemSelected(item: MenuItem): Boolean {
-        when (item.itemId){
-            android.R.id.home -> {
-                finish()
-                return true
-            }
-        }
-        return super.onContextItemSelected(item)
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
-
-
-
 }

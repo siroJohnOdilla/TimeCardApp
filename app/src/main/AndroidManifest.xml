@@ -26,6 +26,7 @@
         <activity android:name=".LeaveScheduleView2Activity"></activity>
         <activity android:name=".ApplyLeaveActivity"></activity>
         <activity android:name=".ApproveLeaveActivity"></activity>
+        <activity android:name=".PopUpWindowSignOutActivity"></activity>
 
         <activity
             android:name=".LoginActivity"

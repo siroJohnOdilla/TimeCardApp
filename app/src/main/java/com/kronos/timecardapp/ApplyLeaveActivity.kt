@@ -20,6 +20,12 @@ class ApplyLeaveActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_applyleave)
 
+        val actionBar = supportActionBar
+        actionBar!!.title = ""
+
+        actionBar.setDisplayHomeAsUpEnabled(true)
+        actionBar.setDisplayHomeAsUpEnabled(true)
+
         employeeNameList = ArrayList()
         employeeNameList.add("")
         relieverNameList = ArrayList()
@@ -198,11 +204,9 @@ class ApplyLeaveActivity : AppCompatActivity() {
                 Toast.makeText(this,"WAITING APPROVAL...",Toast.LENGTH_SHORT).show()
             }
         }
-        val btnBackToLeaveSchedule = findViewById<Button>(R.id.btnBackToLeaveSchedule)
-        btnBackToLeaveSchedule.setOnClickListener {
-            val intent = Intent(this,HomePageDrawerActivity::class.java)
-            startActivity(intent)
-        }
-
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

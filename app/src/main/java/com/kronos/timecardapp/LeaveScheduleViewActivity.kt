@@ -19,6 +19,12 @@ class LeaveScheduleViewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leavescheduleview)
 
+        val actionBar = supportActionBar
+        actionBar!!.title = ""
+
+        actionBar.setDisplayHomeAsUpEnabled(true)
+        actionBar.setDisplayHomeAsUpEnabled(true)
+
         employeeList = ArrayList()
         employeeList.add("")
 
@@ -129,5 +135,9 @@ class LeaveScheduleViewActivity : AppCompatActivity() {
             startActivity(intent)
             Toast.makeText(this, "GENERATING LEAVE SCHEDULE...", Toast.LENGTH_SHORT).show()
         }
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

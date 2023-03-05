@@ -6,8 +6,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-//import androidx.fragment.app.FragmentManager
-//import androidx.fragment.app.FragmentTransaction
 
 class LoginActivity : AppCompatActivity(){
     private lateinit var editTxtFullNameNationalIdLogIn: EditText
@@ -15,6 +13,12 @@ class LoginActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        val actionBar = supportActionBar
+        actionBar!!.title = ""
+
+        actionBar.setDisplayHomeAsUpEnabled(true)
+        actionBar.setDisplayHomeAsUpEnabled(true)
 
         editTxtFullNameNationalIdLogIn = findViewById(R.id.editTxtFullNameNationalIdLogIn)
         editTxtPINLogIn = findViewById(R.id.editTxtPINLogIn)
@@ -156,4 +160,14 @@ class LoginActivity : AppCompatActivity(){
             startActivity(intent)
         }
     }
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
+    @Deprecated("Deprecated in Java", ReplaceWith("finishAffinity()"))
+    override fun onBackPressed() {
+        finishAffinity()
+    }
+
 }

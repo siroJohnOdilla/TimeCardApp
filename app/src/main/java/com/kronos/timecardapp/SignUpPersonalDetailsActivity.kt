@@ -14,6 +14,12 @@ class SignUpPersonalDetailsActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signuppersonaldetails)
 
+        val actionBar = supportActionBar
+        actionBar!!.title = ""
+
+        actionBar.setDisplayHomeAsUpEnabled(true)
+        actionBar.setDisplayHomeAsUpEnabled(true)
+
         val bundle : Bundle? = intent.extras
 
         val name1 = bundle!!.getString("nameKey")
@@ -89,11 +95,9 @@ class SignUpPersonalDetailsActivity : AppCompatActivity(){
                 startActivity(intent)
             }
         }
-        val btnBackToSignUpName = findViewById<Button>(R.id.btnBackToSignUpName)
-        btnBackToSignUpName.setOnClickListener {
-            val intent = Intent(this,SignUpNameActivity::class.java)
-            startActivity(intent)
-        }
-
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }
