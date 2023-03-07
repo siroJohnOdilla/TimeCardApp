@@ -2,10 +2,8 @@ package com.kronos.timecardapp
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -22,7 +20,7 @@ class ProfileViewListActivity : AppCompatActivity() {
 
         val intent = intent
 
-        val nameFilter = intent.getStringExtra("NameCheck").toString()
+        val nameFilter1 = intent.getStringExtra("NameCheck").toString()
 
         val recyclerViewProfile = findViewById<RecyclerView>(R.id.recyclerViewProfile)
         recyclerViewProfile.layoutManager = LinearLayoutManager(this)
@@ -41,7 +39,7 @@ class ProfileViewListActivity : AppCompatActivity() {
                 val nationalIdPrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.NATIONAL_ID))
                 val accountTagPrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.ACCOUNT_TAG))
 
-                if((nameFilter.isEmpty() || nameFilter == namePrint.toString())){
+                if((nameFilter1.isEmpty() || nameFilter1 == namePrint.toString())){
                     val name = namePrint.toString()
                     val jobTitle = "$jobTitlePrint ($departmentPrint)"
                     val officeSiteBranch = officeSiteBranchPrint.toString()
@@ -56,21 +54,18 @@ class ProfileViewListActivity : AppCompatActivity() {
         val adapter = CustomAdapter(data)
         recyclerViewProfile.adapter = adapter
 
-        /*val cardProfile = recyclerViewProfile.findViewById<CardView>(R.id.cardProfile)
-        val txtViewNameProfile = recyclerViewProfile.findViewById<TextView>(R.id.txtViewNameProfile)
+        adapter.setOnClickListener(object: CustomAdapter.onItemClickListener{
+            override fun onItemClick(position: Int) {
+                val intent1 = Intent(this@ProfileViewListActivity,ProfileViewActivity::class.java)
 
-        val clickListener: View.OnClickListener = View.OnClickListener { view ->
-            when(view.id){
-                R.id.cardProfile -> {
-                    val intent1 = Intent(this,ProfileViewActivity::class.java)
-                    val passName = txtViewNameProfile.text.toString()
-
-                    intent.putExtra("NamePass",passName)
+                if(nameFilter1.isEmpty()){
+                    Toast.makeText(this@ProfileViewListActivity,"ACCESS DENIED",Toast.LENGTH_SHORT).show()
+                } else{
+                    intent1.putExtra("NamePass",nameFilter1)
                     startActivity(intent1)
                 }
             }
-        }
-        cardProfile.setOnClickListener(clickListener)*/
+        })
     }
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
