@@ -37,8 +37,6 @@ class SignUpNameActivity : AppCompatActivity (){
 
             if((editTxtFirstNameSignUp.text.toString().trim().uppercase() == "")){
                 Toast.makeText(this, "First Name is empty", Toast.LENGTH_SHORT).show()
-            } else if ((editTxtMiddleNameSignUp.text.toString().trim().uppercase() == "")){
-                Toast.makeText(this, "Middle Name is empty", Toast.LENGTH_SHORT).show()
             } else if ((editTxtLastNameSignUp.text.toString().trim().uppercase() == "")){
                 Toast.makeText(this, "Last Name is empty", Toast.LENGTH_SHORT).show()
             } else {

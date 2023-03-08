@@ -12,23 +12,30 @@
         android:theme="@style/Theme.TimeCardApp"
         tools:targetApi="31">
 
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".SignUpNameActivity"></activity>
-        <activity android:name=".SignUpPersonalDetailsActivity"></activity>
-        <activity android:name=".SignUpJobDescriptionActivity"></activity>
-        <activity android:name=".SignUpContactInformationActivity"></activity>
-        <activity android:name=".SignUpSetPINActivity"></activity>
-        <activity android:name=".CreateCompanyActivity"></activity>
-        <activity android:name=".JoinCompanyActivity"></activity>
-        <activity android:name=".HomePageDrawerActivity"></activity>
-        <activity android:name=".TimeAttendanceViewActivity"></activity>
-        <activity android:name=".LeaveScheduleViewActivity"></activity>
-        <activity android:name=".LeaveScheduleView2Activity"></activity>
-        <activity android:name=".ApplyLeaveActivity"></activity>
-        <activity android:name=".ApproveLeaveActivity"></activity>
-        <activity android:name=".PopUpWindowSignOutActivity"></activity>
-        <activity android:name=".ProfileViewListActivity"></activity>
-        <activity android:name=".ProfileViewActivity"></activity>
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".SignUpNameActivity"/>
+        <activity android:name=".SignUpPersonalDetailsActivity"/>
+        <activity android:name=".SignUpJobDescriptionActivity"/>
+        <activity android:name=".SignUpContactInformationActivity"/>
+        <activity android:name=".SignUpSetPINActivity"/>
+        <activity android:name=".CreateCompanyActivity"/>
+        <activity android:name=".JoinCompanyActivity"/>
+        <activity android:name=".HomePageDrawerActivity"/>
+        <activity android:name=".TimeAttendanceViewActivity"/>
+        <activity android:name=".LeaveScheduleViewActivity"/>
+        <activity android:name=".LeaveScheduleView2Activity"/>
+        <activity android:name=".ApplyLeaveActivity"/>
+        <activity android:name=".ApproveLeaveActivity"/>
+        <activity android:name=".PopUpWindowSignOutActivity"/>
+        <activity android:name=".ProfileViewListActivity"/>
+        <activity android:name=".ProfileViewActivity"/>
+        <activity android:name=".AccountTagEditActivity"/>
+        <activity android:name=".NameEditActivity"/>
+        <activity android:name=".PersonalDetailsEditActivity"/>
+        <activity android:name=".JobDescriptionEditActivity"/>
+        <activity android:name=".ContactInformationEditActivity"/>
+        <activity android:name=".SecurityEditActivity"/>
+        <activity android:name=".CompanyEditActivity"/>
 
         <activity
             android:name=".LoginActivity"

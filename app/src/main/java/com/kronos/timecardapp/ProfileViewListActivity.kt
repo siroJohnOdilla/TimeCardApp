@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -56,14 +57,7 @@ class ProfileViewListActivity : AppCompatActivity() {
 
         adapter.setOnClickListener(object: CustomAdapter.onItemClickListener{
             override fun onItemClick(position: Int) {
-                val intent1 = Intent(this@ProfileViewListActivity,ProfileViewActivity::class.java)
-
-                if(nameFilter1.isEmpty()){
-                    Toast.makeText(this@ProfileViewListActivity,"ACCESS DENIED",Toast.LENGTH_SHORT).show()
-                } else{
-                    intent1.putExtra("NamePass",nameFilter1)
-                    startActivity(intent1)
-                }
+                Toast.makeText(this@ProfileViewListActivity,"FETCHING PROFILE INFORMATION...",Toast.LENGTH_SHORT).show()
             }
         })
     }

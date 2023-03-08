@@ -1,5 +1,6 @@
 package com.kronos.timecardapp
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 
 class CustomAdapter(private val mList: List<ItemsViewModel>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>(){
     private lateinit var mListener: onItemClickListener
-
     interface onItemClickListener{
         fun onItemClick(position: Int)
     }
@@ -28,6 +28,7 @@ class CustomAdapter(private val mList: List<ItemsViewModel>) : RecyclerView.Adap
         holder.txtViewOfficeSiteBranchProfile.text = itemsViewModel.officeSiteBranch
         holder.txtViewNationalIdProfile.text = itemsViewModel.idNo
         holder.txtViewAccountTagProfile.text = itemsViewModel.accountTag
+        holder.cardProfile.tag = position
     }
     override fun getItemCount(): Int {
         return mList.size
@@ -43,6 +44,19 @@ class CustomAdapter(private val mList: List<ItemsViewModel>) : RecyclerView.Adap
         init{
             itemView.setOnClickListener {
                 listener.onItemClick(adapterPosition)
+
+                when(val position = ItemView.tag){
+                    position -> {
+                        val intent = Intent(ItemView.context,ProfileViewActivity::class.java)
+                        val passName = txtViewNameProfile.text.toString()
+
+                        intent.putExtra("NamePass",passName)
+                        ItemView.context.startActivity(intent)
+                    }
+                }
+
+
+                //Toast.makeText(ItemView.context, position.toString(), Toast.LENGTH_SHORT).show()
             }
         }
     }
