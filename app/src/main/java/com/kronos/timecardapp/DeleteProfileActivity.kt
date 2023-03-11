@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter
 import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
 import android.app.Activity
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -12,23 +13,23 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.graphics.ColorUtils
 
-class SecurityEditActivity : AppCompatActivity() {
+class DeleteProfileActivity : AppCompatActivity() {
     private var darkStatusBar = false
-    private lateinit var cardViewPopUpWindowPINEdit: CardView
-    private lateinit var editTxtOldPINEdit: EditText
-    private lateinit var editTxtNewPINEdit: EditText
-    private lateinit var editTxtConfirmNewPINEdit: EditText
-    private lateinit var btnSavePINEdit: Button
-    private lateinit var btnCancelPINEdit: Button
+    private lateinit var cardViewPopUpWindowDelete: CardView
+    private lateinit var txtViewDisplayMessage: TextView
+    private lateinit var editTxtLeaveAdminKeyDelete: EditText
+    private lateinit var btnYesDelete: Button
+    private lateinit var btnNoDelete: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         overridePendingTransition(0, 0)
-        setContentView(R.layout.activity_securityedit)
+        setContentView(R.layout.activity_deleteprofile)
 
         val actionBar = supportActionBar
         actionBar!!.title = ""
@@ -37,54 +38,45 @@ class SecurityEditActivity : AppCompatActivity() {
         darkStatusBar = bundle!!.getBoolean("darkStatusBar", false)
         val nameVerify = bundle.getString("NameVerify").toString()
 
-        cardViewPopUpWindowPINEdit = findViewById(R.id.cardViewPopUpWindowPINEdit)
-        editTxtOldPINEdit = findViewById(R.id.editTxtOldPINEdit)
-        editTxtNewPINEdit = findViewById(R.id.editTxtNewPINEdit)
-        editTxtConfirmNewPINEdit = findViewById(R.id.editTxtConfirmNewPINEdit)
+        cardViewPopUpWindowDelete = findViewById(R.id.cardViewPopUpWindowDelete)
 
-        btnSavePINEdit = findViewById(R.id.btnSavePINEdit)
-        btnSavePINEdit.setOnClickListener {
-            val db = DBHelper(this, null)
-            val cursor = db.getLoginDetails()
+        txtViewDisplayMessage = findViewById(R.id.txtViewDisplayMessage)
+        val displayMessage = "DELETE $nameVerify\nAre you sure?"
+        txtViewDisplayMessage.text = displayMessage
 
-            if(cursor!!.moveToFirst()){
-                do{
-                   val namePrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.NAME_COL))
-                   val pinPrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.PIN_NUMBER))
+        editTxtLeaveAdminKeyDelete = findViewById(R.id.editTxtLeaveAdminKeyDelete)
 
-                   if(nameVerify == namePrint.toString()){
-                       val oldPin = pinPrint.toString()
+        btnYesDelete = findViewById(R.id.btnYesDelete)
+        btnYesDelete.setOnClickListener {
+            val adminKeyDelete = "h4ck-th3-pl4n3t"
+            if(editTxtLeaveAdminKeyDelete.text.toString().trim() != adminKeyDelete){
+                Toast.makeText(this,"ENTER VALID ADMIN KEY",Toast.LENGTH_SHORT).show()
+            } else if(editTxtLeaveAdminKeyDelete.text.toString().trim() == adminKeyDelete){
+                val db = DBHelper(this, null)
+                val cursor = db.getLoginDetails()
 
-                       if(editTxtOldPINEdit.text.toString().trim() != oldPin){
-                           Toast.makeText(this,"INCORRECT CURRENT PIN", Toast.LENGTH_SHORT).show()
-                       } else if(oldPin == editTxtOldPINEdit.text.toString().trim()){
-                           if(cursor.moveToFirst()){
-                               do{
-                                   val namePrint1 = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.NAME_COL))
-                                   val idPrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.ID_COL))
+                if(cursor!!.moveToFirst()){
+                    do{
+                        val namePrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.NAME_COL))
 
-                                   if(nameVerify == namePrint1.toString() && editTxtNewPINEdit.text.toString().trim() == editTxtConfirmNewPINEdit.text.toString().trim()){
-                                       val id = idPrint.toLong()
+                        if(nameVerify == namePrint.toString()){
+                            val name = namePrint.toString()
 
-                                       val savePIN = editTxtConfirmNewPINEdit.text.toString().trim()
+                            db.deleteProfile(name)
+                            db.close()
 
-                                       db.updatePIN(id, savePIN)
-                                       db.close()
-
-                                       Toast.makeText(this,"SAVED", Toast.LENGTH_SHORT).show()
-                                   }
-                               } while(cursor.moveToNext())
-                           }
-                           cursor.close()
-                       }
-                   }
-                } while(cursor.moveToNext())
+                            val intent = Intent(this,LoginActivity::class.java)
+                            startActivity(intent)
+                            Toast.makeText(this,"$name;\nSUCCESSFULLY DELETED ", Toast.LENGTH_SHORT).show()
+                        }
+                    } while(cursor.moveToNext())
+                }
+                cursor.close()
             }
-            cursor.close()
         }
 
-        btnCancelPINEdit = findViewById(R.id.btnCancelPINEdit)
-        btnCancelPINEdit.setOnClickListener {
+        btnNoDelete = findViewById(R.id.btnNoDelete)
+        btnNoDelete.setOnClickListener {
             onBackPressed()
         }
         if(Build.VERSION.SDK_INT in 19..20){
@@ -107,7 +99,7 @@ class SecurityEditActivity : AppCompatActivity() {
         val colorAnimation =  ValueAnimator.ofObject(ArgbEvaluator(), Color.TRANSPARENT, alphaColor)
         colorAnimation.duration = 500
         colorAnimation.addUpdateListener { animator ->
-            cardViewPopUpWindowPINEdit.setBackgroundColor(animator.animatedValue as Int)
+            cardViewPopUpWindowDelete.setBackgroundColor(animator.animatedValue as Int)
         }
         colorAnimation.start()
     }
@@ -118,7 +110,7 @@ class SecurityEditActivity : AppCompatActivity() {
         val colorAnimation =  ValueAnimator.ofObject(ArgbEvaluator(), alphaColor, Color.TRANSPARENT)
         colorAnimation.duration = 500
         colorAnimation.addUpdateListener { animator ->
-            cardViewPopUpWindowPINEdit.setBackgroundColor(animator.animatedValue as Int)
+            cardViewPopUpWindowDelete.setBackgroundColor(animator.animatedValue as Int)
         }
         colorAnimation.addListener(object: AnimatorListenerAdapter(){
             override fun onAnimationEnd(animation: Animator) {

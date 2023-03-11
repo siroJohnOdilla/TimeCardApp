@@ -73,6 +73,61 @@ class DBHelper(context: Context, factory: SQLiteDatabase.CursorFactory?) : SQLit
         val whereargs = arrayOf(id.toString())
         return this.writableDatabase.update(TABLE_NAME, values, whereclause, whereargs)
     }
+    fun updateAccountTag(id: Long, saveAccountTag: String) : Int{
+        val values = ContentValues()
+        values.put(ACCOUNT_TAG,saveAccountTag)
+        val whereclaus = "$ID_COL=?"
+        val whereargs = arrayOf(id.toString())
+        return this.writableDatabase.update(TABLE_NAME, values, whereclaus, whereargs)
+    }
+    fun updateName(id: Long, saveName: String) : Int{
+        val values = ContentValues()
+        values.put(NAME_COL,saveName)
+        val whereclaus = "$ID_COL=?"
+        val whereargs = arrayOf(id.toString())
+        return this.writableDatabase.update(TABLE_NAME, values, whereclaus, whereargs)
+    }
+    fun updatePersonalDetails(id: Long, saveGender: String, saveNationalId: String, saveDateOfBirth: String) : Int{
+        val values = ContentValues()
+        values.put(GENDER,saveGender)
+        values.put(NATIONAL_ID,saveNationalId)
+        values.put(DATE_OF_BIRTH,saveDateOfBirth)
+        val whereclaus = "$ID_COL=?"
+        val whereargs = arrayOf(id.toString())
+        return this.writableDatabase.update(TABLE_NAME, values, whereclaus, whereargs)
+    }
+    fun updateJobDescription(id: Long, saveOfficeSiteBranch: String, saveDepartment: String, saveJobTitle: String) : Int{
+        val values = ContentValues()
+        values.put(OFFICE_SITE_BRANCH,saveOfficeSiteBranch)
+        values.put(DEPARTMENT_NAME,saveDepartment)
+        values.put(JOB_TITLE_NAME,saveJobTitle)
+        val whereclaus = "$ID_COL=?"
+        val whereargs = arrayOf(id.toString())
+        return this.writableDatabase.update(TABLE_NAME, values, whereclaus, whereargs)
+    }
+    fun updateContactInformation(id: Long, saveEmailAddress: String, saveTelephoneNumber: String) : Int{
+        val values = ContentValues()
+        values.put(EMAIL_ADDRESS_NAME,saveEmailAddress)
+        values.put(TELEPHONE_NUMBER,saveTelephoneNumber)
+        val whereclaus = "$ID_COL=?"
+        val whereargs = arrayOf(id.toString())
+        return this.writableDatabase.update(TABLE_NAME, values, whereclaus, whereargs)
+    }
+    fun updatePIN(id: Long, savePIN: String) : Int{
+        val values = ContentValues()
+        values.put(PIN_NUMBER,savePIN)
+        val whereclaus = "$ID_COL=?"
+        val whereargs = arrayOf(id.toString())
+        return this.writableDatabase.update(TABLE_NAME, values, whereclaus, whereargs)
+    }
+    fun deleteProfile(deleteName: String){
+        val whereclause = "$NAME_COL=?"
+        val whereargs = arrayOf(deleteName)
+        val db = this.writableDatabase
+        db.delete(TABLE_NAME, whereclause, whereargs)
+        db.close()
+    }
+
     fun getLoginDetails() : Cursor? {
         val db = this.readableDatabase
         return db.rawQuery("SELECT * FROM $TABLE_NAME", null,null)

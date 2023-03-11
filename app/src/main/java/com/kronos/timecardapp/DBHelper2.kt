@@ -66,13 +66,6 @@ class DBHelper2 (context: Context, factory: SQLiteDatabase.CursorFactory?) : SQL
         val db = this.readableDatabase
         return db.rawQuery("SELECT * FROM $TABLE_NAME", null,null)
     }
-    /*fun deleteDuplicate(name1: String){
-        val whereclause = "$NAME_COL=?"
-        val whereargs = arrayOf(name1)
-        val db = this.writableDatabase
-        db.delete(TABLE_NAME, whereclause, whereargs)
-        db.close()
-    }*/
     companion object {
         private const val DATABASE_NAME = "TIME ATTENDANCE DATABASE"
         private const val DATABASE_VERSION = 1

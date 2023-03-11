@@ -43,56 +43,64 @@ class CustomAdapter4(private val mList: List<ItemViewModel4>) : RecyclerView.Ada
                 listener.onItemClick(adapterPosition)
                 when(val position = ItemView.tag){
                     0 -> {
-                        val intent = Intent(ItemView.context,AccountTagEditActivity::class.java)
+                        Toast.makeText(ItemView.context,"ACCOUNT TYPE",Toast.LENGTH_SHORT).show()
+                        /*val intent = Intent(ItemView.context,AccountTagEditActivity::class.java)
                         val passInformation = txtViewInformationDisplay.text.toString()
 
                         intent.putExtra("PassInformation",passInformation)
-                        ItemView.context.startActivity(intent)
+                        intent.putExtra("darkStatusBar", false)
+                        ItemView.context.startActivity(intent)*/
                     }
                     1 -> {
-                        val intent = Intent(ItemView.context,NameEditActivity::class.java)
+                        Toast.makeText(ItemView.context,"NAME",Toast.LENGTH_SHORT).show()
+                        /*val intent = Intent(ItemView.context,NameEditActivity::class.java)
                         val passInformation = txtViewInformationDisplay.text.toString()
 
                         intent.putExtra("PassInformation",passInformation)
-                        ItemView.context.startActivity(intent)
+                        intent.putExtra("darkStatusBar", false)
+                        ItemView.context.startActivity(intent)*/
                     }
                     2 -> {
-                        val intent = Intent(ItemView.context,PersonalDetailsEditActivity::class.java)
+                        Toast.makeText(ItemView.context,"PERSONAL DETAILS",Toast.LENGTH_SHORT).show()
+                        /*val intent = Intent(ItemView.context,PersonalDetailsEditActivity::class.java)
                         val passInformation = txtViewInformationDisplay.text.toString()
 
                         intent.putExtra("PassInformation",passInformation)
-                        ItemView.context.startActivity(intent)
+                        intent.putExtra("darkStatusBar", false)
+                        ItemView.context.startActivity(intent)*/
                     }
                     3 -> {
-                        val intent = Intent(ItemView.context,CompanyEditActivity::class.java)
+                        Toast.makeText(ItemView.context,"COMPANY",Toast.LENGTH_SHORT).show()
+                        /*val intent = Intent(ItemView.context,CompanyEditActivity::class.java)
                         val passInformation = txtViewInformationDisplay.text.toString()
 
                         intent.putExtra("PassInformation",passInformation)
-                        ItemView.context.startActivity(intent)
+                        intent.putExtra("darkStatusBar", false)
+                        ItemView.context.startActivity(intent)*/
                     }
                     4 -> {
-                        val intent = Intent(ItemView.context,JobDescriptionEditActivity::class.java)
+                        Toast.makeText(ItemView.context,"JOB DESCRIPTION",Toast.LENGTH_SHORT).show()
+                        /*val intent = Intent(ItemView.context,JobDescriptionEditActivity::class.java)
                         val passInformation = txtViewInformationDisplay.text.toString()
 
                         intent.putExtra("PassInformation",passInformation)
-                        ItemView.context.startActivity(intent)
+                        intent.putExtra("darkStatusBar", false)
+                        ItemView.context.startActivity(intent)*/
                     }
                     5 -> {
-                        val intent = Intent(ItemView.context,ContactInformationEditActivity::class.java)
+                        Toast.makeText(ItemView.context,"CONTACT INFORMATION",Toast.LENGTH_SHORT).show()
+                        /*val intent = Intent(ItemView.context,ContactInformationEditActivity::class.java)
                         val passInformation = txtViewInformationDisplay.text.toString()
 
                         intent.putExtra("PassInformation",passInformation)
-                        ItemView.context.startActivity(intent)
-                    }
-                    6 -> {
-                        val intent = Intent(ItemView.context,SecurityEditActivity::class.java)
-                        val passInformation = txtViewInformationDisplay.text.toString()
-
-                        intent.putExtra("PassInformation",passInformation)
-                        ItemView.context.startActivity(intent)
+                        intent.putExtra("darkStatusBar", false)
+                        ItemView.context.startActivity(intent)*/
                     }
                 }
             }
         }
+    }
+    fun getRetrieveName(){
+        val a = ProfileViewActivity()
     }
 }

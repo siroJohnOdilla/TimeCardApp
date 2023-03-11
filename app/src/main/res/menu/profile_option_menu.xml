@@ -11,4 +11,45 @@
         android:title="View Leave Schedule"
         app:showAsAction="never"/>
 
+    <item
+        android:id="@+id/itemViewEdit"
+        android:title="Edit..."
+        app:showAsAction="never">
+
+        <menu>
+
+            <item
+                android:id="@+id/subItemEditAccountTag"
+                android:title="ACCOUNT TYPE"/>
+            <item
+                android:id="@+id/subItemEditName"
+                android:title="NAME"/>
+            <item
+                android:id="@+id/subItemEditPersonalDetails"
+                android:title="PERSONAL DETAILS"/>
+            <item
+                android:id="@+id/subItemEditCompany"
+                android:title="COMPANY"/>
+            <item
+                android:id="@+id/subItemEditJobDescription"
+                android:title="JOB DESCRIPTION"/>
+            <item
+                android:id="@+id/subItemEditContactInformation"
+                android:title="CONTACT INFORMATION"/>
+
+        </menu>
+
+    </item>
+
+    <item
+        android:id="@+id/itemViewChangePIN"
+        android:title="Change PIN"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/itemViewDeleteProfile"
+        android:title="Delete Profile"
+        app:showAsAction="never"/>
+
+
 </menu>

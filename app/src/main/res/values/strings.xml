@@ -6,13 +6,13 @@
 
     <string-array name="Genders">
         <item>   </item>
-        <item>Male</item>
+        <item>MALE</item>
         <item>    </item>
-        <item>Female</item>
+        <item>FEMALE</item>
         <item>    </item>
-        <item>Non- Binary</item>
+        <item>NON-BINARY</item>
         <item>    </item>
-        <item>Other</item>
+        <item>OTHER</item>
         <item>    </item>
     </string-array>
     <string-array name="Leave">
@@ -26,6 +26,14 @@
         <item>SICK</item>
         <item>   </item>
         <item>OTHER</item>
+        <item>   </item>
+    </string-array>
+
+    <string-array name="Account">
+        <item>   </item>
+        <item>ADMINISTRATOR</item>
+        <item>   </item>
+        <item>USER</item>
         <item>   </item>
 
     </string-array>

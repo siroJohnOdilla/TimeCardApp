@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -38,7 +37,6 @@ class ProfileViewActivity : AppCompatActivity() {
         titleList.add("4.COMPANY")
         titleList.add("5.JOB DESCRIPTION")
         titleList.add("6.CONTACT INFORMATION")
-        titleList.add("7.SECURITY")
 
         infoList = ArrayList()
 
@@ -94,9 +92,8 @@ class ProfileViewActivity : AppCompatActivity() {
                     infoList.add(companyJoined)
                     infoList.add(jobJoined)
                     infoList.add(contactJoined)
-                    infoList.add("(CHANGE PIN...)")
 
-                    for(i in 0..6){
+                    for(i in 0..5){
                         val title = titleList[i]
                         val info = infoList[i]
 
@@ -110,7 +107,7 @@ class ProfileViewActivity : AppCompatActivity() {
 
         adapter.setOnClickListener(object: CustomAdapter4.onItemClickListener{
             override fun onItemClick(position: Int) {
-
+                getName = nameFilter
             }
         })
     }
@@ -145,6 +142,79 @@ class ProfileViewActivity : AppCompatActivity() {
                 startActivity(intent)
                 return true
             }
+            R.id.subItemEditAccountTag -> {
+                val intent = Intent(this,AccountTagEditActivity::class.java)
+                val passName = getName
+
+                intent.putExtra("darkStatusBar", false)
+                intent.putExtra("NameVerify",passName)
+                startActivity(intent)
+                return true
+            }
+            R.id.subItemEditName -> {
+                val intent = Intent(this,NameEditActivity::class.java)
+                val passName = getName
+
+                intent.putExtra("darkStatusBar", false)
+                intent.putExtra("NameVerify",passName)
+                startActivity(intent)
+                return true
+            }
+            R.id.subItemEditPersonalDetails -> {
+                val intent = Intent(this,PersonalDetailsEditActivity::class.java)
+                val passName = getName
+
+                intent.putExtra("darkStatusBar", false)
+                intent.putExtra("NameVerify",passName)
+                startActivity(intent)
+                return true
+            }
+            R.id.subItemEditCompany -> {
+                val intent = Intent(this,CompanyEditActivity::class.java)
+                val passName = getName
+
+                intent.putExtra("darkStatusBar", false)
+                intent.putExtra("NameVerify",passName)
+                startActivity(intent)
+                return true
+            }
+            R.id.subItemEditJobDescription -> {
+                val intent = Intent(this,JobDescriptionEditActivity::class.java)
+                val passName = getName
+
+                intent.putExtra("darkStatusBar", false)
+                intent.putExtra("NameVerify",passName)
+                startActivity(intent)
+                return true
+            }
+            R.id.subItemEditContactInformation -> {
+                val intent = Intent(this,ContactInformationEditActivity::class.java)
+                val passName = getName
+
+                intent.putExtra("darkStatusBar", false)
+                intent.putExtra("NameVerify",passName)
+                startActivity(intent)
+                return true
+            }
+            R.id.itemViewChangePIN -> {
+                val intent = Intent(this,SecurityEditActivity::class.java)
+                val passName = getName
+
+                intent.putExtra("darkStatusBar", false)
+                intent.putExtra("NameVerify",passName)
+                startActivity(intent)
+                return true
+            }
+            R.id.itemViewDeleteProfile -> {
+                val intent = Intent(this,DeleteProfileActivity::class.java)
+                val passName = getName
+
+                intent.putExtra("darkStatusBar", false)
+                intent.putExtra("NameVerify",passName)
+                startActivity(intent)
+                return true
+            }
+
         }
         return super.onOptionsItemSelected(item)
     }

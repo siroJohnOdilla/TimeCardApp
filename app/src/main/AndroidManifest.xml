@@ -36,6 +36,7 @@
         <activity android:name=".ContactInformationEditActivity"/>
         <activity android:name=".SecurityEditActivity"/>
         <activity android:name=".CompanyEditActivity"/>
+        <activity android:name=".DeleteProfileActivity"/>
 
         <activity
             android:name=".LoginActivity"
