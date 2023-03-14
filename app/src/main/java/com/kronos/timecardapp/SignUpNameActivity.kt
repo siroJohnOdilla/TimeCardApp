@@ -35,13 +35,13 @@ class SignUpNameActivity : AppCompatActivity (){
 
             val intent = Intent(this,SignUpPersonalDetailsActivity::class.java)
 
-            if((editTxtFirstNameSignUp.text.toString().trim().uppercase() == "")){
-                Toast.makeText(this, "First Name is empty", Toast.LENGTH_SHORT).show()
-            } else if ((editTxtLastNameSignUp.text.toString().trim().uppercase() == "")){
-                Toast.makeText(this, "Last Name is empty", Toast.LENGTH_SHORT).show()
+            if(editTxtFirstNameSignUp.text.toString().trim().isEmpty()){
+                Toast.makeText(this, "FIRST NAME REQUIRED", Toast.LENGTH_SHORT).show()
+            } else if (editTxtLastNameSignUp.text.toString().trim().isEmpty()){
+                Toast.makeText(this, "LAST NAME REQUIRED", Toast.LENGTH_SHORT).show()
             } else {
 
-                val passName = ((editTxtFirstNameSignUp.text.toString().trim().uppercase()) + " " + (editTxtMiddleNameSignUp.text.toString().trim().uppercase()) + " " + (editTxtLastNameSignUp.text.toString().trim().uppercase()))
+                val passName = "${editTxtFirstNameSignUp.text.toString().trim().uppercase()} ${editTxtMiddleNameSignUp.text.toString().trim().uppercase()} ${editTxtLastNameSignUp.text.toString().trim().uppercase()}"
 
                 intent.putExtra("accountTagKey1",accountTag1)
                 intent.putExtra("nameKey",passName)

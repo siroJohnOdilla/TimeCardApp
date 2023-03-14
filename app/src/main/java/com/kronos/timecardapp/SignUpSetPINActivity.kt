@@ -38,11 +38,9 @@ class SignUpSetPINActivity : AppCompatActivity(){
         btnFinishSignUp.setOnClickListener {
             val intent = Intent(this,LoginActivity::class.java)
             if (editTxtPINSignUp.text.toString().trim().length != 4){
-                Toast.makeText(this,"Please enter 4- Digit PIN",Toast.LENGTH_SHORT).show()
-
+                Toast.makeText(this,"4-DIGIT PIN REQUIRED",Toast.LENGTH_SHORT).show()
             } else if(editTxtPINSignUp.text.toString().trim() != editTxtConfirmPINSignUp.text.toString().trim()) {
-                Toast.makeText(this,"Enter Matching PINs",Toast.LENGTH_SHORT).show()
-
+                Toast.makeText(this,"MATCHING PINS REQUIRED",Toast.LENGTH_SHORT).show()
             } else{
                 val pinNumber: String = editTxtConfirmPINSignUp.text.toString().trim()
                 val company = "to be set"

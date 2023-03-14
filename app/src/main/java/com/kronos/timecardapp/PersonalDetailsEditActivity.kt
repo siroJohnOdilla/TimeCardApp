@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter
 import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
 import android.app.Activity
+import android.app.DatePickerDialog
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -14,6 +15,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.graphics.ColorUtils
+import java.util.*
 
 class PersonalDetailsEditActivity : AppCompatActivity() {
     private var darkStatusBar = false
@@ -60,6 +62,25 @@ class PersonalDetailsEditActivity : AppCompatActivity() {
         }
         editTxtNationalIDNoEdit = findViewById(R.id.editTxtNationalIDNoEdit)
         editTxtDateOfBirthEdit = findViewById(R.id.editTxtDateOfBirthEdit)
+        editTxtDateOfBirthEdit.setOnClickListener {
+            val c = Calendar.getInstance()
+
+            val year1 = c.get(Calendar. YEAR)
+            val month = c.get(Calendar. MONTH)
+            val day = c.get(Calendar. DAY_OF_MONTH)
+
+            val datePickerDialog = DatePickerDialog(
+                this,
+                { _, year, monthOfYear, dayOfMonth ->
+                    val date: String = String.format("%02d-%02d-%d", dayOfMonth, (monthOfYear + 1), year)
+                    editTxtDateOfBirthEdit.setText(date)
+                },
+                year1,
+                month,
+                day
+            )
+            datePickerDialog.show()
+        }
 
         btnSavePersonalDetailsTagEdit = findViewById(R.id.btnSavePersonalDetailsEdit)
         btnSavePersonalDetailsTagEdit.setOnClickListener {

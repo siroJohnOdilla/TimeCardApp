@@ -36,8 +36,10 @@ class SignUpContactInformationActivity : AppCompatActivity(){
         btnNextSignUpSetPIN.setOnClickListener {
 
             val intent = Intent(this, SignUpSetPINActivity::class.java)
-            if (editTxtTelephoneNumberSignUp.text.toString().trim() == ""){
-                Toast.makeText(this,"Telephone Number is required", Toast.LENGTH_SHORT).show()
+            if (editTxtTelephoneNumberSignUp.text.toString().trim().isEmpty()){
+                Toast.makeText(this,"TELEPHONE NO. REQUIRED", Toast.LENGTH_SHORT).show()
+            } else if(editTxtEmailAddressSignUp.text.toString().trim().isEmpty()){
+                Toast.makeText(this,"EMAIL ADDRESS REQUIRED", Toast.LENGTH_SHORT).show()
             } else{
                 val passEmailAddress = editTxtEmailAddressSignUp.text.toString().trim().lowercase()
                 val passTelephoneNumber = editTxtTelephoneNumberSignUp.text.toString().trim()

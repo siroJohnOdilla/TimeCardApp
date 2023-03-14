@@ -40,7 +40,7 @@ class ProfileViewListActivity : AppCompatActivity() {
                 val nationalIdPrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.NATIONAL_ID))
                 val accountTagPrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.ACCOUNT_TAG))
 
-                if((nameFilter1.isEmpty() || nameFilter1 == namePrint.toString())){
+                if(nameFilter1.isEmpty() || nameFilter1 == namePrint.toString()){
                     val name = namePrint.toString()
                     val jobTitle = "$jobTitlePrint ($departmentPrint)"
                     val officeSiteBranch = officeSiteBranchPrint.toString()

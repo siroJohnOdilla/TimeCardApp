@@ -33,11 +33,11 @@ class CreateCompanyActivity : AppCompatActivity() {
         val btnFinishCompanyNameRegistration = findViewById<Button>(R.id.btnFinishCompanyNameRegistration)
         btnFinishCompanyNameRegistration.setOnClickListener {
             val intent = Intent(this,HomePageDrawerActivity::class.java)
-            if(editTxtCompanyNameCreate.text.toString().trim().uppercase() == ""){
+            if(editTxtCompanyNameCreate.text.toString().trim().isEmpty()){
                 Toast.makeText(this,"COMPANY NAME REQUIRED",Toast.LENGTH_SHORT).show()
-            } else if (editTxtCompanyNameInitials.text.toString().trim().uppercase() == ""){
+            } else if (editTxtCompanyNameInitials.text.toString().trim().isEmpty()){
                 Toast.makeText(this,"COMPANY INITIALS REQUIRED",Toast.LENGTH_SHORT).show()
-            } else if (editTxtCompanyAdmissionKey.text.toString().trim().uppercase() == ""){
+            } else if (editTxtCompanyAdmissionKey.text.toString().trim().isEmpty()){
                 Toast.makeText(this,"COMPANY ADMISSION KEY REQUIRED",Toast.LENGTH_SHORT).show()
             } else{
                 val company = editTxtCompanyNameCreate.text.toString().trim().uppercase()
@@ -79,6 +79,7 @@ class CreateCompanyActivity : AppCompatActivity() {
         val btnJoinCompany2 = findViewById<Button>(R.id.btnJoinCompany2)
         btnJoinCompany2.setOnClickListener {
             val intent = Intent(this,JoinCompanyActivity::class.java)
+
             intent.putExtra("nameLogInKey1",passLogInName)
             intent.putExtra("displayOfficeSiteBranchKey1",passLoginOfficeSiteBranch)
             intent.putExtra("displayDepartmentKey1",passLogInDepartment)

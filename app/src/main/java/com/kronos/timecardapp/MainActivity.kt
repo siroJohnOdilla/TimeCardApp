@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
 
                 startActivity(intent)
 
-            } else if (editTxtAdminKey.text.toString().trim().uppercase() == ""){
+            } else if (editTxtAdminKey.text.toString().isEmpty()){
                 Toast.makeText(this,"INSERT ADMIN KEY", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(this,"INSERT VALID ADMIN KEY",Toast.LENGTH_SHORT).show()

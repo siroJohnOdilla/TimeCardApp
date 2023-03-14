@@ -57,6 +57,10 @@ class SecurityEditActivity : AppCompatActivity() {
 
                        if(editTxtOldPINEdit.text.toString().trim() != oldPin){
                            Toast.makeText(this,"INCORRECT CURRENT PIN", Toast.LENGTH_SHORT).show()
+                       } else if(editTxtNewPINEdit.text.toString().trim().length != 4){
+                           Toast.makeText(this,"4-DIGIT PIN REQUIRED", Toast.LENGTH_SHORT).show()
+                       } else if(editTxtNewPINEdit.text.toString().trim() != editTxtConfirmNewPINEdit.text.toString().trim()){
+                           Toast.makeText(this,"MATCHING PINS REQUIRED", Toast.LENGTH_SHORT).show()
                        } else if(oldPin == editTxtOldPINEdit.text.toString().trim()){
                            if(cursor.moveToFirst()){
                                do{

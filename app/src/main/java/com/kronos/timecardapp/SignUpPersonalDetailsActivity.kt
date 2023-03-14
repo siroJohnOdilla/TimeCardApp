@@ -59,7 +59,7 @@ class SignUpPersonalDetailsActivity : AppCompatActivity(){
             val datePickerDialog = DatePickerDialog(
                 this,
                 { _, year, monthOfYear, dayOfMonth ->
-                    val date = (dayOfMonth.toString() + "-" + (monthOfYear + 1) + "-" + year)
+                    val date: String = String.format("%02d-%02d-%d", dayOfMonth, (monthOfYear + 1), year)
                     editTxtDateOfBirthSignUp.setText(date)
                 },
                 year1,
@@ -74,14 +74,16 @@ class SignUpPersonalDetailsActivity : AppCompatActivity(){
 
             val intent = Intent(this,SignUpJobDescriptionActivity::class.java)
 
-            if ((editTxtNationalIDNo.text.toString().trim().uppercase() == "")){
-                Toast.makeText(this,"National ID is required", Toast.LENGTH_SHORT).show()
-            } else if ((editTxtDateOfBirthSignUp.text.toString().trim().uppercase() == "")){
-                Toast.makeText(this,"Date of Birth is required", Toast.LENGTH_SHORT).show()
+            if(spinnerGenderSignUp.selectedItem.toString().isEmpty()){
+                Toast.makeText(this,"GENDER REQUIRED",Toast.LENGTH_SHORT).show()
+            } else if (editTxtNationalIDNo.text.toString().trim().isEmpty()){
+                Toast.makeText(this,"NATIONAL ID REQUIRED", Toast.LENGTH_SHORT).show()
+            } else if ((editTxtDateOfBirthSignUp.text.toString().isEmpty())){
+                Toast.makeText(this,"DATE OF BIRTH REQUIRED", Toast.LENGTH_SHORT).show()
             } else{
-                val passGender = spinnerGenderSignUp.selectedItem.toString().trim().uppercase()
-                val passNationalId = editTxtNationalIDNo.text.toString().trim().uppercase()
-                val passDateOfBirth = editTxtDateOfBirthSignUp.text.toString().trim().uppercase()
+                val passGender = spinnerGenderSignUp.selectedItem.toString()
+                val passNationalId = editTxtNationalIDNo.text.toString().trim()
+                val passDateOfBirth = editTxtDateOfBirthSignUp.text.toString()
 
                 intent.putExtra("accountTagKey2",accountTag2)
                 intent.putExtra("nameKey1",name1)

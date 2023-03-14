@@ -31,13 +31,13 @@ class JoinCompanyActivity : AppCompatActivity() {
         val btnSubmitAdmissionKey = findViewById<Button>(R.id.btnSubmitAdmissionKey)
         btnSubmitAdmissionKey.setOnClickListener {
             val intent = Intent(this,HomePageDrawerActivity::class.java)
-            if(editTxtJoinCompanyAdmissionKey.text.toString().trim().uppercase() == ""){
+            if(editTxtJoinCompanyAdmissionKey.text.toString().trim().isEmpty()){
                 Toast.makeText(this,"COMPANY ADMISSION KEY REQUIRED", Toast.LENGTH_SHORT).show()
             } else {
                 val companyAdmissionKey = editTxtJoinCompanyAdmissionKey.text.toString().trim().uppercase()
 
-                val dbGetCompanyDetails = DBHelper(this, null)
-                val cursor = dbGetCompanyDetails.getLoginDetails()
+                val db = DBHelper(this, null)
+                val cursor = db.getLoginDetails()
 
                 if(cursor!!.moveToFirst()){
                     do{
@@ -58,8 +58,8 @@ class JoinCompanyActivity : AppCompatActivity() {
                                     if(passLogInName.toString() == nameLogin.toString()){
                                         val id = idLogin.toLong()
 
-                                        dbGetCompanyDetails.updateCompany(id, companyNameUser, companyInitialsUser, companyAdmissionKey)
-                                        dbGetCompanyDetails.close()
+                                        db.updateCompany(id, companyNameUser, companyInitialsUser, companyAdmissionKey)
+                                        db.close()
 
                                         intent.putExtra("nameLogInKey", passLogInName)
                                         intent.putExtra("displayOfficeSiteBranchKey", passLoginOfficeSiteBranch)

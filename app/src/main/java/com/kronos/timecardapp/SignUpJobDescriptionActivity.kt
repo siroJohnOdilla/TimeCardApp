@@ -35,12 +35,12 @@ class SignUpJobDescriptionActivity : AppCompatActivity(){
         btnNextSignUpContactInformation.setOnClickListener {
             val intent = Intent(this,SignUpContactInformationActivity::class.java)
 
-            if (editTxtOfficeBranchSignUp.text.toString().trim().uppercase() == ""){
-                Toast.makeText(this,"Office/ Site Branch is required",Toast.LENGTH_SHORT).show()
-            } else if (editTxtDepartmentSignUp.text.toString().trim().uppercase() == ""){
-                Toast.makeText(this,"Department is Required",Toast.LENGTH_SHORT).show()
-            } else if (editTxtJobTitleSignUp.text.toString().trim().uppercase() == ""){
-                Toast.makeText(this,"Job Title is Required",Toast.LENGTH_SHORT).show()
+            if (editTxtOfficeBranchSignUp.text.toString().trim().isEmpty()){
+                Toast.makeText(this,"OFFICE/SITE REQUIRED",Toast.LENGTH_SHORT).show()
+            } else if (editTxtDepartmentSignUp.text.toString().trim().isEmpty()){
+                Toast.makeText(this,"DEPARTMENT REQUIRED",Toast.LENGTH_SHORT).show()
+            } else if (editTxtJobTitleSignUp.text.toString().trim().isEmpty()){
+                Toast.makeText(this,"JOB TITLE REQUIRED",Toast.LENGTH_SHORT).show()
             } else {
                 val passOfficeSiteBranch: String = editTxtOfficeBranchSignUp.text.toString().trim().uppercase()
                 val passDepartment = editTxtDepartmentSignUp.text.toString().trim().uppercase()

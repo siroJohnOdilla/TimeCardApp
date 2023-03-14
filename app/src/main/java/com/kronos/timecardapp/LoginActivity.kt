@@ -25,142 +25,161 @@ class LoginActivity : AppCompatActivity(){
 
         val btnLogin = findViewById<Button>(R.id.btnLogin)
         btnLogin.setOnClickListener {
+            if(editTxtFullNameNationalIdLogIn.text.toString().trim().isEmpty() && editTxtPINLogIn.text.toString().trim().isEmpty()){
+                Toast.makeText(this,"LOGIN DETAILS REQUIRED",Toast.LENGTH_SHORT).show()
+            } else if(editTxtFullNameNationalIdLogIn.text.toString().trim().isEmpty() && editTxtPINLogIn.text.toString().trim().isNotEmpty()){
+                Toast.makeText(this,"FULL NAME/NATIONAL ID NO. REQUIRED",Toast.LENGTH_SHORT).show()
+            } else if(editTxtFullNameNationalIdLogIn.text.toString().trim().isNotEmpty() && editTxtPINLogIn.text.toString().trim().isEmpty()){
+                Toast.makeText(this,"PIN REQUIRED",Toast.LENGTH_SHORT).show()
+            } else {
+                val db = DBHelper(this,null)
+                val cursor = db.getLoginDetails()
 
-            val db = DBHelper(this,null)
-            val cursor = db.getLoginDetails()
+                if (cursor!!.moveToFirst()){
+                    do{
+                        val nameLogIn = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.NAME_COL))
+                        val nationalIdLogIn = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.NATIONAL_ID))
+                        val pinLogIn = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.PIN_NUMBER))
+                        val officeSiteBranchLogIn = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.OFFICE_SITE_BRANCH))
+                        val departmentLogIn = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.DEPARTMENT_NAME))
+                        val jobTitleLogIn = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.JOB_TITLE_NAME))
+                        val companyNameLogIn = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.COMPANY_NAME))
+                        val accountTagLogIn = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.ACCOUNT_TAG))
 
-            if (cursor!!.moveToFirst()){
-                do{
-                    val nameLogIn = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.NAME_COL))
-                    val nationalIdLogIn = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.NATIONAL_ID))
-                    val pinLogIn = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.PIN_NUMBER))
-                    val officeSiteBranchLogIn = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.OFFICE_SITE_BRANCH))
-                    val departmentLogIn = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.DEPARTMENT_NAME))
-                    val jobTitleLogIn = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.JOB_TITLE_NAME))
-                    val companyNameLogIn = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.COMPANY_NAME))
-                    val accountTagLogIn = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.ACCOUNT_TAG))
+                        if(editTxtFullNameNationalIdLogIn.text.toString().trim().uppercase() == nameLogIn.toString() && editTxtPINLogIn.text.toString().trim() == pinLogIn.toString() && companyNameLogIn.toString() == "to be set" && accountTagLogIn.toString() == "ADMINISTRATOR"){
+                            val displayAccountName = nameLogIn.toString()
+                            val displayOfficeSiteBranch = officeSiteBranchLogIn.toString()
+                            val displayDepartment = departmentLogIn.toString()
+                            val displayJobTitle = jobTitleLogIn.toString()
+                            //val checkNationalId = nationalIdLogIn.toString()
 
-                    if(editTxtFullNameNationalIdLogIn.text.toString().trim().uppercase() == nameLogIn.toString() && editTxtPINLogIn.text.toString().trim() == pinLogIn.toString() && companyNameLogIn.toString() == "to be set" && accountTagLogIn.toString() == "ADMINISTRATOR"){
-                        val displayAccountName = nameLogIn.toString()
-                        val displayOfficeSiteBranch = officeSiteBranchLogIn.toString()
-                        val displayDepartment = departmentLogIn.toString()
-                        val displayJobTitle = jobTitleLogIn.toString()
-                        //val checkNationalId = nationalIdLogIn.toString()
+                            val intent = Intent(this,CreateCompanyActivity::class.java)
+                            intent.putExtra("nameLogInKey1",displayAccountName)
+                            intent.putExtra("displayOfficeSiteBranchKey1",displayOfficeSiteBranch)
+                            intent.putExtra("displayDepartmentKey1",displayDepartment)
+                            intent.putExtra("displayJobTitleKey1",displayJobTitle)
+                            //intent.putExtra("checkNationalIdKey",checkNationalId)
+                            editTxtFullNameNationalIdLogIn.text.clear()
+                            editTxtPINLogIn.text.clear()
 
-                        val intent = Intent(this,CreateCompanyActivity::class.java)
-                        intent.putExtra("nameLogInKey1",displayAccountName)
-                        intent.putExtra("displayOfficeSiteBranchKey1",displayOfficeSiteBranch)
-                        intent.putExtra("displayDepartmentKey1",displayDepartment)
-                        intent.putExtra("displayJobTitleKey1",displayJobTitle)
-                        //intent.putExtra("checkNationalIdKey",checkNationalId)
-                        editTxtFullNameNationalIdLogIn.text.clear()
-                        editTxtPINLogIn.text.clear()
-                        startActivity(intent)
+                            startActivity(intent)
+                            Toast.makeText(this,"CREATE COMPANY",Toast.LENGTH_SHORT).show()
 
-                    } else if(editTxtFullNameNationalIdLogIn.text.toString().trim().uppercase() == nationalIdLogIn.toString() && editTxtPINLogIn.text.toString().trim() == pinLogIn.toString() && companyNameLogIn.toString() == "to be set" && accountTagLogIn.toString() == "ADMINISTRATOR"){
-                        val displayAccountName = nameLogIn.toString()
-                        val displayOfficeSiteBranch = officeSiteBranchLogIn.toString()
-                        val displayDepartment = departmentLogIn.toString()
-                        val displayJobTitle = jobTitleLogIn.toString()
-                        //val checkNationalId = nationalIdLogIn.toString()
+                        } else if(editTxtFullNameNationalIdLogIn.text.toString().trim().uppercase() == nationalIdLogIn.toString() && editTxtPINLogIn.text.toString().trim() == pinLogIn.toString() && companyNameLogIn.toString() == "to be set" && accountTagLogIn.toString() == "ADMINISTRATOR"){
+                            val displayAccountName = nameLogIn.toString()
+                            val displayOfficeSiteBranch = officeSiteBranchLogIn.toString()
+                            val displayDepartment = departmentLogIn.toString()
+                            val displayJobTitle = jobTitleLogIn.toString()
+                            //val checkNationalId = nationalIdLogIn.toString()
 
-                        val intent = Intent(this,CreateCompanyActivity::class.java)
-                        intent.putExtra("nameLogInKey1",displayAccountName)
-                        intent.putExtra("displayOfficeSiteBranchKey1",displayOfficeSiteBranch)
-                        intent.putExtra("displayDepartmentKey1",displayDepartment)
-                        intent.putExtra("displayJobTitleKey1",displayJobTitle)
-                        //intent.putExtra("checkNationalIdKey",checkNationalId)
-                        editTxtFullNameNationalIdLogIn.text.clear()
-                        editTxtPINLogIn.text.clear()
-                        startActivity(intent)
+                            val intent = Intent(this,CreateCompanyActivity::class.java)
+                            intent.putExtra("nameLogInKey1",displayAccountName)
+                            intent.putExtra("displayOfficeSiteBranchKey1",displayOfficeSiteBranch)
+                            intent.putExtra("displayDepartmentKey1",displayDepartment)
+                            intent.putExtra("displayJobTitleKey1",displayJobTitle)
+                            //intent.putExtra("checkNationalIdKey",checkNationalId)
+                            editTxtFullNameNationalIdLogIn.text.clear()
+                            editTxtPINLogIn.text.clear()
 
-                    } else if(editTxtFullNameNationalIdLogIn.text.toString().trim().uppercase() == nameLogIn.toString() && editTxtPINLogIn.text.toString().trim() == pinLogIn.toString() && companyNameLogIn.toString() == "to be set" && accountTagLogIn.toString() == "USER"){
-                        val displayAccountName = nameLogIn.toString()
-                        val displayOfficeSiteBranch = officeSiteBranchLogIn.toString()
-                        val displayDepartment = departmentLogIn.toString()
-                        val displayJobTitle = jobTitleLogIn.toString()
-                        //val checkNationalId = nationalIdLogIn.toString()
+                            startActivity(intent)
+                            Toast.makeText(this,"CREATE COMPANY",Toast.LENGTH_SHORT).show()
 
-                        val intent = Intent(this,JoinCompanyActivity::class.java)
-                        intent.putExtra("nameLogInKey1",displayAccountName)
-                        intent.putExtra("displayOfficeSiteBranchKey1",displayOfficeSiteBranch)
-                        intent.putExtra("displayDepartmentKey1",displayDepartment)
-                        intent.putExtra("displayJobTitleKey1",displayJobTitle)
-                        //intent.putExtra("checkNationalIdKey",checkNationalId)
-                        editTxtFullNameNationalIdLogIn.text.clear()
-                        editTxtPINLogIn.text.clear()
-                        startActivity(intent)
+                        } else if(editTxtFullNameNationalIdLogIn.text.toString().trim().uppercase() == nameLogIn.toString() && editTxtPINLogIn.text.toString().trim() == pinLogIn.toString() && companyNameLogIn.toString() == "to be set" && accountTagLogIn.toString() == "USER"){
+                            val displayAccountName = nameLogIn.toString()
+                            val displayOfficeSiteBranch = officeSiteBranchLogIn.toString()
+                            val displayDepartment = departmentLogIn.toString()
+                            val displayJobTitle = jobTitleLogIn.toString()
+                            //val checkNationalId = nationalIdLogIn.toString()
 
-                    } else if(editTxtFullNameNationalIdLogIn.text.toString().trim().uppercase() == nameLogIn.toString() && editTxtPINLogIn.text.toString().trim() == pinLogIn.toString() && companyNameLogIn.toString() == "to be set" && accountTagLogIn.toString() == "USER"){
-                        val displayAccountName = nameLogIn.toString()
-                        val displayOfficeSiteBranch = officeSiteBranchLogIn.toString()
-                        val displayDepartment = departmentLogIn.toString()
-                        val displayJobTitle = jobTitleLogIn.toString()
-                        //val checkNationalId = nationalIdLogIn.toString()
+                            val intent = Intent(this,JoinCompanyActivity::class.java)
+                            intent.putExtra("nameLogInKey1",displayAccountName)
+                            intent.putExtra("displayOfficeSiteBranchKey1",displayOfficeSiteBranch)
+                            intent.putExtra("displayDepartmentKey1",displayDepartment)
+                            intent.putExtra("displayJobTitleKey1",displayJobTitle)
+                            //intent.putExtra("checkNationalIdKey",checkNationalId)
+                            editTxtFullNameNationalIdLogIn.text.clear()
+                            editTxtPINLogIn.text.clear()
 
-                        val intent = Intent(this,JoinCompanyActivity::class.java)
-                        intent.putExtra("nameLogInKey1",displayAccountName)
-                        intent.putExtra("displayOfficeSiteBranchKey1",displayOfficeSiteBranch)
-                        intent.putExtra("displayDepartmentKey1",displayDepartment)
-                        intent.putExtra("displayJobTitleKey1",displayJobTitle)
-                        //intent.putExtra("checkNationalIdKey",checkNationalId)
-                        editTxtFullNameNationalIdLogIn.text.clear()
-                        editTxtPINLogIn.text.clear()
+                            startActivity(intent)
+                            Toast.makeText(this,"JOIN COMPANY",Toast.LENGTH_SHORT).show()
 
-                        startActivity(intent)
+                        } else if(editTxtFullNameNationalIdLogIn.text.toString().trim().uppercase() == nameLogIn.toString() && editTxtPINLogIn.text.toString().trim() == pinLogIn.toString() && companyNameLogIn.toString() == "to be set" && accountTagLogIn.toString() == "USER"){
+                            val displayAccountName = nameLogIn.toString()
+                            val displayOfficeSiteBranch = officeSiteBranchLogIn.toString()
+                            val displayDepartment = departmentLogIn.toString()
+                            val displayJobTitle = jobTitleLogIn.toString()
+                            //val checkNationalId = nationalIdLogIn.toString()
 
-                    } else if(editTxtFullNameNationalIdLogIn.text.toString().trim().uppercase() == nameLogIn.toString() && editTxtPINLogIn.text.toString().trim() == pinLogIn.toString() && companyNameLogIn.toString() != "to be set" && (accountTagLogIn.toString() == "ADMINISTRATOR" || accountTagLogIn.toString() == "USER")){
-                        val displayAccountName = nameLogIn.toString()
-                        val displayOfficeSiteBranch = officeSiteBranchLogIn.toString()
-                        val displayDepartment = departmentLogIn.toString()
-                        val displayJobTitle = jobTitleLogIn.toString()
-                        val displayCompanyName = companyNameLogIn.toString()
+                            val intent = Intent(this,JoinCompanyActivity::class.java)
+                            intent.putExtra("nameLogInKey1",displayAccountName)
+                            intent.putExtra("displayOfficeSiteBranchKey1",displayOfficeSiteBranch)
+                            intent.putExtra("displayDepartmentKey1",displayDepartment)
+                            intent.putExtra("displayJobTitleKey1",displayJobTitle)
+                            //intent.putExtra("checkNationalIdKey",checkNationalId)
+                            editTxtFullNameNationalIdLogIn.text.clear()
+                            editTxtPINLogIn.text.clear()
 
-                        val intent = Intent(this,HomePageDrawerActivity::class.java)
-                        intent.putExtra("nameLogInKey1",displayAccountName)
-                        intent.putExtra("displayOfficeSiteBranchKey1",displayOfficeSiteBranch)
-                        intent.putExtra("displayDepartmentKey1",displayDepartment)
-                        intent.putExtra("displayJobTitleKey1",displayJobTitle)
-                        intent.putExtra("displayCompanyNameKey1",displayCompanyName)
+                            startActivity(intent)
+                            Toast.makeText(this,"JOIN COMPANY",Toast.LENGTH_SHORT).show()
 
-                        editTxtFullNameNationalIdLogIn.text.clear()
-                        editTxtPINLogIn.text.clear()
-                        startActivity(intent)
+                        } else if(editTxtFullNameNationalIdLogIn.text.toString().trim().uppercase() == nameLogIn.toString() && editTxtPINLogIn.text.toString().trim() == pinLogIn.toString() && companyNameLogIn.toString() != "to be set" && (accountTagLogIn.toString() == "ADMINISTRATOR" || accountTagLogIn.toString() == "USER")){
+                            val displayAccountName = nameLogIn.toString()
+                            val displayOfficeSiteBranch = officeSiteBranchLogIn.toString()
+                            val displayDepartment = departmentLogIn.toString()
+                            val displayJobTitle = jobTitleLogIn.toString()
+                            val displayCompanyName = companyNameLogIn.toString()
 
-                        Toast.makeText(this,"LOGIN SUCCESSFUL;\nWELCOME $displayAccountName",Toast.LENGTH_SHORT).show()
+                            val intent = Intent(this,HomePageDrawerActivity::class.java)
+                            intent.putExtra("nameLogInKey1",displayAccountName)
+                            intent.putExtra("displayOfficeSiteBranchKey1",displayOfficeSiteBranch)
+                            intent.putExtra("displayDepartmentKey1",displayDepartment)
+                            intent.putExtra("displayJobTitleKey1",displayJobTitle)
+                            intent.putExtra("displayCompanyNameKey1",displayCompanyName)
 
-                    } else if (editTxtFullNameNationalIdLogIn.text.toString().trim() == nationalIdLogIn.toString() && editTxtPINLogIn.text.toString().trim() == pinLogIn.toString() && companyNameLogIn.toString() != "to be set" && (accountTagLogIn.toString() == "ADMINISTRATOR" || accountTagLogIn.toString() == "USER")){
-                        val displayAccountName = nameLogIn.toString()
-                        val displayOfficeSiteBranch = officeSiteBranchLogIn.toString()
-                        val displayDepartment = departmentLogIn.toString()
-                        val displayJobTitle = jobTitleLogIn.toString()
-                        val displayCompanyName = companyNameLogIn.toString()
+                            editTxtFullNameNationalIdLogIn.text.clear()
+                            editTxtPINLogIn.text.clear()
+                            startActivity(intent)
 
-                        val intent = Intent(this,HomePageDrawerActivity::class.java)
-                        intent.putExtra("nameLogInKey1",displayAccountName)
-                        intent.putExtra("displayOfficeSiteBranchKey1",displayOfficeSiteBranch)
-                        intent.putExtra("displayDepartmentKey1",displayDepartment)
-                        intent.putExtra("displayJobTitleKey1",displayJobTitle)
-                        intent.putExtra("displayCompanyNameKey1",displayCompanyName)
+                            Toast.makeText(this,"LOGIN SUCCESSFUL;\nWELCOME $displayAccountName",Toast.LENGTH_SHORT).show()
 
-                        editTxtFullNameNationalIdLogIn.text.clear()
-                        editTxtPINLogIn.text.clear()
-                        startActivity(intent)
+                        } else if (editTxtFullNameNationalIdLogIn.text.toString().trim() == nationalIdLogIn.toString() && editTxtPINLogIn.text.toString().trim() == pinLogIn.toString() && companyNameLogIn.toString() != "to be set" && (accountTagLogIn.toString() == "ADMINISTRATOR" || accountTagLogIn.toString() == "USER")){
+                            val displayAccountName = nameLogIn.toString()
+                            val displayOfficeSiteBranch = officeSiteBranchLogIn.toString()
+                            val displayDepartment = departmentLogIn.toString()
+                            val displayJobTitle = jobTitleLogIn.toString()
+                            val displayCompanyName = companyNameLogIn.toString()
 
-                        Toast.makeText(this,"LOGIN SUCCESSFUL;\nWELCOME $displayAccountName",Toast.LENGTH_SHORT).show()
-                    }
-                } while(cursor.moveToNext())
+                            val intent = Intent(this,HomePageDrawerActivity::class.java)
+                            intent.putExtra("nameLogInKey1",displayAccountName)
+                            intent.putExtra("displayOfficeSiteBranchKey1",displayOfficeSiteBranch)
+                            intent.putExtra("displayDepartmentKey1",displayDepartment)
+                            intent.putExtra("displayJobTitleKey1",displayJobTitle)
+                            intent.putExtra("displayCompanyNameKey1",displayCompanyName)
+
+                            editTxtFullNameNationalIdLogIn.text.clear()
+                            editTxtPINLogIn.text.clear()
+                            startActivity(intent)
+
+                            Toast.makeText(this,"LOGIN SUCCESSFUL;\nWELCOME $displayAccountName",Toast.LENGTH_SHORT).show()
+                        } else if(editTxtFullNameNationalIdLogIn.text.toString().trim().uppercase() == nameLogIn.toString() && editTxtPINLogIn.text.toString().trim() != pinLogIn.toString()){
+                            Toast.makeText(this,"INVALID PIN",Toast.LENGTH_SHORT).show()
+                        } else if(editTxtFullNameNationalIdLogIn.text.toString().trim() == nationalIdLogIn.toString() && editTxtPINLogIn.text.toString().trim() != pinLogIn.toString()){
+                            Toast.makeText(this,"INVALID PIN",Toast.LENGTH_SHORT).show()
+                        }
+                    } while(cursor.moveToNext())
+                }
+                cursor.close()
             }
-            cursor.close()
         }
 
         val btnCreateAccount = findViewById<Button>(R.id.btnCreateAccount)
         btnCreateAccount.setOnClickListener {
             val intent = Intent(this,MainActivity::class.java)
             startActivity(intent)
+            Toast.makeText(this,"CREATE ACCOUNT",Toast.LENGTH_SHORT).show()
         }
     }
-    override fun onSupportNavigateUp(): Boolean {
+    override fun onSupportNavigateUp(): Boolean{
         onBackPressed()
         return true
     }
