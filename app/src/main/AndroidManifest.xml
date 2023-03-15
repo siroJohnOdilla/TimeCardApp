@@ -37,6 +37,7 @@
         <activity android:name=".SecurityEditActivity"/>
         <activity android:name=".CompanyEditActivity"/>
         <activity android:name=".DeleteProfileActivity"/>
+        <activity android:name=".SettingsActivity"/>
 
         <activity
             android:name=".LoginActivity"

@@ -31,6 +31,7 @@ class LeaveSchedule : Fragment() {
 
             Toast.makeText(v.context,"APPLY FOR LEAVE",Toast.LENGTH_SHORT).show()
         }
+        
         val btnViewLeaveSchedule = v.findViewById<Button>(R.id.btnViewLeaveSchedule)
         btnViewLeaveSchedule.setOnClickListener {
             val intent = Intent(v.context,LeaveScheduleViewActivity::class.java)
@@ -39,5 +40,4 @@ class LeaveSchedule : Fragment() {
         }
         return v
     }
-
 }

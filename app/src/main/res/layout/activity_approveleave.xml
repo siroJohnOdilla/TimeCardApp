@@ -52,7 +52,7 @@
         android:id="@+id/txtViewLeaveEndDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="END DATE: 05-01-2023"
+        android:text="RETURN DATE: 05-01-2023"
         android:textColor="#700DEA"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

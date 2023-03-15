@@ -40,7 +40,7 @@ class ApproveLeaveActivity : AppCompatActivity() {
         txtViewLeaveStartDate.text = displayStartDate
 
         val txtViewLeaveEndDate= findViewById<TextView>(R.id.txtViewLeaveEndDate)
-        val displayEndDate = "END DATE: $dateTo"
+        val displayEndDate = "RETURN DATE: $dateTo"
         txtViewLeaveEndDate.text = displayEndDate
 
         val txtViewLeaveReliever = findViewById<TextView>(R.id.txtViewLeaveReliever)

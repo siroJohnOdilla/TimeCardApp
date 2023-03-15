@@ -24,7 +24,7 @@ class CreateCompanyActivity : AppCompatActivity() {
         val passLoginOfficeSiteBranch = bundle.getString("displayOfficeSiteBranchKey1")
         val passLogInDepartment = bundle.getString("displayDepartmentKey1")
         val passJobTitle = bundle.getString("displayJobTitleKey1")
-        //val checkAltNationalId = bundle.getString("checkNationalId")
+        val passAccountTag = bundle.getString("accountTagCheck1")
 
         val editTxtCompanyNameCreate = findViewById<EditText>(R.id.editTxtCompanyNameCreate)
         val editTxtCompanyNameInitials = findViewById<EditText>(R.id.editTxtCompanyNameInitials)
@@ -52,17 +52,19 @@ class CreateCompanyActivity : AppCompatActivity() {
                         val nameLogIn = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.NAME_COL))
                         val idLogIn = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.ID_COL))
 
-                        if (passLogInName.toString() == nameLogIn.toString() /*&& checkAltNationalId.toString() == nationalIdLogIn.toString()*/) {
+                        if (passLogInName.toString() == nameLogIn.toString()) {
                             val id = idLogIn.toLong()
 
                             db.updateCompany(id, company, companyInitials, companyAdmissionKey)
                             db.close()
 
-                            intent.putExtra("nameLogInKey", passLogInName)
-                            intent.putExtra("displayOfficeSiteBranchKey", passLoginOfficeSiteBranch)
-                            intent.putExtra("displayDepartmentKey", passLogInDepartment)
-                            intent.putExtra("displayJobTitleKey", passJobTitle)
-                            intent.putExtra("displayCompanyNameKey", company)
+                            intent.putExtra("nameLogInKey1", passLogInName)
+                            intent.putExtra("displayOfficeSiteBranchKey1", passLoginOfficeSiteBranch)
+                            intent.putExtra("displayDepartmentKey1", passLogInDepartment)
+                            intent.putExtra("displayJobTitleKey1", passJobTitle)
+                            intent.putExtra("accountTagCheck1",passAccountTag)
+                            intent.putExtra("displayCompanyNameKey1", company)
+
                             editTxtCompanyNameCreate.text.clear()
                             editTxtCompanyNameInitials.text.clear()
                             editTxtCompanyAdmissionKey.text.clear()
@@ -84,6 +86,7 @@ class CreateCompanyActivity : AppCompatActivity() {
             intent.putExtra("displayOfficeSiteBranchKey1",passLoginOfficeSiteBranch)
             intent.putExtra("displayDepartmentKey1",passLogInDepartment)
             intent.putExtra("displayJobTitleKey1",passJobTitle)
+            intent.putExtra("accountTagCheck1",passAccountTag)
             startActivity(intent)
         }
     }

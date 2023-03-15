@@ -113,12 +113,6 @@ class LeaveScheduleViewActivity : AppCompatActivity() {
 
         btnGenerateLeaveSchedule = findViewById(R.id.btnGenerateLeaveSchedule)
         btnGenerateLeaveSchedule.setOnClickListener {
-            if (editTxtDateStartLeaveSchedule.toString()
-                    .isEmpty() && editTxtDateEndLeaveSchedule.toString().isEmpty()
-            ) {
-                Toast.makeText(this, "DATE RANGE IS REQUIRED", Toast.LENGTH_SHORT).show()
-            }
-
             val intent = Intent(this,LeaveScheduleView2Activity::class.java)
 
             val passStartDate = editTxtDateStartLeaveSchedule.text.toString()

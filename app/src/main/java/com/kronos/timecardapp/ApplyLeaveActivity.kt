@@ -165,7 +165,7 @@ class ApplyLeaveActivity : AppCompatActivity() {
             } else if(editTxtStartDate.text.toString().isEmpty()){
                 Toast.makeText(this,"SELECT START DATE",Toast.LENGTH_SHORT).show()
             } else if(editTxtEndDate.text.toString().isEmpty()){
-                Toast.makeText(this,"SELECT END DATE",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,"SELECT RETURN DATE",Toast.LENGTH_SHORT).show()
             } else if(spinnerRelieverNames.selectedItem.toString().isEmpty()){
                 Toast.makeText(this,"SELECT YOUR RELIEVER NAME",Toast.LENGTH_SHORT).show()
             } else if(spinnerEmployeeName.selectedItem.toString() == spinnerRelieverNames.selectedItem.toString()){

@@ -63,12 +63,21 @@ class NameEditActivity : AppCompatActivity() {
                             val middleName = editTxtMiddleNameEdit.text.toString().trim().uppercase()
                             val lastName = editTxtLastNameEdit.text.toString().trim().uppercase()
 
-                            val saveName = "$firstName $middleName $lastName"
+                            if(middleName.isEmpty()){
+                                val saveName = "$firstName $lastName"
 
-                            db.updateName(id, saveName)
-                            db.close()
+                                db.updateName(id, saveName)
+                                db.close()
 
-                            Toast.makeText(this,"SAVED", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this,"SAVED", Toast.LENGTH_SHORT).show()
+                            } else {
+                                val saveName = "$firstName $middleName $lastName"
+
+                                db.updateName(id, saveName)
+                                db.close()
+
+                                Toast.makeText(this,"SAVED", Toast.LENGTH_SHORT).show()
+                            }
                         }
                     } while(cursor.moveToNext())
                 }

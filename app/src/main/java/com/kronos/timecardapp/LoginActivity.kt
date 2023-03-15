@@ -51,14 +51,14 @@ class LoginActivity : AppCompatActivity(){
                             val displayOfficeSiteBranch = officeSiteBranchLogIn.toString()
                             val displayDepartment = departmentLogIn.toString()
                             val displayJobTitle = jobTitleLogIn.toString()
-                            //val checkNationalId = nationalIdLogIn.toString()
+                            val accountTagCheck = accountTagLogIn.toString()
 
                             val intent = Intent(this,CreateCompanyActivity::class.java)
                             intent.putExtra("nameLogInKey1",displayAccountName)
                             intent.putExtra("displayOfficeSiteBranchKey1",displayOfficeSiteBranch)
                             intent.putExtra("displayDepartmentKey1",displayDepartment)
                             intent.putExtra("displayJobTitleKey1",displayJobTitle)
-                            //intent.putExtra("checkNationalIdKey",checkNationalId)
+                            intent.putExtra("accountTagCheck1",accountTagCheck)
                             editTxtFullNameNationalIdLogIn.text.clear()
                             editTxtPINLogIn.text.clear()
 
@@ -70,14 +70,14 @@ class LoginActivity : AppCompatActivity(){
                             val displayOfficeSiteBranch = officeSiteBranchLogIn.toString()
                             val displayDepartment = departmentLogIn.toString()
                             val displayJobTitle = jobTitleLogIn.toString()
-                            //val checkNationalId = nationalIdLogIn.toString()
+                            val accountTagCheck = accountTagLogIn.toString()
 
                             val intent = Intent(this,CreateCompanyActivity::class.java)
                             intent.putExtra("nameLogInKey1",displayAccountName)
                             intent.putExtra("displayOfficeSiteBranchKey1",displayOfficeSiteBranch)
                             intent.putExtra("displayDepartmentKey1",displayDepartment)
                             intent.putExtra("displayJobTitleKey1",displayJobTitle)
-                            //intent.putExtra("checkNationalIdKey",checkNationalId)
+                            intent.putExtra("accountTagCheck1",accountTagCheck)
                             editTxtFullNameNationalIdLogIn.text.clear()
                             editTxtPINLogIn.text.clear()
 
@@ -89,14 +89,14 @@ class LoginActivity : AppCompatActivity(){
                             val displayOfficeSiteBranch = officeSiteBranchLogIn.toString()
                             val displayDepartment = departmentLogIn.toString()
                             val displayJobTitle = jobTitleLogIn.toString()
-                            //val checkNationalId = nationalIdLogIn.toString()
+                            val accountTagCheck = accountTagLogIn.toString()
 
                             val intent = Intent(this,JoinCompanyActivity::class.java)
                             intent.putExtra("nameLogInKey1",displayAccountName)
                             intent.putExtra("displayOfficeSiteBranchKey1",displayOfficeSiteBranch)
                             intent.putExtra("displayDepartmentKey1",displayDepartment)
                             intent.putExtra("displayJobTitleKey1",displayJobTitle)
-                            //intent.putExtra("checkNationalIdKey",checkNationalId)
+                            intent.putExtra("accountTagCheck1",accountTagCheck)
                             editTxtFullNameNationalIdLogIn.text.clear()
                             editTxtPINLogIn.text.clear()
 
@@ -108,14 +108,14 @@ class LoginActivity : AppCompatActivity(){
                             val displayOfficeSiteBranch = officeSiteBranchLogIn.toString()
                             val displayDepartment = departmentLogIn.toString()
                             val displayJobTitle = jobTitleLogIn.toString()
-                            //val checkNationalId = nationalIdLogIn.toString()
+                            val accountTagCheck = accountTagLogIn.toString()
 
                             val intent = Intent(this,JoinCompanyActivity::class.java)
                             intent.putExtra("nameLogInKey1",displayAccountName)
                             intent.putExtra("displayOfficeSiteBranchKey1",displayOfficeSiteBranch)
                             intent.putExtra("displayDepartmentKey1",displayDepartment)
                             intent.putExtra("displayJobTitleKey1",displayJobTitle)
-                            //intent.putExtra("checkNationalIdKey",checkNationalId)
+                            intent.putExtra("accountTagCheck1",accountTagCheck)
                             editTxtFullNameNationalIdLogIn.text.clear()
                             editTxtPINLogIn.text.clear()
 
@@ -127,6 +127,7 @@ class LoginActivity : AppCompatActivity(){
                             val displayOfficeSiteBranch = officeSiteBranchLogIn.toString()
                             val displayDepartment = departmentLogIn.toString()
                             val displayJobTitle = jobTitleLogIn.toString()
+                            val accountTagCheck = accountTagLogIn.toString()
                             val displayCompanyName = companyNameLogIn.toString()
 
                             val intent = Intent(this,HomePageDrawerActivity::class.java)
@@ -134,6 +135,7 @@ class LoginActivity : AppCompatActivity(){
                             intent.putExtra("displayOfficeSiteBranchKey1",displayOfficeSiteBranch)
                             intent.putExtra("displayDepartmentKey1",displayDepartment)
                             intent.putExtra("displayJobTitleKey1",displayJobTitle)
+                            intent.putExtra("accountTagCheck1",accountTagCheck)
                             intent.putExtra("displayCompanyNameKey1",displayCompanyName)
 
                             editTxtFullNameNationalIdLogIn.text.clear()
@@ -147,6 +149,7 @@ class LoginActivity : AppCompatActivity(){
                             val displayOfficeSiteBranch = officeSiteBranchLogIn.toString()
                             val displayDepartment = departmentLogIn.toString()
                             val displayJobTitle = jobTitleLogIn.toString()
+                            val accountTagCheck = accountTagLogIn.toString()
                             val displayCompanyName = companyNameLogIn.toString()
 
                             val intent = Intent(this,HomePageDrawerActivity::class.java)
@@ -154,6 +157,7 @@ class LoginActivity : AppCompatActivity(){
                             intent.putExtra("displayOfficeSiteBranchKey1",displayOfficeSiteBranch)
                             intent.putExtra("displayDepartmentKey1",displayDepartment)
                             intent.putExtra("displayJobTitleKey1",displayJobTitle)
+                            intent.putExtra("accountTagCheck1",accountTagCheck)
                             intent.putExtra("displayCompanyNameKey1",displayCompanyName)
 
                             editTxtFullNameNationalIdLogIn.text.clear()

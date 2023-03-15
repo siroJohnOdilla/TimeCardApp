@@ -37,11 +37,22 @@ class SignUpNameActivity : AppCompatActivity (){
 
             if(editTxtFirstNameSignUp.text.toString().trim().isEmpty()){
                 Toast.makeText(this, "FIRST NAME REQUIRED", Toast.LENGTH_SHORT).show()
-            } else if (editTxtLastNameSignUp.text.toString().trim().isEmpty()){
+            } else if(editTxtLastNameSignUp.text.toString().trim().isEmpty()){
                 Toast.makeText(this, "LAST NAME REQUIRED", Toast.LENGTH_SHORT).show()
-            } else {
+            } else if(editTxtFirstNameSignUp.text.toString().trim().isNotEmpty() && editTxtMiddleNameSignUp.text.toString().trim().isNotEmpty() && editTxtLastNameSignUp.text.toString().trim().isNotEmpty()) {
 
                 val passName = "${editTxtFirstNameSignUp.text.toString().trim().uppercase()} ${editTxtMiddleNameSignUp.text.toString().trim().uppercase()} ${editTxtLastNameSignUp.text.toString().trim().uppercase()}"
+
+                intent.putExtra("accountTagKey1",accountTag1)
+                intent.putExtra("nameKey",passName)
+
+                editTxtFirstNameSignUp.text.clear()
+                editTxtMiddleNameSignUp.text.clear()
+                editTxtLastNameSignUp.text.clear()
+
+                startActivity(intent)
+            } else if(editTxtFirstNameSignUp.text.toString().trim().isNotEmpty() && editTxtLastNameSignUp.text.toString().trim().isNotEmpty()){
+                val passName = "${editTxtFirstNameSignUp.text.toString().trim().uppercase()} ${editTxtLastNameSignUp.text.toString().trim().uppercase()}"
 
                 intent.putExtra("accountTagKey1",accountTag1)
                 intent.putExtra("nameKey",passName)
