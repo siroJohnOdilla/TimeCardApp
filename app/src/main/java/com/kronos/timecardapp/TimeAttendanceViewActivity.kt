@@ -1,16 +1,37 @@
 package com.kronos.timecardapp
 
+import android.Manifest.permission.READ_EXTERNAL_STORAGE
+import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.Paint
 import android.os.Build
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import android.graphics.*
+import android.os.Environment
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.toBitmap
+import java.io.File
+import java.io.FileOutputStream
 import java.util.*
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
 class TimeAttendanceViewActivity : AppCompatActivity() {
+    private var pageHeight = 1120
+    private var pageWidth = 792
+    private lateinit var bmp: Bitmap
+    private lateinit var scaledbmp: Bitmap
+    private var PERMISSION_CODE = 101
     private lateinit var startDate: LocalDate
     private lateinit var endDate: LocalDate
     @RequiresApi(Build.VERSION_CODES.O)
@@ -141,4 +162,94 @@ class TimeAttendanceViewActivity : AppCompatActivity() {
         onBackPressed()
         return true
     }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.timeattendanceview_option_menu, menu)
+        return true
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.itemViewGeneratePDF -> {
+                bmp = ContextCompat.getDrawable(this,R.drawable.time)?.toBitmap()!!
+                scaledbmp = Bitmap.createScaledBitmap(bmp, 140, 140, false)
+
+                if(checkPermissions()){
+                    Toast.makeText(this,"PERMISSION GRANTED",Toast.LENGTH_SHORT).show()
+                } else{
+                    requestPermission()
+                }
+                generatePDF()
+                return true
+            }
+            R.id.itemViewPrint -> {
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+    private fun generatePDF(){
+        val pdfDocument: android.graphics.pdf.PdfDocument = android.graphics.pdf.PdfDocument()
+
+        val paint = Paint()
+        val title = Paint()
+
+        val myPageInfo: android.graphics.pdf.PdfDocument.PageInfo? = android.graphics.pdf.PdfDocument.PageInfo.Builder(pageWidth, pageHeight, 1).create()
+        val myPage: android.graphics.pdf.PdfDocument.Page = pdfDocument.startPage(myPageInfo)
+
+        val canvas: Canvas = myPage.canvas
+        canvas.drawBitmap(scaledbmp, 56F, 40F, paint)
+
+        title.typeface = Typeface.create(Typeface.DEFAULT, Typeface.NORMAL)
+        title.textSize = 15F
+        title.color = ContextCompat.getColor(this, R.color.purple_200)
+        canvas.drawText("TIME ATTENDANCE SHEET", 209F, 100F, title)
+        canvas.drawText("COMPANY NAME", 209F, 80F, title)
+
+        title.typeface = Typeface.defaultFromStyle(Typeface.NORMAL)
+        title.color = ContextCompat.getColor(this, R.color.purple_200)
+        title.textSize = 15F
+        title.textAlign = Paint.Align.CENTER
+        canvas.drawText("THIS IS A SAMPLE DOCUMENT", 396F, 560F, title)
+
+        pdfDocument.finishPage(myPage)
+
+        val file = File(Environment.getExternalStorageDirectory(),"GFG.pdf")
+
+        try{
+            pdfDocument.writeTo(FileOutputStream(file))
+            Toast.makeText(applicationContext,"PDF FILE GENERATED",Toast.LENGTH_SHORT).show()
+        } catch (e: Exception){
+            e.printStackTrace()
+            Toast.makeText(applicationContext,"FAILED TO GENERATE PDF FILE",Toast.LENGTH_SHORT).show()
+        }
+        pdfDocument.close()
+    }
+    private fun checkPermissions(): Boolean{
+        val writeStoragePermission = ContextCompat.checkSelfPermission(applicationContext, WRITE_EXTERNAL_STORAGE)
+        val readStoragePermission = ContextCompat.checkSelfPermission(applicationContext, READ_EXTERNAL_STORAGE)
+
+        return writeStoragePermission == PackageManager.PERMISSION_GRANTED && readStoragePermission == PackageManager.PERMISSION_GRANTED
+    }
+    private fun requestPermission(){
+        ActivityCompat.requestPermissions(this, arrayOf(READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE), PERMISSION_CODE)
+    }
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        if(requestCode == PERMISSION_CODE){
+            if(grantResults.isNotEmpty()){
+                if(grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED){
+                    Toast.makeText(this,"PERMISSION GRANTED",Toast.LENGTH_SHORT).show()
+                } else{
+                    Toast.makeText(this,"PERMISSION DENIED",Toast.LENGTH_SHORT).show()
+                    finish()
+                }
+            }
+        }
+    }
 }
+

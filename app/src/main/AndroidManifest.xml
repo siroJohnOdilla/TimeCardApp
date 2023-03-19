@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.kronos.timecardapp"
     xmlns:tools="http://schemas.android.com/tools">
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -22,7 +24,6 @@
         <activity android:name=".JoinCompanyActivity"/>
         <activity android:name=".HomePageDrawerActivity"/>
         <activity android:name=".TimeAttendanceViewActivity"/>
-        <activity android:name=".LeaveScheduleViewActivity"/>
         <activity android:name=".LeaveScheduleView2Activity"/>
         <activity android:name=".ApplyLeaveActivity"/>
         <activity android:name=".ApproveLeaveActivity"/>
@@ -38,6 +39,7 @@
         <activity android:name=".CompanyEditActivity"/>
         <activity android:name=".DeleteProfileActivity"/>
         <activity android:name=".SettingsActivity"/>
+        <activity android:name=".ProfileAccessActivity"/>
 
         <activity
             android:name=".LoginActivity"

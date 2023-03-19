@@ -47,10 +47,11 @@ class CustomAdapter(private val mList: List<ItemsViewModel>) : RecyclerView.Adap
 
                 when(val position = ItemView.tag){
                     position -> {
-                        val intent = Intent(ItemView.context,ProfileViewActivity::class.java)
+                        val intent = Intent(ItemView.context,ProfileAccessActivity::class.java)
                         val passName = txtViewNameProfile.text.toString()
 
                         intent.putExtra("NamePass",passName)
+                        intent.putExtra("darkStatusBar", false)
                         ItemView.context.startActivity(intent)
                     }
                 }

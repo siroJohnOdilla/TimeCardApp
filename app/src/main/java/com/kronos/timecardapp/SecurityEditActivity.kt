@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter
 import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
 import android.app.Activity
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -75,7 +76,10 @@ class SecurityEditActivity : AppCompatActivity() {
                                        db.updatePIN(id, savePIN)
                                        db.close()
 
-                                       Toast.makeText(this,"SAVED", Toast.LENGTH_SHORT).show()
+                                       val intent = Intent(this,LoginActivity::class.java)
+                                       startActivity(intent)
+
+                                       Toast.makeText(this,"$nameVerify: CHANGED PIN", Toast.LENGTH_SHORT).show()
                                    }
                                } while(cursor.moveToNext())
                            }

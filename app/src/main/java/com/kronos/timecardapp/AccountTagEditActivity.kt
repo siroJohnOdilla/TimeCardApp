@@ -79,7 +79,10 @@ class AccountTagEditActivity : AppCompatActivity() {
                             db.updateAccountTag(id, saveAccountTag)
                             db.close()
 
-                            Toast.makeText(this,"SAVED", Toast.LENGTH_SHORT).show()
+                            val intent = Intent(this,LoginActivity::class.java)
+                            startActivity(intent)
+
+                            Toast.makeText(this,"$nameVerify: CHANGED ACCOUNT TO $saveAccountTag", Toast.LENGTH_SHORT).show()
                         }
                     } while(cursor.moveToNext())
                 }

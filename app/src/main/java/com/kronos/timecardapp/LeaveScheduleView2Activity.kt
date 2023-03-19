@@ -2,6 +2,9 @@ package com.kronos.timecardapp
 
 import android.os.Build
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -139,5 +142,21 @@ class LeaveScheduleView2Activity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
+    }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.leavescheduleview_option_menu, menu)
+        return true
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.itemViewGeneratePDF -> {
+                return true
+            }
+            R.id.itemViewPrint -> {
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

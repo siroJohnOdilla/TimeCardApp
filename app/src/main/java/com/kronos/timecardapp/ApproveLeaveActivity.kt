@@ -28,23 +28,23 @@ class ApproveLeaveActivity : AppCompatActivity() {
         val reliever = bundle.getString("Reliever").toString()
 
         val txtViewLeaveName = findViewById<TextView>(R.id.txtViewLeaveName)
-        val displayName = "NAME: $name"
+        val displayName = "NAME:\n$name"
         txtViewLeaveName.text = displayName
 
         val txtViewLeaveType = findViewById<TextView>(R.id.txtViewLeaveType)
-        val displayLeave = "LEAVE: $leaveType"
+        val displayLeave = "LEAVE:\n$leaveType"
         txtViewLeaveType.text = displayLeave
 
         val txtViewLeaveStartDate = findViewById<TextView>(R.id.txtViewLeaveStartDate)
-        val displayStartDate = "START DATE: $dateFrom"
+        val displayStartDate = "START DATE:\n$dateFrom"
         txtViewLeaveStartDate.text = displayStartDate
 
         val txtViewLeaveEndDate= findViewById<TextView>(R.id.txtViewLeaveEndDate)
-        val displayEndDate = "RETURN DATE: $dateTo"
+        val displayEndDate = "RETURN DATE:\n$dateTo"
         txtViewLeaveEndDate.text = displayEndDate
 
         val txtViewLeaveReliever = findViewById<TextView>(R.id.txtViewLeaveReliever)
-        val displayReliever = "RELIEVER: $reliever"
+        val displayReliever = "RELIEVER:\n$reliever"
         txtViewLeaveReliever.text = displayReliever
 
         val txtViewLeaveNoOfDays = findViewById<TextView>(R.id.txtViewLeaveNoOfDays)

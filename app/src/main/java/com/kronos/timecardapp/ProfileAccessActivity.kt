@@ -13,83 +13,68 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.graphics.ColorUtils
 
-class NameEditActivity : AppCompatActivity() {
+class ProfileAccessActivity : AppCompatActivity() {
     private var darkStatusBar = false
-    private lateinit var cardViewPopUpWindowNameEdit: CardView
-    private lateinit var editTxtFirstNameEdit: EditText
-    private lateinit var editTxtMiddleNameEdit: EditText
-    private lateinit var editTxtLastNameEdit: EditText
-    private lateinit var btnSaveNameTagEdit: Button
-    private lateinit var btnCancelNameTagEdit: Button
+    private lateinit var cardViewPopUpWindowPINProfileAccess: CardView
+    private lateinit var txtViewDisplayMessageProfileAccess: TextView
+    private lateinit var editTxtEnterPINProfileAccess: EditText
+    private lateinit var btnEnterPINProfileAccess: Button
+    private lateinit var btnCloseProfileAccess: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         overridePendingTransition(0, 0)
-        setContentView(R.layout.activity_nameedit)
+        setContentView(R.layout.activity_profileaccess)
 
         val actionBar = supportActionBar
         actionBar!!.title = ""
 
         val bundle: Bundle? = intent.extras
         darkStatusBar = bundle!!.getBoolean("darkStatusBar", false)
-        val nameVerify = bundle.getString("NameVerify").toString()
+        val nameVerify = bundle.getString("NamePass").toString()
 
-        cardViewPopUpWindowNameEdit = findViewById(R.id.cardViewPopUpWindowNameEdit)
-        editTxtFirstNameEdit = findViewById(R.id.editTxtFirstNameEdit)
-        editTxtMiddleNameEdit = findViewById(R.id.editTxtMiddleNameEdit)
-        editTxtLastNameEdit = findViewById(R.id.editTxtLastNameEdit)
+        cardViewPopUpWindowPINProfileAccess = findViewById(R.id.cardViewPopUpWindowPINProfileAccess)
 
-        btnSaveNameTagEdit = findViewById(R.id.btnSaveNameEdit)
-        btnSaveNameTagEdit.setOnClickListener {
-            if(editTxtFirstNameEdit.text.toString().trim().uppercase().isEmpty()){
-                Toast.makeText(this,"FIRST NAME REQUIRED",Toast.LENGTH_SHORT).show()
-            } else if(editTxtLastNameEdit.text.toString().trim().uppercase().isEmpty()){
-                Toast.makeText(this,"LAST NAME REQUIRED",Toast.LENGTH_SHORT).show()
-            } else {
+        txtViewDisplayMessageProfileAccess = findViewById(R.id.txtViewDisplayMessageProfileAccess)
+        val displayMessage = "ACCESSING:\n$nameVerify"
+        txtViewDisplayMessageProfileAccess.text = displayMessage
+
+        editTxtEnterPINProfileAccess = findViewById(R.id.editTxtEnterPINProfileAccess)
+
+        btnEnterPINProfileAccess = findViewById(R.id.btnEnterPINProfileAccess)
+        btnEnterPINProfileAccess.setOnClickListener {
+            if(editTxtEnterPINProfileAccess.text.toString().trim().isEmpty()){
+                Toast.makeText(this,"PROFILE PIN REQUIRED", Toast.LENGTH_SHORT).show()
+            } else{
                 val db = DBHelper(this, null)
                 val cursor = db.getLoginDetails()
 
                 if(cursor!!.moveToFirst()){
                     do{
                         val namePrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.NAME_COL))
-                        val idPrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.ID_COL))
+                        val pinPrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.PIN_NUMBER))
 
-                        if(nameVerify == namePrint.toString()){
-                            val id = idPrint.toLong()
-                            val firstName = editTxtFirstNameEdit.text.toString().trim().uppercase()
-                            val middleName = editTxtMiddleNameEdit.text.toString().trim().uppercase()
-                            val lastName = editTxtLastNameEdit.text.toString().trim().uppercase()
+                        if(nameVerify == namePrint.toString() && editTxtEnterPINProfileAccess.text.toString().trim() == pinPrint.toString()){
+                            val intent = Intent(this,ProfileViewActivity::class.java)
 
-                            if(middleName.isEmpty()){
-                                val saveName = "$firstName $lastName"
+                            intent.putExtra("NamePass",nameVerify)
+                            startActivity(intent)
 
-                                db.updateName(id, saveName)
-                                db.close()
-
-                                Toast.makeText(this,"SAVED", Toast.LENGTH_SHORT).show()
-                            } else {
-                                val saveName = "$firstName $middleName $lastName"
-
-                                db.updateName(id, saveName)
-                                db.close()
-
-                                val intent = Intent(this,LoginActivity::class.java)
-                                startActivity(intent)
-
-                                Toast.makeText(this,"$nameVerify: CHANGED NAME TO $saveName", Toast.LENGTH_SHORT).show()
-                            }
+                            Toast.makeText(this,"FETCHING PROFILE INFORMATION...",Toast.LENGTH_SHORT).show()
                         }
+
                     } while(cursor.moveToNext())
                 }
                 cursor.close()
             }
         }
-        btnCancelNameTagEdit = findViewById(R.id.btnCancelNameEdit)
-        btnCancelNameTagEdit.setOnClickListener {
+        btnCloseProfileAccess = findViewById(R.id.btnCloseProfileAccess)
+        btnCloseProfileAccess.setOnClickListener {
             onBackPressed()
         }
         if(Build.VERSION.SDK_INT in 19..20){
@@ -112,9 +97,10 @@ class NameEditActivity : AppCompatActivity() {
         val colorAnimation =  ValueAnimator.ofObject(ArgbEvaluator(), Color.TRANSPARENT, alphaColor)
         colorAnimation.duration = 500
         colorAnimation.addUpdateListener { animator ->
-            cardViewPopUpWindowNameEdit.setBackgroundColor(animator.animatedValue as Int)
+            cardViewPopUpWindowPINProfileAccess.setBackgroundColor(animator.animatedValue as Int)
         }
         colorAnimation.start()
+
     }
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
@@ -123,7 +109,7 @@ class NameEditActivity : AppCompatActivity() {
         val colorAnimation =  ValueAnimator.ofObject(ArgbEvaluator(), alphaColor, Color.TRANSPARENT)
         colorAnimation.duration = 500
         colorAnimation.addUpdateListener { animator ->
-            cardViewPopUpWindowNameEdit.setBackgroundColor(animator.animatedValue as Int)
+            cardViewPopUpWindowPINProfileAccess.setBackgroundColor(animator.animatedValue as Int)
         }
         colorAnimation.addListener(object: AnimatorListenerAdapter(){
             override fun onAnimationEnd(animation: Animator) {

@@ -155,8 +155,8 @@ class ApplyLeaveActivity : AppCompatActivity() {
 
         val btnNextApproveLeave = findViewById<Button>(R.id.btnNextApproveLeave)
         btnNextApproveLeave.setOnClickListener {
-            val intent1 = intent
-            val nameCheckPass = intent1.getStringExtra("nameToCheck").toString()
+            val bundle: Bundle? = intent.extras
+            val nameCheckPass = bundle!!.getString("nameToCheck").toString()
 
             if(spinnerEmployeeName.selectedItem.toString() != nameCheckPass || spinnerEmployeeName.selectedItem.toString().isEmpty()){
                 Toast.makeText(this,"PLEASE SELECT YOUR ACCOUNT NAME",Toast.LENGTH_SHORT).show()

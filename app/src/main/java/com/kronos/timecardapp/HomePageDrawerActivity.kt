@@ -17,6 +17,7 @@ import androidx.fragment.app.FragmentTransaction
 class HomePageDrawerActivity : AppCompatActivity() {
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var displayActionBarTitle: String
+    private lateinit var getName: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_homepagedrawer)
@@ -27,7 +28,8 @@ class HomePageDrawerActivity : AppCompatActivity() {
 
         val bundle: Bundle? = intent.extras
 
-        val passLoginName = bundle!!.getString("nameLogInKey1")
+        val passLoginName = bundle!!.getString("nameLogInKey1").toString()
+        getName = passLoginName
         val passLoginOfficeSiteBranch = bundle.getString("displayOfficeSiteBranchKey1")
         val passLogInDepartment = bundle.getString("displayDepartmentKey1")
         val passJobTitle = bundle.getString("displayJobTitleKey1")
@@ -100,22 +102,17 @@ class HomePageDrawerActivity : AppCompatActivity() {
 
                 }
                 2 -> {
-                    displayActionBarTitle = "LEAVE SCHEDULE"
-                    actionBar.title = displayActionBarTitle
+                    if(passAccountTag == "USER"){
+                        Toast.makeText(this,"ACCESS DENIED",Toast.LENGTH_SHORT).show()
+                    } else{
+                        displayActionBarTitle = "LEAVE SCHEDULE"
+                        actionBar.title = displayActionBarTitle
 
-                    val fragmentManager1: FragmentManager = supportFragmentManager
-                    val fragmentTransaction1: FragmentTransaction = fragmentManager1.beginTransaction()
+                        supportFragmentManager.beginTransaction().replace(R.id.frame,LeaveSchedule()).commit()
+                    }
 
-                    val myLeaveScheduleFragment = LeaveSchedule()
-
-                    val bundle2 = Bundle()
-                    val passName = passLoginName.toString()
-
-                    bundle2.putString("nameLogIn",passName)
-
-                    myLeaveScheduleFragment.arguments = bundle2
-                    fragmentTransaction1.replace(R.id.frame, myLeaveScheduleFragment).commit()
                 }
+
                 3 -> {
                     if(passAccountTag == "USER"){
                         Toast.makeText(this,"ACCESS DENIED",Toast.LENGTH_SHORT).show()
@@ -134,6 +131,16 @@ class HomePageDrawerActivity : AppCompatActivity() {
             return true
         }
         when(item.itemId){
+            R.id.itemViewApplyLeave -> {
+                val intent = Intent(this@HomePageDrawerActivity,ApplyLeaveActivity::class.java)
+
+                val passName = getName
+                intent.putExtra("nameToCheck",passName)
+
+                startActivity(intent)
+                Toast.makeText(this@HomePageDrawerActivity,"LEAVE APPLICATION",Toast.LENGTH_SHORT).show()
+                return true
+            }
             R.id.itemViewSettings -> {
                 val intent = Intent(this@HomePageDrawerActivity,SettingsActivity::class.java)
                 startActivity(intent)
