@@ -61,7 +61,7 @@ class HomePageDrawerActivity : AppCompatActivity() {
         drawer.setDrawerListener(toggle)
         toggle.syncState()
 
-        val tabs = arrayOf("HOME","TIME ATTENDANCE","LEAVE SCHEDULE","PROFILE")
+        val tabs = arrayOf("HOME","TIME ATTENDANCE","LEAVE SCHEDULE","PROFILE","VISITOR BOOK")
         val adapter = ArrayAdapter(this,android.R.layout.simple_dropdown_item_1line,tabs)
         val listview = findViewById<ListView>(R.id.listView)
         listview.adapter = adapter
@@ -123,6 +123,23 @@ class HomePageDrawerActivity : AppCompatActivity() {
                         supportFragmentManager.beginTransaction().replace(R.id.frame,Profile()).commit()
                     }
                 }
+
+                4 -> {
+                    displayActionBarTitle = "VISITOR BOOK"
+                    actionBar.title = displayActionBarTitle
+                    val fragmentManager1: FragmentManager = supportFragmentManager
+                    val fragmentTransaction1: FragmentTransaction = fragmentManager1.beginTransaction()
+
+                    val myVisitorBookFragment = VisitorBook()
+
+                    val bundle2 = Bundle()
+
+                    bundle2.putString("companyName",passCompanyName)
+                    bundle2.putString("officeSite",passLoginOfficeSiteBranch)
+
+                    myVisitorBookFragment.arguments = bundle2
+                    fragmentTransaction1.replace(R.id.frame, myVisitorBookFragment).commit()
+                }
             }
         }
     }
@@ -139,6 +156,14 @@ class HomePageDrawerActivity : AppCompatActivity() {
 
                 startActivity(intent)
                 Toast.makeText(this@HomePageDrawerActivity,"LEAVE APPLICATION",Toast.LENGTH_SHORT).show()
+                return true
+            }
+            R.id.itemViewRegisterGuest -> {
+                val intent = Intent(this@HomePageDrawerActivity,RegisterGuestActivity::class.java)
+
+                val passName = getName
+                intent.putExtra("nameToCheck",passName)
+                startActivity(intent)
                 return true
             }
             R.id.itemViewSettings -> {

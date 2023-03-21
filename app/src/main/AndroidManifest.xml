@@ -40,6 +40,8 @@
         <activity android:name=".DeleteProfileActivity"/>
         <activity android:name=".SettingsActivity"/>
         <activity android:name=".ProfileAccessActivity"/>
+        <activity android:name=".RegisterGuestActivity"/>
+        <activity android:name=".VisitorBookViewActivity"/>
 
         <activity
             android:name=".LoginActivity"

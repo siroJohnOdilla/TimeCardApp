@@ -107,9 +107,6 @@ class TimeAttendance : Fragment(){
 
         btnGenerateTimeAttendance = v.findViewById(R.id.btnGenerateTimeAttendance)
         btnGenerateTimeAttendance.setOnClickListener {
-            if(editTxtDateStartTimeAttendance.toString().isEmpty() && editTxtDateEndTimeAttendance.toString().isEmpty()){
-                Toast.makeText(v.context,"DATE RANGE IS REQUIRED",Toast.LENGTH_SHORT).show()
-            }
 
             val intent = Intent(v.context,TimeAttendanceViewActivity::class.java)
 

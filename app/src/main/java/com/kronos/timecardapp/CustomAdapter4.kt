@@ -100,7 +100,5 @@ class CustomAdapter4(private val mList: List<ItemViewModel4>) : RecyclerView.Ada
             }
         }
     }
-    fun getRetrieveName(){
-        val a = ProfileViewActivity()
-    }
+
 }

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardViewVisitorBook"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_margin="10dp"
+    android:padding="20dp"
+    app:cardElevation="6dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableRow
+            android:background="#700DEA"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/txtViewVisitorBook"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="DATE"
+                android:textAlignment="center"
+                android:textColor="#F8DD30"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtViewNameVisitorBook"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="VISITOR NAME"
+                android:textAlignment="center"
+                android:textColor="#F8DD30"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtViewNationalIdVisitorBook"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="NATIONAL ID NO."
+                android:textAlignment="center"
+                android:textColor="#F8DD30"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtViewTelephoneVisitorBook"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TELEPHONE NO."
+                android:textAlignment="center"
+                android:textColor="#F8DD30"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtViewCompanyVisitorBook"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="COMPANY"
+                android:textAlignment="center"
+                android:textColor="#F8DD30"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtViewHostVisitorBook"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="CONTACT PERSON"
+                android:textAlignment="center"
+                android:textColor="#F8DD30"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtViewReasonVisitorBook"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="NATURE OF VISIT"
+                android:textAlignment="center"
+                android:textColor="#F8DD30"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtViewTimeInVisitorBook"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TIME IN"
+                android:textAlignment="center"
+                android:textColor="#F8DD30"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtViewAuthorizeTimeInVisitorBook"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="AUTHORIZED TIME IN"
+                android:textAlignment="center"
+                android:textColor="#F8DD30"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtViewTimeOutVisitorBook"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TIME OUT"
+                android:textAlignment="center"
+                android:textColor="#F8DD30"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/txtViewAuthorizeTimeOutVisitorBook"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="AUTHORIZED TIME OUT"
+                android:textAlignment="center"
+                android:textColor="#F8DD30"
+                android:textStyle="bold" />
+        </TableRow>
+
+    </TableLayout>
+
+</androidx.cardview.widget.CardView>

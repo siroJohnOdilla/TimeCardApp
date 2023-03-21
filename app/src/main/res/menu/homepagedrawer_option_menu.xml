@@ -7,6 +7,10 @@
         android:title="Apply for Leave"
         app:showAsAction="never"/>
     <item
+        android:id="@+id/itemViewRegisterGuest"
+        android:title="Add Visitor"
+        app:showAsAction="never"/>
+    <item
         android:id="@+id/itemViewSettings"
         android:title="Settings"
         app:showAsAction="never"/>

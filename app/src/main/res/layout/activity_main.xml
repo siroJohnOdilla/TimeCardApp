@@ -59,6 +59,7 @@
         android:backgroundTint="#700DEA"
         android:hint="Enter Admin Key"
         android:inputType="textPassword"
+        android:textColor="#F8DD30"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.4"

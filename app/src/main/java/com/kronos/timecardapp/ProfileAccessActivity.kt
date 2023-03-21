@@ -63,6 +63,7 @@ class ProfileAccessActivity : AppCompatActivity() {
                             val intent = Intent(this,ProfileViewActivity::class.java)
 
                             intent.putExtra("NamePass",nameVerify)
+                            editTxtEnterPINProfileAccess.text.clear()
                             startActivity(intent)
 
                             Toast.makeText(this,"FETCHING PROFILE INFORMATION...",Toast.LENGTH_SHORT).show()
