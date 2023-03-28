@@ -122,7 +122,7 @@ class TimeAttendance : Fragment(){
             editTxtDateEndTimeAttendance.text.clear()
 
             startActivity(intent)
-            Toast.makeText(v.context,"GENERATING REPORT...",Toast.LENGTH_SHORT).show()
+            Toast.makeText(v.context,"GENERATING ATTENDANCE RECORD...",Toast.LENGTH_SHORT).show()
         }
         return v
     }

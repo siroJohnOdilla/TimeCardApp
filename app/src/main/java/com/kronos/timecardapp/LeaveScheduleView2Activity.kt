@@ -145,7 +145,7 @@ class LeaveScheduleView2Activity : AppCompatActivity() {
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater: MenuInflater = menuInflater
-        inflater.inflate(R.menu.leavescheduleview_option_menu, menu)
+        inflater.inflate(R.menu.timeattendanceview_option_menu, menu)
         return true
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

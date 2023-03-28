@@ -11,7 +11,6 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
-import android.view.animation.DecelerateInterpolator
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -48,18 +47,12 @@ class PopUpWindowSignOutActivity : AppCompatActivity() {
         if(Build.VERSION.SDK_INT in 19..20){
             setWindowFlag(this, true)
         }
-        if(Build.VERSION.SDK_INT >= 19){
-            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+        if(darkStatusBar){
+            this.window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         }
-        if(Build.VERSION.SDK_INT >= 21){
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-                if(darkStatusBar){
-                    this.window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-                }
-                this.window.statusBarColor = Color.TRANSPARENT
-                setWindowFlag(this, false)
-            }
-        }
+        this.window.statusBarColor = Color.TRANSPARENT
+        setWindowFlag(this, false)
         val alpha = 100
         val alphaColor = ColorUtils.setAlphaComponent(Color.parseColor("#000000"), alpha)
         val colorAnimation =  ValueAnimator.ofObject(ArgbEvaluator(), Color.TRANSPARENT, alphaColor)

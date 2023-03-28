@@ -73,8 +73,13 @@ class RegisterGuestActivity : AppCompatActivity() {
                 val db = DBHelper4(this, null)
                 db.addVisitor(date, name, nationalId, telephoneNumber, company, companyHost, natureOfVisit, timeIn, authorizedTimeIn, timeOut, authorizedTimeOut)
 
-                val intent = Intent(this,LoginActivity::class.java)
-                startActivity(intent)
+                editTxtNameVisitor.text.clear()
+                editTxtNationalIDVisitor.text.clear()
+                editTxtTelephoneNumberVisitor.text.clear()
+                editTxtCompanyVisitor.text.clear()
+                editTxtCompanyHostVisitor.text.clear()
+                editTxtNatureOfVisit.text.clear()
+
                 Toast.makeText(this,"WELCOME $name\nTIME IN: $timeIn",Toast.LENGTH_SHORT).show()
 
             }

@@ -126,7 +126,7 @@ class LeaveSchedule : Fragment() {
             editTxtDateEndLeaveSchedule.text.clear()
 
             startActivity(intent)
-            Toast.makeText(v.context, "GENERATING LEAVE SCHEDULE...", Toast.LENGTH_SHORT).show()
+            Toast.makeText(v.context, "OPENING LEAVE SCHEDULE...", Toast.LENGTH_SHORT).show()
         }
         return v
     }
