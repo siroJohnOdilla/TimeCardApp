@@ -1,7 +1,7 @@
 package com.kronos.timecardapp
 
-import android.content.Intent
 import android.os.Bundle
+import android.telephony.SmsManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -70,8 +70,16 @@ class RegisterGuestActivity : AppCompatActivity() {
                 val timeOut = ""
                 val authorizedTimeOut = ""
 
+                //val message = "WELCOME $name\nTIME IN: $timeIn"
+
                 val db = DBHelper4(this, null)
                 db.addVisitor(date, name, nationalId, telephoneNumber, company, companyHost, natureOfVisit, timeIn, authorizedTimeIn, timeOut, authorizedTimeOut)
+
+                /*val smsManager = applicationContext.getSystemService(SmsManager::class.java)
+
+                smsManager.sendTextMessage(telephoneNumber, null, message, null, null)
+
+                Toast.makeText(applicationContext,"MESSAGE SENT",Toast.LENGTH_SHORT).show()*/
 
                 editTxtNameVisitor.text.clear()
                 editTxtNationalIDVisitor.text.clear()

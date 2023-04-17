@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import com.google.android.material.navigation.NavigationView
 
 class HomePageDrawerActivity : AppCompatActivity() {
     private lateinit var toggle: ActionBarDrawerToggle
@@ -55,21 +56,17 @@ class HomePageDrawerActivity : AppCompatActivity() {
         fragmentTransaction.replace(R.id.frame, myHomeFragment).commit()
 
         val drawer = findViewById<DrawerLayout>(R.id.drawer)
+        val navView = findViewById<NavigationView>(R.id.nav_view)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         toggle = ActionBarDrawerToggle(this,drawer,R.string.open,R.string.close)
-        drawer.setDrawerListener(toggle)
+        drawer.addDrawerListener(toggle)
         toggle.syncState()
 
-        val tabs = arrayOf("HOME","TIME ATTENDANCE","LEAVE SCHEDULE","PROFILE","VISITOR BOOK")
-        val adapter = ArrayAdapter(this,android.R.layout.simple_dropdown_item_1line,tabs)
-        val listview = findViewById<ListView>(R.id.listView)
-        listview.adapter = adapter
-        
-        listview.setOnItemClickListener {adapterView, view, i, l ->
+        navView.setNavigationItemSelectedListener {
             drawer.closeDrawers()
-            when(i){
-                0 -> {
+            when(it.itemId){
+                R.id.itemHome -> {
                     displayActionBarTitle = "HOME"
                     actionBar.title = displayActionBarTitle
 
@@ -90,7 +87,7 @@ class HomePageDrawerActivity : AppCompatActivity() {
                     myHomeFragment.arguments = bundle1
                     fragmentTransaction.replace(R.id.frame, myHomeFragment).commit()
                 }
-                1 -> {
+                R.id.itemTimeAttendance -> {
                     if(passAccountTag == "USER"){
                         Toast.makeText(this,"ACCESS DENIED",Toast.LENGTH_SHORT).show()
                     } else{
@@ -99,9 +96,16 @@ class HomePageDrawerActivity : AppCompatActivity() {
 
                         supportFragmentManager.beginTransaction().replace(R.id.frame,TimeAttendance()).commit()
                     }
-
                 }
-                2 -> {
+                R.id.itemApplyLeave -> {
+                    val intent = Intent(this@HomePageDrawerActivity,ApplyLeaveActivity::class.java)
+
+                    val passName = getName
+                    intent.putExtra("nameToCheck",passName)
+
+                    startActivity(intent)
+                }
+                R.id.itemLeaveSchedule -> {
                     if(passAccountTag == "USER"){
                         Toast.makeText(this,"ACCESS DENIED",Toast.LENGTH_SHORT).show()
                     } else{
@@ -110,10 +114,11 @@ class HomePageDrawerActivity : AppCompatActivity() {
 
                         supportFragmentManager.beginTransaction().replace(R.id.frame,LeaveSchedule()).commit()
                     }
+                }
+                R.id.itemCreateAccount -> {
 
                 }
-
-                3 -> {
+                R.id.itemProfile -> {
                     if(passAccountTag == "USER"){
                         Toast.makeText(this,"ACCESS DENIED",Toast.LENGTH_SHORT).show()
                     } else{
@@ -123,8 +128,17 @@ class HomePageDrawerActivity : AppCompatActivity() {
                         supportFragmentManager.beginTransaction().replace(R.id.frame,Profile()).commit()
                     }
                 }
+                R.id.itemSignOut -> {
+                    onBackPressed()
+                }
+                R.id.itemAddVisitor -> {
+                    val intent = Intent(this@HomePageDrawerActivity,RegisterGuestActivity::class.java)
 
-                4 -> {
+                    val passName = getName
+                    intent.putExtra("nameToCheck",passName)
+                    startActivity(intent)
+                }
+                R.id.itemVisitorBook -> {
                     displayActionBarTitle = "VISITOR BOOK"
                     actionBar.title = displayActionBarTitle
                     val fragmentManager1: FragmentManager = supportFragmentManager
@@ -141,6 +155,7 @@ class HomePageDrawerActivity : AppCompatActivity() {
                     fragmentTransaction1.replace(R.id.frame, myVisitorBookFragment).commit()
                 }
             }
+            true
         }
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

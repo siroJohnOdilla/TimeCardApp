@@ -2,6 +2,7 @@
 <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/drawer">
 
     <FrameLayout
@@ -9,14 +10,12 @@
         android:layout_height="match_parent"
         android:id="@+id/frame"/>
 
-    <ListView
-        android:id="@+id/listView"
-        android:layout_gravity = "start"
-        android:layout_width="170dp"
-        android:background="#700DEA"
-        android:layout_height="match_parent"></ListView>
-
-
-
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:menu="@menu/nav_menu"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>
