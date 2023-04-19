@@ -6,48 +6,84 @@
     android:layout_height="match_parent"
     android:padding="20dp">
 
-    <EditText
-        android:id="@+id/editTxtOfficeBranchSignUp"
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:startIconDrawable="@drawable/site_branch"
+        app:endIconMode="clear_text"
+        android:backgroundTint="#700DEA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:backgroundTint="#700DEA"
-        android:hint="Enter Office/ Site Branch"
-        android:textColor="#F8DD30"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:hint="Office/ Site Branch">
 
-    <EditText
-        android:id="@+id/editTxtDepartmentSignUp"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTxtOfficeBranchSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:backgroundTint="#700DEA"
+            android:textColor="#F8DD30"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:startIconDrawable="@drawable/department"
+        app:endIconMode="clear_text"
+        android:backgroundTint="#700DEA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:backgroundTint="#700DEA"
-        android:hint="Enter Department"
-        android:textColor="#F8DD30"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.635"
         app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.629" />
+        android:hint="Department">
 
-    <EditText
-        android:id="@+id/editTxtJobTitleSignUp"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTxtDepartmentSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:backgroundTint="#700DEA"
+            android:textColor="#F8DD30"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:startIconDrawable="@drawable/job_title"
+        app:endIconMode="clear_text"
+        android:backgroundTint="#700DEA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:backgroundTint="#700DEA"
-        android:hint="Enter Job Title"
-        android:textColor="#F8DD30"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.432"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.769" />
+        app:layout_constraintVertical_bias="0.769"
+        app:layout_constraintHorizontal_bias="0.432"
+        android:hint="Job Title">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTxtJobTitleSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:backgroundTint="#700DEA"
+            android:textColor="#F8DD30"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btnNextSignUpContactInformation"

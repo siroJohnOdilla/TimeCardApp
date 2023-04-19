@@ -113,21 +113,33 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.605" />
 
-            <EditText
-                android:id="@+id/editTxtLeaveAdminKey"
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:startIconDrawable="@drawable/key"
+                app:endIconMode="clear_text"
+                android:backgroundTint="#700DEA"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#700DEA"
-                android:ems="10"
-                android:hint="Enter Admin Key (ADMIN)"
-                android:inputType="textPassword"
-                android:textColor="#F8DD30"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.4"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.688" />
+                app:layout_constraintVertical_bias="0.71"
+                app:layout_constraintHorizontal_bias="0.4"
+                android:hint="Admin Key">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTxtLeaveAdminKey"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#700DEA"
+                    android:ems="10"
+                    android:inputType="textPassword"
+                    android:textColor="#F8DD30"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/btnFinishLeaveApplication"

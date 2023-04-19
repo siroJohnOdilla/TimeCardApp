@@ -41,7 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="- OR -"
-        android:textColor="#F8DD30"
+        android:textColor="#700DEA"
         android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -51,20 +51,32 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.538" />
 
-    <EditText
-        android:id="@+id/editTxtAdminKey"
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:startIconDrawable="@drawable/key"
+        app:endIconMode="clear_text"
+        android:backgroundTint="#700DEA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:backgroundTint="#700DEA"
-        android:hint="Enter Admin Key"
-        android:inputType="textPassword"
-        android:textColor="#F8DD30"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.377" />
+        app:layout_constraintVertical_bias="0.34"
+        app:layout_constraintHorizontal_bias="0.4"
+        android:hint="Admin Key">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTxtAdminKey"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:backgroundTint="#700DEA"
+            android:inputType="textPassword"
+            android:textColor="#F8DD30"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

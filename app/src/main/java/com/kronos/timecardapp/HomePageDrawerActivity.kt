@@ -24,7 +24,7 @@ class HomePageDrawerActivity : AppCompatActivity() {
         setContentView(R.layout.activity_homepagedrawer)
 
         val actionBar = supportActionBar
-        displayActionBarTitle = "HOME"
+        displayActionBarTitle = "Home"
         actionBar!!.title = displayActionBarTitle
 
         val bundle: Bundle? = intent.extras
@@ -67,7 +67,7 @@ class HomePageDrawerActivity : AppCompatActivity() {
             drawer.closeDrawers()
             when(it.itemId){
                 R.id.itemHome -> {
-                    displayActionBarTitle = "HOME"
+                    displayActionBarTitle = "Home"
                     actionBar.title = displayActionBarTitle
 
                     val fragmentManager: FragmentManager = supportFragmentManager
@@ -91,7 +91,7 @@ class HomePageDrawerActivity : AppCompatActivity() {
                     if(passAccountTag == "USER"){
                         Toast.makeText(this,"ACCESS DENIED",Toast.LENGTH_SHORT).show()
                     } else{
-                        displayActionBarTitle = "TIME ATTENDANCE"
+                        displayActionBarTitle = "Time Attendance"
                         actionBar.title = displayActionBarTitle
 
                         supportFragmentManager.beginTransaction().replace(R.id.frame,TimeAttendance()).commit()
@@ -109,7 +109,7 @@ class HomePageDrawerActivity : AppCompatActivity() {
                     if(passAccountTag == "USER"){
                         Toast.makeText(this,"ACCESS DENIED",Toast.LENGTH_SHORT).show()
                     } else{
-                        displayActionBarTitle = "LEAVE SCHEDULE"
+                        displayActionBarTitle = "Leave Schedule"
                         actionBar.title = displayActionBarTitle
 
                         supportFragmentManager.beginTransaction().replace(R.id.frame,LeaveSchedule()).commit()
@@ -122,7 +122,7 @@ class HomePageDrawerActivity : AppCompatActivity() {
                     if(passAccountTag == "USER"){
                         Toast.makeText(this,"ACCESS DENIED",Toast.LENGTH_SHORT).show()
                     } else{
-                        displayActionBarTitle = "PROFILE"
+                        displayActionBarTitle = "Profiles"
                         actionBar.title = displayActionBarTitle
 
                         supportFragmentManager.beginTransaction().replace(R.id.frame,Profile()).commit()
@@ -139,7 +139,7 @@ class HomePageDrawerActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
                 R.id.itemVisitorBook -> {
-                    displayActionBarTitle = "VISITOR BOOK"
+                    displayActionBarTitle = "Visitor Book"
                     actionBar.title = displayActionBarTitle
                     val fragmentManager1: FragmentManager = supportFragmentManager
                     val fragmentTransaction1: FragmentTransaction = fragmentManager1.beginTransaction()

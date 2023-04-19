@@ -6,36 +6,60 @@
     android:layout_height="match_parent"
     android:padding="20dp">
 
-    <EditText
-        android:id="@+id/editTxtPINSignUp"
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:startIconDrawable="@drawable/pin"
+        app:endIconMode="password_toggle"
+        android:backgroundTint="#700DEA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:backgroundTint="#700DEA"
-        android:hint="Enter PIN"
-        android:inputType="numberPassword"
-        android:textColor="#F8DD30"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.626"
         app:layout_constraintHorizontal_bias="0.4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.626" />
+        android:hint="PIN">
 
-    <EditText
-        android:id="@+id/editTxtConfirmPINSignUp"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTxtPINSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:backgroundTint="#700DEA"
+            android:inputType="numberPassword"
+            android:textColor="#F8DD30"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:startIconDrawable="@drawable/pin"
+        app:endIconMode="password_toggle"
+        android:backgroundTint="#700DEA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:backgroundTint="#700DEA"
-        android:hint="Confirm PIN"
-        android:inputType="numberPassword"
-        android:textColor="#F8DD30"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.752" />
+        app:layout_constraintVertical_bias="0.752"
+        android:hint="Confirm PIN">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTxtConfirmPINSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:backgroundTint="#700DEA"
+            android:inputType="numberPassword"
+            android:textColor="#F8DD30"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btnFinishSignUp"

@@ -6,48 +6,85 @@
     android:layout_height="match_parent"
     android:padding="20dp">
 
-    <EditText
-        android:id="@+id/editTxtCompanyNameCreate"
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:startIconDrawable="@drawable/site_branch"
+        app:endIconMode="clear_text"
+        android:backgroundTint="#700DEA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="#700DEA"
-        android:ems="10"
-        android:hint="Enter Company Name"
-        android:textColor="#F8DD30"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.271"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.271" />
+        android:hint="Company Name">
 
-    <EditText
-        android:id="@+id/editTxtCompanyNameInitials"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTxtCompanyNameCreate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#700DEA"
+            android:ems="10"
+            android:textColor="#F8DD30"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:startIconDrawable="@drawable/site_branch"
+        app:endIconMode="clear_text"
+        android:backgroundTint="#700DEA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="#700DEA"
-        android:ems="10"
-        android:hint="Enter Company Initials (3 Letters Max.)"
-        android:textColor="#F8DD30"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.396"
         app:layout_constraintHorizontal_bias="0.4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.389" />
+        android:hint="Company Initials">
 
-    <EditText
-        android:id="@+id/editTxtCompanyAdmissionKey"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTxtCompanyNameInitials"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#700DEA"
+            android:ems="10"
+            android:textColor="#F8DD30"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:startIconDrawable="@drawable/key"
+        app:endIconMode="clear_text"
+        android:backgroundTint="#700DEA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="#700DEA"
-        android:ems="10"
-        android:hint="Enter Admission Key (6 Letter Word)"
-        android:textColor="#F8DD30"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.52"
+        android:hint="Admission Key">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTxtCompanyAdmissionKey"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#700DEA"
+            android:ems="10"
+            android:textColor="#F8DD30"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btnFinishCompanyNameRegistration"
@@ -59,10 +96,9 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.95"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.603" />
+        app:layout_constraintVertical_bias="0.646" />
 
     <Button
         android:id="@+id/btnJoinCompany2"

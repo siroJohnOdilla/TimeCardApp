@@ -6,22 +6,34 @@
     android:layout_height="match_parent"
     android:padding="20dp">
 
-    <EditText
-        android:id="@+id/editTxtPINLogIn"
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:startIconDrawable="@drawable/pin"
+        app:endIconMode="password_toggle"
+        android:backgroundTint="#700DEA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:backgroundTint="#700DEA"
-        android:hint="PIN"
-        android:textColor="#F8DD30"
-        android:textColorHighlight="#700DEA"
-        android:inputType="numberPassword"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.516" />
+        app:layout_constraintVertical_bias="0.516"
+        android:hint="PIN">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTxtPINLogIn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:backgroundTint="#700DEA"
+            android:textColor="#F8DD30"
+            android:textColorHighlight="#700DEA"
+            android:inputType="numberPassword"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btnLogin"
@@ -66,18 +78,29 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.976" />
 
-    <EditText
-        android:id="@+id/editTxtFullNameNationalIdLogIn"
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:startIconDrawable="@drawable/user"
+        app:endIconMode="clear_text"
+        android:backgroundTint="#700DEA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:backgroundTint="#700dea"
-        android:hint="Enter Full Name or National ID"
-        android:textColor="#F8DD30"
-        android:textColorHighlight="#700DEA"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.386" />
+        app:layout_constraintVertical_bias="0.386"
+        android:hint="Full Name or National ID No.">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTxtFullNameNationalIdLogIn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:textColor="#F8DD30"
+            android:textColorHighlight="#700DEA"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+    </com.google.android.material.textfield.TextInputLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
