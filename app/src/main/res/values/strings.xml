@@ -5,36 +5,22 @@
     <string name="selected_item">Select item:</string>
 
     <string-array name="Genders">
-        <item>   </item>
         <item>MALE</item>
-        <item>    </item>
         <item>FEMALE</item>
-        <item>    </item>
         <item>NON-BINARY</item>
-        <item>    </item>
         <item>OTHER</item>
-        <item>    </item>
     </string-array>
     <string-array name="Leave">
-        <item>   </item>
         <item>ANNUAL</item>
-        <item>   </item>
         <item>MATERNITY</item>
-        <item>   </item>
         <item>PATERNITY</item>
-        <item>   </item>
         <item>SICK</item>
-        <item>   </item>
         <item>OTHER</item>
-        <item>   </item>
     </string-array>
 
     <string-array name="Account">
-        <item>   </item>
         <item>ADMINISTRATOR</item>
-        <item>   </item>
         <item>USER</item>
-        <item>   </item>
 
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->

@@ -12,7 +12,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class VisitorBook : Fragment() {
-    private lateinit var spinnerVisitorBook: Spinner
+    private lateinit var spinnerVisitorBook: AutoCompleteTextView
     private lateinit var txtDisplayCompanyNameVisitorBook: TextView
     private lateinit var txtDisplayOfficeSiteVisitorBook: TextView
     private lateinit var editTxtDateStartVisitorBook: EditText
@@ -40,7 +40,6 @@ class VisitorBook : Fragment() {
         txtDisplayOfficeSiteVisitorBook.text = displayOfficeSite
 
         visitorList = ArrayList()
-        visitorList.add("")
 
         val db = DBHelper4(v.context, null)
         val cursor = db.getDetails()
@@ -52,31 +51,15 @@ class VisitorBook : Fragment() {
                 if(nameCheck.toString().isNotEmpty()){
                     val name = nameCheck.toString()
                     visitorList.add(name)
-                    visitorList.add("")
                 }
             } while(cursor.moveToNext())
         }
         cursor.close()
 
-        spinnerVisitorBook = v.findViewById(R.id.spinnerVisitorBookName)
-        if (spinnerVisitorBook != null){
-            val adapter = ArrayAdapter(v.context, android.R.layout.simple_spinner_item, visitorList)
-            spinnerVisitorBook.adapter = adapter
+        val adapter = ArrayAdapter(v.context, R.layout.dropdown_item, visitorList)
 
-            spinnerVisitorBook.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-                override fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    position: Int,
-                    id: Long
-                ) {
-                    //Toast.makeText(this@SignUpPersonalDetailsActivity,getString(R.string.selected_item) + " " + " " + genders[position], Toast.LENGTH_SHORT).show()
-                }
-                override fun onNothingSelected(parent: AdapterView<*>?) {
-                    //Toast.makeText(this@SignUpPersonalDetailsActivity,"GENDER REQUIRED",Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
+        spinnerVisitorBook = v.findViewById(R.id.spinnerVisitorBookName)
+        spinnerVisitorBook.setAdapter(adapter)
 
         editTxtDateStartVisitorBook = v.findViewById(R.id.editTxtDateStartVisitorBook)
         editTxtDateStartVisitorBook.setOnClickListener {
@@ -128,7 +111,7 @@ class VisitorBook : Fragment() {
 
             val passStartDate = editTxtDateStartVisitorBook.text.toString()
             val passEndDate = editTxtDateEndVisitorBook.text.toString()
-            val passName = spinnerVisitorBook.selectedItem.toString()
+            val passName = spinnerVisitorBook.text.toString()
 
             intent.putExtra("StartDate",passStartDate)
             intent.putExtra("EndDate",passEndDate)
@@ -136,6 +119,7 @@ class VisitorBook : Fragment() {
 
             editTxtDateStartVisitorBook.text.clear()
             editTxtDateEndVisitorBook.text.clear()
+            spinnerVisitorBook.text.clear()
 
             startActivity(intent)
             Toast.makeText(v.context,"OPENING VISITOR'S BOOK...",Toast.LENGTH_SHORT).show()

@@ -3,7 +3,6 @@ package com.kronos.timecardapp
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import java.text.SimpleDateFormat
@@ -27,9 +26,7 @@ class ApplyLeaveActivity : AppCompatActivity() {
         actionBar.setDisplayHomeAsUpEnabled(true)
 
         employeeNameList = ArrayList()
-        employeeNameList.add("")
         relieverNameList = ArrayList()
-        relieverNameList.add("")
 
         val db = DBHelper(this, null)
         val cursor = db.getLoginDetails()
@@ -42,75 +39,24 @@ class ApplyLeaveActivity : AppCompatActivity() {
                     val name = namePrint.toString()
 
                     employeeNameList.add(name)
-                    employeeNameList.add("")
                     relieverNameList.add(name)
-                    relieverNameList.add("")
                 }
             } while(cursor.moveToNext())
         }
         cursor.close()
 
-        val spinnerEmployeeName = findViewById<Spinner>(R.id.spinnerEmployeeName)
-        if (spinnerEmployeeName != null){
-            val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, employeeNameList)
-            spinnerEmployeeName.adapter = adapter
+        val adapter = ArrayAdapter(this, R.layout.dropdown_item, employeeNameList)
+        val spinnerEmployeeName = findViewById<AutoCompleteTextView>(R.id.spinnerEmployeeName)
+        spinnerEmployeeName.setAdapter(adapter)
 
-            spinnerEmployeeName.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-                override fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    position: Int,
-                    id: Long
-                ) {
-                    //Toast.makeText(this@SignUpPersonalDetailsActivity,getString(R.string.selected_item) + " " + " " + genders[position], Toast.LENGTH_SHORT).show()
-                }
-                override fun onNothingSelected(parent: AdapterView<*>?) {
-                    //Toast.makeText(this@SignUpPersonalDetailsActivity,"GENDER REQUIRED",Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
+        val adapter1 = ArrayAdapter(this, R.layout.dropdown_item, relieverNameList)
+        val spinnerRelieverNames = findViewById<AutoCompleteTextView>(R.id.spinnerRelieverNames)
+        spinnerRelieverNames.setAdapter(adapter1)
 
-        val spinnerRelieverNames = findViewById<Spinner>(R.id.spinnerRelieverNames)
-        if (spinnerRelieverNames != null){
-            val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, relieverNameList)
-            spinnerRelieverNames.adapter = adapter
-
-            spinnerRelieverNames.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-                override fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    position: Int,
-                    id: Long
-                ) {
-                    //Toast.makeText(this@SignUpPersonalDetailsActivity,getString(R.string.selected_item) + " " + " " + genders[position], Toast.LENGTH_SHORT).show()
-                }
-                override fun onNothingSelected(parent: AdapterView<*>?) {
-                    //Toast.makeText(this@SignUpPersonalDetailsActivity,"GENDER REQUIRED",Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
-
-        val spinnerLeaveSelection = findViewById<Spinner>(R.id.spinnerLeaveSelection)
         val leave = resources.getStringArray(R.array.Leave)
-        if (spinnerLeaveSelection != null){
-            val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, leave)
-            spinnerLeaveSelection.adapter = adapter
-
-            spinnerLeaveSelection.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-                override fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    position: Int,
-                    id: Long
-                ) {
-                    //Toast.makeText(this@SignUpPersonalDetailsActivity,getString(R.string.selected_item) + " " + " " + genders[position], Toast.LENGTH_SHORT).show()
-                }
-
-                override fun onNothingSelected(parent: AdapterView<*>?) {
-                    //Toast.makeText(this@SignUpPersonalDetailsActivity,"GENDER REQUIRED",Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
+        val adapter2 = ArrayAdapter(this, R.layout.dropdown_item, leave)
+        val spinnerLeaveSelection = findViewById<AutoCompleteTextView>(R.id.spinnerLeaveSelection)
+        spinnerLeaveSelection.setAdapter(adapter2)
 
         val editTxtStartDate = findViewById<EditText>(R.id.editTxtStartDate)
         editTxtStartDate.setOnClickListener {
@@ -158,19 +104,19 @@ class ApplyLeaveActivity : AppCompatActivity() {
             val bundle: Bundle? = intent.extras
             val nameCheckPass = bundle!!.getString("nameToCheck").toString()
 
-            if(spinnerEmployeeName.selectedItem.toString() != nameCheckPass || spinnerEmployeeName.selectedItem.toString().isEmpty()){
+            if(spinnerEmployeeName.text.toString() != nameCheckPass || spinnerEmployeeName.text.toString().isEmpty()){
                 Toast.makeText(this,"PLEASE SELECT YOUR ACCOUNT NAME",Toast.LENGTH_SHORT).show()
-            } else if(spinnerLeaveSelection.selectedItem.toString().isEmpty()){
+            } else if(spinnerLeaveSelection.text.toString().isEmpty()){
                 Toast.makeText(this,"SELECT YOUR LEAVE TYPE",Toast.LENGTH_SHORT).show()
             } else if(editTxtStartDate.text.toString().isEmpty()){
                 Toast.makeText(this,"SELECT START DATE",Toast.LENGTH_SHORT).show()
             } else if(editTxtEndDate.text.toString().isEmpty()){
                 Toast.makeText(this,"SELECT RETURN DATE",Toast.LENGTH_SHORT).show()
-            } else if(spinnerRelieverNames.selectedItem.toString().isEmpty()){
+            } else if(spinnerRelieverNames.text.toString().isEmpty()){
                 Toast.makeText(this,"SELECT YOUR RELIEVER NAME",Toast.LENGTH_SHORT).show()
-            } else if(spinnerEmployeeName.selectedItem.toString() == spinnerRelieverNames.selectedItem.toString()){
+            } else if(spinnerEmployeeName.text.toString() == spinnerRelieverNames.text.toString()){
                 Toast.makeText(this,"YOU CANT BE YOUR OWN RELIEVER",Toast.LENGTH_SHORT).show()
-            } else if(editTxtStartDate.text.toString().isNotEmpty() && editTxtEndDate.text.toString().isNotEmpty() && spinnerEmployeeName.selectedItem.toString() == nameCheckPass){
+            } else if(editTxtStartDate.text.toString().isNotEmpty() && editTxtEndDate.text.toString().isNotEmpty() && spinnerEmployeeName.text.toString() == nameCheckPass){
                 val startDate = editTxtStartDate.text.toString()
                 val endDate = editTxtEndDate.text.toString()
 
@@ -184,11 +130,11 @@ class ApplyLeaveActivity : AppCompatActivity() {
                 val differenceDays = (difference / (24*60*60*1000)) % 365
                 noOfDays = differenceDays.toString()
 
-                val passName = spinnerEmployeeName.selectedItem.toString()
-                val passLeave = spinnerLeaveSelection.selectedItem.toString()
+                val passName = spinnerEmployeeName.text.toString()
+                val passLeave = spinnerLeaveSelection.text.toString()
                 val passStartDate = editTxtStartDate.text.toString()
                 val passEndDate = editTxtEndDate.text.toString()
-                val passReliever = spinnerRelieverNames.selectedItem.toString()
+                val passReliever = spinnerRelieverNames.text.toString()
                 val passNoOfDays = noOfDays
 
                 val intent = Intent(this,ApproveLeaveActivity::class.java)

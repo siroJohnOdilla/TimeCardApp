@@ -7,12 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 
 class Profile : Fragment() {
     private lateinit var employeeList: ArrayList<String>
-    private lateinit var spinnerProfileEmployeeName: Spinner
+    private lateinit var spinnerProfileEmployeeName: AutoCompleteTextView
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -21,7 +19,6 @@ class Profile : Fragment() {
         val v = inflater.inflate(R.layout.fragment_profile, container, false)
 
         employeeList = ArrayList()
-        employeeList.add("")
 
         val db = DBHelper(v.context, null)
         val cursor = db.getLoginDetails()
@@ -33,39 +30,25 @@ class Profile : Fragment() {
                 if(nameCheck.toString().isNotEmpty()){
                     val name = nameCheck.toString()
                     employeeList.add(name)
-                    employeeList.add("")
                 }
             } while(cursor.moveToNext())
         }
         cursor.close()
 
-        spinnerProfileEmployeeName = v.findViewById(R.id.spinnerProfileEmployeeName)
-        if (spinnerProfileEmployeeName != null){
-            val adapter = ArrayAdapter(v.context, android.R.layout.simple_spinner_item, employeeList)
-            spinnerProfileEmployeeName.adapter = adapter
+        val adapter = ArrayAdapter(v.context, R.layout.dropdown_item, employeeList)
 
-            spinnerProfileEmployeeName.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-                override fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    position: Int,
-                    id: Long
-                ) {
-                    //Toast.makeText(this@SignUpPersonalDetailsActivity,getString(R.string.selected_item) + " " + " " + genders[position], Toast.LENGTH_SHORT).show()
-                }
-                override fun onNothingSelected(parent: AdapterView<*>?) {
-                    //Toast.makeText(this@SignUpPersonalDetailsActivity,"GENDER REQUIRED",Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
+        spinnerProfileEmployeeName = v.findViewById(R.id.spinnerProfileEmployeeName)
+        spinnerProfileEmployeeName.setAdapter(adapter)
 
         val btnGenerateProfiles = v.findViewById<Button>(R.id.btnGenerateProfiles)
         btnGenerateProfiles.setOnClickListener {
             val intent = Intent(v.context,ProfileViewListActivity::class.java)
 
-            val passName = spinnerProfileEmployeeName.selectedItem.toString()
+            val passName = spinnerProfileEmployeeName.text.toString()
 
             intent.putExtra("NameCheck",passName)
+
+            spinnerProfileEmployeeName.text.clear()
             startActivity(intent)
             Toast.makeText(v.context,"FETCHING PROFILES...",Toast.LENGTH_SHORT).show()
         }

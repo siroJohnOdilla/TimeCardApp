@@ -12,7 +12,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class LeaveSchedule : Fragment() {
-    private lateinit var spinnerLeaveScheduleEmployeeName: Spinner
+    private lateinit var spinnerLeaveScheduleEmployeeName: AutoCompleteTextView
     private lateinit var editTxtDateStartLeaveSchedule: EditText
     private lateinit var editTxtDateEndLeaveSchedule: EditText
     private lateinit var btnGenerateLeaveSchedule: Button
@@ -25,7 +25,6 @@ class LeaveSchedule : Fragment() {
         val v = inflater.inflate(R.layout.fragment_leaveschedule, container, false)
 
         employeeList = ArrayList()
-        employeeList.add("")
 
         val db = DBHelper(v.context, null)
         val cursor = db.getLoginDetails()
@@ -37,33 +36,15 @@ class LeaveSchedule : Fragment() {
                 if (nameCheck.toString().isNotEmpty()) {
                     val name = nameCheck.toString()
                     employeeList.add(name)
-                    employeeList.add("")
                 }
             } while (cursor.moveToNext())
         }
         cursor.close()
 
+        val adapter = ArrayAdapter(v.context, R.layout.dropdown_item, employeeList)
+
         spinnerLeaveScheduleEmployeeName = v.findViewById(R.id.spinnerLeaveScheduleEmployeeName)
-        if (spinnerLeaveScheduleEmployeeName != null) {
-            val adapter = ArrayAdapter(v.context, android.R.layout.simple_spinner_item, employeeList)
-            spinnerLeaveScheduleEmployeeName.adapter = adapter
-
-            spinnerLeaveScheduleEmployeeName.onItemSelectedListener =
-                object : AdapterView.OnItemSelectedListener {
-                    override fun onItemSelected(
-                        parent: AdapterView<*>?,
-                        view: View?,
-                        position: Int,
-                        id: Long
-                    ) {
-                        //Toast.makeText(this@SignUpPersonalDetailsActivity,getString(R.string.selected_item) + " " + " " + genders[position], Toast.LENGTH_SHORT).show()
-                    }
-
-                    override fun onNothingSelected(parent: AdapterView<*>?) {
-                        //Toast.makeText(this@SignUpPersonalDetailsActivity,"GENDER REQUIRED",Toast.LENGTH_SHORT).show()
-                    }
-                }
-        }
+        spinnerLeaveScheduleEmployeeName.setAdapter(adapter)
 
         editTxtDateStartLeaveSchedule = v.findViewById(R.id.editTxtDateStartLeaveSchedule)
         editTxtDateStartLeaveSchedule.setOnClickListener {
@@ -116,7 +97,7 @@ class LeaveSchedule : Fragment() {
 
             val passStartDate = editTxtDateStartLeaveSchedule.text.toString()
             val passEndDate = editTxtDateEndLeaveSchedule.text.toString()
-            val passName = spinnerLeaveScheduleEmployeeName.selectedItem.toString()
+            val passName = spinnerLeaveScheduleEmployeeName.text.toString()
 
             intent.putExtra("StartDate", passStartDate)
             intent.putExtra("EndDate", passEndDate)
@@ -124,6 +105,7 @@ class LeaveSchedule : Fragment() {
 
             editTxtDateStartLeaveSchedule.text.clear()
             editTxtDateEndLeaveSchedule.text.clear()
+            spinnerLeaveScheduleEmployeeName.text.clear()
 
             startActivity(intent)
             Toast.makeText(v.context, "OPENING LEAVE SCHEDULE...", Toast.LENGTH_SHORT).show()

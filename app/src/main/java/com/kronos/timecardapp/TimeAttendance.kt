@@ -12,7 +12,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class TimeAttendance : Fragment(){
-    private lateinit var spinnerTimeAttendanceEmployeeName: Spinner
+    private lateinit var spinnerTimeAttendanceEmployeeName: AutoCompleteTextView
     private lateinit var editTxtDateStartTimeAttendance: EditText
     private lateinit var editTxtDateEndTimeAttendance: EditText
     private lateinit var btnGenerateTimeAttendance: Button
@@ -24,7 +24,6 @@ class TimeAttendance : Fragment(){
         val v = inflater.inflate(R.layout.fragment_timeattendance, container, false)
 
         employeeList = ArrayList()
-        employeeList.add("")
 
         val db = DBHelper(v.context, null)
         val cursor = db.getLoginDetails()
@@ -36,31 +35,15 @@ class TimeAttendance : Fragment(){
                 if(nameCheck.toString().isNotEmpty()){
                     val name = nameCheck.toString()
                     employeeList.add(name)
-                    employeeList.add("")
                 }
             } while(cursor.moveToNext())
         }
         cursor.close()
 
-        spinnerTimeAttendanceEmployeeName = v.findViewById(R.id.spinnerTimeAttendanceEmployeeName)
-        if (spinnerTimeAttendanceEmployeeName != null){
-            val adapter = ArrayAdapter(v.context, android.R.layout.simple_spinner_item, employeeList)
-            spinnerTimeAttendanceEmployeeName.adapter = adapter
+        val adapter = ArrayAdapter(v.context, R.layout.dropdown_item, employeeList)
 
-            spinnerTimeAttendanceEmployeeName.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-                override fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    position: Int,
-                    id: Long
-                ) {
-                    //Toast.makeText(this@SignUpPersonalDetailsActivity,getString(R.string.selected_item) + " " + " " + genders[position], Toast.LENGTH_SHORT).show()
-                }
-                override fun onNothingSelected(parent: AdapterView<*>?) {
-                    //Toast.makeText(this@SignUpPersonalDetailsActivity,"GENDER REQUIRED",Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
+        spinnerTimeAttendanceEmployeeName = v.findViewById(R.id.spinnerTimeAttendanceEmployeeName)
+        spinnerTimeAttendanceEmployeeName.setAdapter(adapter)
 
         editTxtDateStartTimeAttendance = v.findViewById(R.id.editTxtDateStartTimeAttendance)
         editTxtDateStartTimeAttendance.setOnClickListener {
@@ -112,7 +95,7 @@ class TimeAttendance : Fragment(){
 
             val passStartDate = editTxtDateStartTimeAttendance.text.toString()
             val passEndDate = editTxtDateEndTimeAttendance.text.toString()
-            val passName = spinnerTimeAttendanceEmployeeName.selectedItem.toString()
+            val passName = spinnerTimeAttendanceEmployeeName.text.toString()
 
             intent.putExtra("StartDate",passStartDate)
             intent.putExtra("EndDate",passEndDate)

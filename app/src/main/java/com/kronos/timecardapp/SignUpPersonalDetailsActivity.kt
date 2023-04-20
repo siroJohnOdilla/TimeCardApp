@@ -2,7 +2,6 @@ package com.kronos.timecardapp
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import java.util.Calendar
@@ -26,27 +25,11 @@ class SignUpPersonalDetailsActivity : AppCompatActivity(){
         val accountTag2 = bundle.getString("accountTagKey1")
 
         val genders = resources.getStringArray(R.array.Genders) //create variable to access listed items in string.xml
+        val adapter = ArrayAdapter(this, R.layout.dropdown_item, genders)
 
-        val spinnerGenderSignUp = findViewById<Spinner>(R.id.spinnerGenderSignUp) //create variable to store spinner selection
-        if (spinnerGenderSignUp != null){
-            val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, genders)
-            spinnerGenderSignUp.adapter = adapter
+        val spinnerGenderSignUp = findViewById<AutoCompleteTextView>(R.id.spinnerGenderSignUp) //create variable to store spinner selection
+        spinnerGenderSignUp.setAdapter(adapter)
 
-            spinnerGenderSignUp.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-                override fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    position: Int,
-                    id: Long
-                ) {
-                    //Toast.makeText(this@SignUpPersonalDetailsActivity,getString(R.string.selected_item) + " " + " " + genders[position], Toast.LENGTH_SHORT).show()
-                }
-
-                override fun onNothingSelected(parent: AdapterView<*>?) {
-                    //Toast.makeText(this@SignUpPersonalDetailsActivity,"GENDER REQUIRED",Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
         val editTxtNationalIDNo = findViewById<EditText>(R.id.editTxtNationalIDNo)
         editTxtDateOfBirthSignUp = findViewById(R.id.editTxtDateOfBirthSignUp)
         editTxtDateOfBirthSignUp.setOnClickListener {
@@ -74,14 +57,14 @@ class SignUpPersonalDetailsActivity : AppCompatActivity(){
 
             val intent = Intent(this,SignUpJobDescriptionActivity::class.java)
 
-            if(spinnerGenderSignUp.selectedItem.toString().isEmpty()){
+            if(spinnerGenderSignUp.text.toString().isEmpty()){
                 Toast.makeText(this,"GENDER REQUIRED",Toast.LENGTH_SHORT).show()
             } else if (editTxtNationalIDNo.text.toString().trim().isEmpty()){
                 Toast.makeText(this,"NATIONAL ID REQUIRED", Toast.LENGTH_SHORT).show()
             } else if ((editTxtDateOfBirthSignUp.text.toString().isEmpty())){
                 Toast.makeText(this,"DATE OF BIRTH REQUIRED", Toast.LENGTH_SHORT).show()
             } else{
-                val passGender = spinnerGenderSignUp.selectedItem.toString()
+                val passGender = spinnerGenderSignUp.text.toString()
                 val passNationalId = editTxtNationalIDNo.text.toString().trim()
                 val passDateOfBirth = editTxtDateOfBirthSignUp.text.toString()
 
@@ -91,6 +74,7 @@ class SignUpPersonalDetailsActivity : AppCompatActivity(){
                 intent.putExtra("nationalIdKey",passNationalId)
                 intent.putExtra("dateOfBirthKey",passDateOfBirth)
 
+                spinnerGenderSignUp.text.clear()
                 editTxtNationalIDNo.text.clear()
                 editTxtDateOfBirthSignUp.text.clear()
 
