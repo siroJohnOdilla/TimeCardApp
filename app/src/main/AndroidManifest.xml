@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:dist="http://schemas.android.com/apk/distribution"
     xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
@@ -30,7 +35,6 @@
         <activity android:name=".LeaveScheduleView2Activity"/>
         <activity android:name=".ApplyLeaveActivity"/>
         <activity android:name=".ApproveLeaveActivity"/>
-        <activity android:name=".PopUpWindowSignOutActivity"/>
         <activity android:name=".ProfileViewListActivity"/>
         <activity android:name=".ProfileViewActivity"/>
         <activity android:name=".AccountTagEditActivity"/>
@@ -40,9 +44,7 @@
         <activity android:name=".ContactInformationEditActivity"/>
         <activity android:name=".SecurityEditActivity"/>
         <activity android:name=".CompanyEditActivity"/>
-        <activity android:name=".DeleteProfileActivity"/>
         <activity android:name=".SettingsActivity"/>
-        <activity android:name=".ProfileAccessActivity"/>
         <activity android:name=".RegisterGuestActivity"/>
         <activity android:name=".VisitorBookViewActivity"/>
 

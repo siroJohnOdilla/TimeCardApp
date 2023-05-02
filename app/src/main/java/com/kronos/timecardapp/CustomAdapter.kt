@@ -1,12 +1,24 @@
 package com.kronos.timecardapp
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
+import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class CustomAdapter(private val mList: List<ItemsViewModel>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>(){
     private lateinit var mListener: onItemClickListener
@@ -29,6 +41,7 @@ class CustomAdapter(private val mList: List<ItemsViewModel>) : RecyclerView.Adap
         holder.txtViewNationalIdProfile.text = itemsViewModel.idNo
         holder.txtViewAccountTagProfile.text = itemsViewModel.accountTag
         holder.cardProfile.tag = position
+
     }
     override fun getItemCount(): Int {
         return mList.size
@@ -47,17 +60,67 @@ class CustomAdapter(private val mList: List<ItemsViewModel>) : RecyclerView.Adap
 
                 when(val position = ItemView.tag){
                     position -> {
-                        val intent = Intent(ItemView.context,ProfileAccessActivity::class.java)
-                        val passName = txtViewNameProfile.text.toString()
+                        val dialog = BottomSheetDialog(ItemView.context)
+                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                        dialog.setContentView(R.layout.bottomsheet_profileaccess)
 
-                        intent.putExtra("NamePass",passName)
-                        intent.putExtra("darkStatusBar", false)
-                        ItemView.context.startActivity(intent)
+                        val nameVerify = txtViewNameProfile.text.toString()
+
+                        val txtViewDisplayMessageProfileAccess = dialog.findViewById<TextView>(R.id.txtViewDisplayMessageProfileAccess)
+                        val displayMessage = nameVerify
+
+                        val btnCancelPINProfileAccess = dialog.findViewById<Button>(R.id.btnCancelPINProfileAccess)
+                        if (btnCancelPINProfileAccess != null) {
+                            btnCancelPINProfileAccess.setOnClickListener {
+                                dialog.dismiss()
+                            }
+                        }
+                        if (txtViewDisplayMessageProfileAccess != null) {
+                            txtViewDisplayMessageProfileAccess.text = displayMessage
+                        }
+
+                        val editTxtEnterPINProfileAccess = dialog.findViewById<EditText>(R.id.editTxtEnterPINProfileAccess)
+
+                        val btnEnterPINProfileAccess = dialog.findViewById<Button>(R.id.btnEnterPINProfileAccess)
+                        if (btnEnterPINProfileAccess != null) {
+                            btnEnterPINProfileAccess.setOnClickListener {
+                                if (editTxtEnterPINProfileAccess != null) {
+                                    if(editTxtEnterPINProfileAccess.text.toString().trim().isEmpty()){
+                                        Toast.makeText(ItemView.context,"PROFILE PIN REQUIRED", Toast.LENGTH_SHORT).show()
+                                    } else{
+                                        val db = DBHelper(ItemView.context, null)
+                                        val cursor = db.getLoginDetails()
+
+                                        if(cursor!!.moveToFirst()){
+                                            do{
+                                                val namePrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.NAME_COL))
+                                                val pinPrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.PIN_NUMBER))
+
+                                                if(nameVerify == namePrint.toString() && editTxtEnterPINProfileAccess.text.toString().trim() == pinPrint.toString()){
+                                                    val intent = Intent(ItemView.context,ProfileViewActivity::class.java)
+
+                                                    intent.putExtra("NamePass",nameVerify)
+                                                    editTxtEnterPINProfileAccess.text.clear()
+                                                    ItemView.context.startActivity(intent)
+
+                                                    Toast.makeText(ItemView.context,"FETCHING PROFILE INFORMATION...",Toast.LENGTH_SHORT).show()
+                                                }
+
+                                            } while(cursor.moveToNext())
+                                        }
+                                        cursor.close()
+                                    }
+                                }
+                            }
+                        }
+
+                        dialog.show()
+                        dialog.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+                        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                        dialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
+                        dialog.window!!.setGravity(Gravity.BOTTOM)
                     }
                 }
-
-
-                //Toast.makeText(ItemView.context, position.toString(), Toast.LENGTH_SHORT).show()
             }
         }
     }

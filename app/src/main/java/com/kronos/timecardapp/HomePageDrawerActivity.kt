@@ -1,18 +1,23 @@
 package com.kronos.timecardapp
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.view.Gravity
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.widget.ArrayAdapter
-import android.widget.ListView
+import android.view.ViewGroup
+import android.view.Window
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.navigation.NavigationView
 
 class HomePageDrawerActivity : AppCompatActivity() {
@@ -195,9 +200,31 @@ class HomePageDrawerActivity : AppCompatActivity() {
     }
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
-        val intent = Intent(this@HomePageDrawerActivity,PopUpWindowSignOutActivity::class.java)
-        intent.putExtra("darkStatusBar", false)
-        startActivity(intent)
+        val dialog = BottomSheetDialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.bottomsheet_signout)
+
+        val btnNoSignOut = dialog.findViewById<Button>(R.id.btnNoSignOut)
+        if (btnNoSignOut != null) {
+            btnNoSignOut.setOnClickListener {
+                dialog.dismiss()
+            }
+        }
+
+        val btnYesSignOut = dialog.findViewById<Button>(R.id.btnYesSignOut)
+        if (btnYesSignOut != null) {
+            btnYesSignOut.setOnClickListener {
+                val intent = Intent(this,LoginActivity::class.java)
+                startActivity(intent)
+
+                Toast.makeText(this,"SUCCESSFULLY SIGNED OUT", Toast.LENGTH_SHORT).show()
+            }
+        }
+        dialog.show()
+        dialog.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
+        dialog.window!!.setGravity(Gravity.BOTTOM)
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater: MenuInflater = menuInflater

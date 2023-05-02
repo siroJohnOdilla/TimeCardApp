@@ -1,13 +1,22 @@
 package com.kronos.timecardapp
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.view.Gravity
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.ViewGroup
+import android.view.Window
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlin.collections.ArrayList
 
 class ProfileViewActivity : AppCompatActivity() {
@@ -206,18 +215,63 @@ class ProfileViewActivity : AppCompatActivity() {
                 return true
             }
             R.id.itemViewDeleteProfile -> {
-                val intent = Intent(this,DeleteProfileActivity::class.java)
-                val passName = getName
+                val dialog = BottomSheetDialog(this)
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                dialog.setContentView(R.layout.bottomsheet_deleteprofile)
 
-                intent.putExtra("darkStatusBar", false)
-                intent.putExtra("NameVerify",passName)
-                startActivity(intent)
+                val nameVerify = getName
+
+                val editTxtLeaveAdminKeyDelete = dialog.findViewById<EditText>(R.id.editTxtLeaveAdminKeyDelete)
+
+                val btnYesDelete = dialog.findViewById<Button>(R.id.btnYesDelete)
+                if (btnYesDelete != null) {
+                    btnYesDelete.setOnClickListener {
+                        val adminKeyDelete = "h4ck-th3-pl4n3t"
+                        if (editTxtLeaveAdminKeyDelete != null) {
+                            if(editTxtLeaveAdminKeyDelete.text.toString().trim() != adminKeyDelete){
+                                Toast.makeText(this,"ENTER VALID ADMIN KEY", Toast.LENGTH_SHORT).show()
+                            } else if(editTxtLeaveAdminKeyDelete.text.toString().trim() == adminKeyDelete){
+                                val db = DBHelper(this, null)
+                                val cursor = db.getLoginDetails()
+
+                                if(cursor!!.moveToFirst()){
+                                    do{
+                                        val namePrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.NAME_COL))
+
+                                        if(nameVerify == namePrint.toString()){
+                                            val name = namePrint.toString()
+
+                                            db.deleteProfile(name)
+                                            db.close()
+
+                                            val intent = Intent(this,LoginActivity::class.java)
+                                            startActivity(intent)
+                                            Toast.makeText(this,"$name;\nSUCCESSFULLY DELETED ", Toast.LENGTH_SHORT).show()
+                                        }
+                                    } while(cursor.moveToNext())
+                                }
+                                cursor.close()
+                            }
+                        }
+                    }
+                }
+
+                val btnNoDelete = dialog.findViewById<Button>(R.id.btnNoDelete)
+                if (btnNoDelete != null) {
+                    btnNoDelete.setOnClickListener {
+                        dialog.dismiss()
+                    }
+                }
+                dialog.show()
+                dialog.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+                dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                dialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
+                dialog.window!!.setGravity(Gravity.BOTTOM)
                 return true
             }
         }
         return super.onOptionsItemSelected(item)
     }
-
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
