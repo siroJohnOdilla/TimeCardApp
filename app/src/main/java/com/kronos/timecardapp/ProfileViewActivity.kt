@@ -1,5 +1,6 @@
 package com.kronos.timecardapp
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -10,6 +11,8 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.ViewGroup
 import android.view.Window
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -17,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import java.util.Calendar
 import kotlin.collections.ArrayList
 
 class ProfileViewActivity : AppCompatActivity() {
@@ -152,66 +156,509 @@ class ProfileViewActivity : AppCompatActivity() {
                 return true
             }
             R.id.subItemEditAccountTag -> {
-                val intent = Intent(this,AccountTagEditActivity::class.java)
-                val passName = getName
+                val dialog = BottomSheetDialog(this)
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                dialog.setContentView(R.layout.bottomsheet_accounttagedit)
 
-                intent.putExtra("darkStatusBar", false)
-                intent.putExtra("NameVerify",passName)
-                startActivity(intent)
+                val nameVerify = getName
+
+                val account = resources.getStringArray(R.array.Account) //create variable to access listed items in string.xml
+                val adapter = ArrayAdapter(this, R.layout.dropdown_item, account)
+
+                val spinnerAccountTag = dialog.findViewById<AutoCompleteTextView>(R.id.spinnerAccountTag) //create variable to store spinner selection
+                if (spinnerAccountTag != null) {
+                    spinnerAccountTag.setAdapter(adapter)
+                }
+
+                val btnSaveAccountTagEdit = dialog.findViewById<Button>(R.id.btnSaveAccountTagEdit)
+                if (btnSaveAccountTagEdit != null) {
+                    btnSaveAccountTagEdit.setOnClickListener {
+
+                        if (spinnerAccountTag != null) {
+                            if(spinnerAccountTag.text.toString().isEmpty()){
+                                Toast.makeText(this,"SELECT ACCOUNT TAG",Toast.LENGTH_SHORT).show()
+                            } else {
+                                val db = DBHelper(this, null)
+                                val cursor = db.getLoginDetails()
+
+                                if(cursor!!.moveToFirst()){
+                                    do{
+                                        val namePrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.NAME_COL))
+                                        val idPrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.ID_COL))
+
+                                        if(nameVerify == namePrint.toString()){
+                                            val id = idPrint.toLong()
+                                            val saveAccountTag = spinnerAccountTag.text.toString()
+
+                                            db.updateAccountTag(id, saveAccountTag)
+                                            db.close()
+
+                                            val intent = Intent(this,LoginActivity::class.java)
+                                            startActivity(intent)
+
+                                            Toast.makeText(this,"$nameVerify: CHANGED ACCOUNT TO $saveAccountTag", Toast.LENGTH_SHORT).show()
+                                        }
+                                    } while(cursor.moveToNext())
+                                }
+                                cursor.close()
+                            }
+                        }
+                    }
+                }
+                val btnCancelAccountTagEdit = dialog.findViewById<Button>(R.id.btnCancelAccountTagEdit)
+                if (btnCancelAccountTagEdit != null) {
+                    btnCancelAccountTagEdit.setOnClickListener {
+                        dialog.dismiss()
+                    }
+                }
+                dialog.show()
+                dialog.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+                dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                dialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
+                dialog.window!!.setGravity(Gravity.BOTTOM)
                 return true
             }
             R.id.subItemEditName -> {
-                val intent = Intent(this,NameEditActivity::class.java)
-                val passName = getName
+                val dialog = BottomSheetDialog(this)
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                dialog.setContentView(R.layout.bottomsheet_nameedit)
 
-                intent.putExtra("darkStatusBar", false)
-                intent.putExtra("NameVerify",passName)
-                startActivity(intent)
+                val nameVerify = getName
+
+                val editTxtFirstNameEdit = dialog.findViewById<EditText>(R.id.editTxtFirstNameEdit)
+                val editTxtMiddleNameEdit = dialog.findViewById<EditText>(R.id.editTxtMiddleNameEdit)
+                val editTxtLastNameEdit = dialog.findViewById<EditText>(R.id.editTxtLastNameEdit)
+
+                val btnSaveNameTagEdit = dialog.findViewById<Button>(R.id.btnSaveNameEdit)
+                if (btnSaveNameTagEdit != null) {
+                    btnSaveNameTagEdit.setOnClickListener {
+                        if (editTxtFirstNameEdit != null) {
+                            if(editTxtFirstNameEdit.text.toString().trim().uppercase().isEmpty()){
+                                Toast.makeText(this,"FIRST NAME REQUIRED",Toast.LENGTH_SHORT).show()
+                            } else if (editTxtLastNameEdit != null) {
+                                if(editTxtLastNameEdit.text.toString().trim().uppercase().isEmpty()){
+                                    Toast.makeText(this,"LAST NAME REQUIRED",Toast.LENGTH_SHORT).show()
+                                } else {
+                                    val db = DBHelper(this, null)
+                                    val cursor = db.getLoginDetails()
+
+                                    if(cursor!!.moveToFirst()){
+                                        do{
+                                            val namePrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.NAME_COL))
+                                            val idPrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.ID_COL))
+
+                                            if(nameVerify == namePrint.toString()){
+                                                val id = idPrint.toLong()
+                                                val firstName = editTxtFirstNameEdit.text.toString().trim().uppercase()
+                                                val middleName = editTxtMiddleNameEdit?.text.toString().trim().uppercase()
+                                                val lastName = editTxtLastNameEdit.text.toString().trim().uppercase()
+
+                                                if(middleName.isEmpty()){
+                                                    val saveName = "$firstName $lastName"
+
+                                                    db.updateName(id, saveName)
+                                                    db.close()
+
+                                                    Toast.makeText(this,"SAVED", Toast.LENGTH_SHORT).show()
+                                                } else {
+                                                    val saveName = "$firstName $middleName $lastName"
+
+                                                    db.updateName(id, saveName)
+                                                    db.close()
+
+                                                    val intent = Intent(this,LoginActivity::class.java)
+                                                    startActivity(intent)
+
+                                                    Toast.makeText(this,"$nameVerify: CHANGED NAME TO $saveName", Toast.LENGTH_SHORT).show()
+                                                }
+                                            }
+                                        } while(cursor.moveToNext())
+                                    }
+                                    cursor.close()
+                                }
+                            }
+                        }
+                    }
+                }
+                val btnCancelNameTagEdit = dialog.findViewById<Button>(R.id.btnCancelNameEdit)
+                if (btnCancelNameTagEdit != null) {
+                    btnCancelNameTagEdit.setOnClickListener {
+                        dialog.dismiss()
+                    }
+                }
+                dialog.show()
+                dialog.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+                dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                dialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
+                dialog.window!!.setGravity(Gravity.BOTTOM)
                 return true
             }
             R.id.subItemEditPersonalDetails -> {
-                val intent = Intent(this,PersonalDetailsEditActivity::class.java)
-                val passName = getName
+                val dialog = BottomSheetDialog(this)
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                dialog.setContentView(R.layout.bottomsheet_personaldetailsedit)
 
-                intent.putExtra("darkStatusBar", false)
-                intent.putExtra("NameVerify",passName)
-                startActivity(intent)
+                val nameVerify = getName
+
+                val genders = resources.getStringArray(R.array.Genders) //create variable to access listed items in string.xml
+                val adapter = ArrayAdapter(this, R.layout.dropdown_item, genders)
+
+                val spinnerGenderEdit = dialog.findViewById<AutoCompleteTextView>(R.id.spinnerGenderEdit) //create variable to store spinner selection
+                if (spinnerGenderEdit != null) {
+                    spinnerGenderEdit.setAdapter(adapter)
+                }
+
+                val editTxtNationalIDNoEdit = dialog.findViewById<EditText>(R.id.editTxtNationalIDNoEdit)
+                val editTxtDateOfBirthEdit = dialog.findViewById<EditText>(R.id.editTxtDateOfBirthEdit)
+                if (editTxtDateOfBirthEdit != null) {
+                    editTxtDateOfBirthEdit.setOnClickListener {
+                        val c = Calendar.getInstance()
+
+                        val year1 = c.get(Calendar. YEAR)
+                        val month = c.get(Calendar. MONTH)
+                        val day = c.get(Calendar. DAY_OF_MONTH)
+
+                        val datePickerDialog = DatePickerDialog(
+                            this,
+                            { _, year, monthOfYear, dayOfMonth ->
+                                val date: String = String.format("%02d-%02d-%d", dayOfMonth, (monthOfYear + 1), year)
+                                editTxtDateOfBirthEdit.setText(date)
+                            },
+                            year1,
+                            month,
+                            day
+                        )
+                        datePickerDialog.show()
+                    }
+                }
+
+                val btnSavePersonalDetailsTagEdit = dialog.findViewById<Button>(R.id.btnSavePersonalDetailsEdit)
+                if (btnSavePersonalDetailsTagEdit != null) {
+                    btnSavePersonalDetailsTagEdit.setOnClickListener {
+                        if (spinnerGenderEdit != null) {
+                            if(spinnerGenderEdit.text.toString().isEmpty()){
+                                Toast.makeText(this,"GENDER REQUIRED",Toast.LENGTH_SHORT).show()
+                            } else if (editTxtNationalIDNoEdit != null) {
+                                if(editTxtNationalIDNoEdit.text.toString().isEmpty()){
+                                    Toast.makeText(this,"NATIONAL ID NO. REQUIRED",Toast.LENGTH_SHORT).show()
+                                } else if (editTxtDateOfBirthEdit != null) {
+                                    if(editTxtDateOfBirthEdit.text.toString().isEmpty()){
+                                        Toast.makeText(this,"DATE OF BIRTH REQUIRED",Toast.LENGTH_SHORT).show()
+                                    } else{
+                                        val db = DBHelper(this, null)
+                                        val cursor = db.getLoginDetails()
+
+                                        if(cursor!!.moveToFirst()){
+                                            do{
+                                                val namePrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.NAME_COL))
+                                                val idPrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.ID_COL))
+
+                                                if(nameVerify == namePrint.toString()){
+                                                    val id = idPrint.toLong()
+                                                    val saveGender = spinnerGenderEdit.text.toString()
+                                                    val saveNationalId = editTxtNationalIDNoEdit.text.toString().trim().uppercase()
+                                                    val saveDateOfBirth = editTxtDateOfBirthEdit.text.toString().trim()
+
+                                                    db.updatePersonalDetails(id, saveGender, saveNationalId, saveDateOfBirth)
+                                                    db.close()
+
+                                                    Toast.makeText(this,"PERSONAL DETAILS: SAVED", Toast.LENGTH_SHORT).show()
+                                                }
+                                            } while(cursor.moveToNext())
+                                        }
+                                        cursor.close()
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                val btnCancelPersonalDetailsTagEdit = dialog.findViewById<Button>(R.id.btnCancelPersonalDetailsEdit)
+                if (btnCancelPersonalDetailsTagEdit != null) {
+                    btnCancelPersonalDetailsTagEdit.setOnClickListener {
+                        dialog.dismiss()
+                    }
+                }
+                dialog.show()
+                dialog.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+                dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                dialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
+                dialog.window!!.setGravity(Gravity.BOTTOM)
                 return true
             }
             R.id.subItemEditCompany -> {
-                val intent = Intent(this,CompanyEditActivity::class.java)
-                val passName = getName
+                val dialog = BottomSheetDialog(this)
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                dialog.setContentView(R.layout.bottomsheet_companyedit)
 
-                intent.putExtra("darkStatusBar", false)
-                intent.putExtra("NameVerify",passName)
-                startActivity(intent)
+                val nameVerify = getName
+
+                val editTxtJoinCompanyAdmissionKeyEdit = dialog.findViewById<EditText>(R.id.editTxtJoinCompanyAdmissionKeyEdit)
+                val btnSaveCompanyTagEdit = dialog.findViewById<Button>(R.id.btnSaveCompanyEdit)
+                if (btnSaveCompanyTagEdit != null) {
+                    btnSaveCompanyTagEdit.setOnClickListener {
+                        if (editTxtJoinCompanyAdmissionKeyEdit != null) {
+                            if(editTxtJoinCompanyAdmissionKeyEdit.text.toString().trim().uppercase() == ""){
+                                Toast.makeText(this,"COMPANY ADMISSION KEY REQUIRED", Toast.LENGTH_SHORT).show()
+                            } else {
+                                val companyAdmissionKeyEdit = editTxtJoinCompanyAdmissionKeyEdit.text.toString().trim().uppercase()
+
+                                val db = DBHelper(this, null)
+                                val cursor = db.getLoginDetails()
+
+                                if(cursor!!.moveToFirst()){
+                                    do{
+                                        val companyNameCheck = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.COMPANY_NAME))
+                                        val companyInitialsCheck = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.COMPANY_INITIALS))
+                                        val companyAdmissionKeyCheck = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.COMPANY_ADM_KEY))
+
+                                        if (companyAdmissionKeyCheck.toString() == companyAdmissionKeyEdit){
+                                            val companyNameUser = companyNameCheck.toString()
+                                            val companyInitialsUser = companyInitialsCheck.toString()
+
+                                            if (cursor.moveToFirst()){
+                                                do{
+                                                    val namePrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.NAME_COL))
+                                                    val idPrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.ID_COL))
+
+                                                    if(nameVerify == namePrint.toString()){
+                                                        val id = idPrint.toLong()
+
+                                                        db.updateCompany(id, companyNameUser, companyInitialsUser, companyAdmissionKeyEdit)
+                                                        db.close()
+
+                                                        Toast.makeText(this, "SAVED", Toast.LENGTH_SHORT).show()
+                                                    }
+                                                } while(cursor.moveToNext())
+                                            }
+                                            cursor.close()
+                                        }
+                                    } while (cursor.moveToNext())
+                                }
+                                cursor.close()
+                            }
+                        }
+                    }
+                }
+
+                val btnCancelCompanyTagEdit = dialog.findViewById<Button>(R.id.btnCancelCompanyEdit)
+                if (btnCancelCompanyTagEdit != null) {
+                    btnCancelCompanyTagEdit.setOnClickListener {
+                        dialog.dismiss()
+                    }
+                }
+                dialog.show()
+                dialog.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+                dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                dialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
+                dialog.window!!.setGravity(Gravity.BOTTOM)
                 return true
             }
             R.id.subItemEditJobDescription -> {
-                val intent = Intent(this,JobDescriptionEditActivity::class.java)
-                val passName = getName
+                val dialog = BottomSheetDialog(this)
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                dialog.setContentView(R.layout.bottomsheet_jobdescriptionedit)
 
-                intent.putExtra("darkStatusBar", false)
-                intent.putExtra("NameVerify",passName)
-                startActivity(intent)
+                val nameVerify = getName
+
+                val editTxtOfficeBranchEdit = dialog.findViewById<EditText>(R.id.editTxtOfficeBranchEdit)
+                val editTxtDepartmentEdit = dialog.findViewById<EditText>(R.id.editTxtDepartmentEdit)
+                val editTxtJobTitleEdit = dialog.findViewById<EditText>(R.id.editTxtJobTitleEdit)
+
+                val btnSaveJobDescriptionTagEdit = dialog.findViewById<Button>(R.id.btnSaveJobDescriptionEdit)
+                if (btnSaveJobDescriptionTagEdit != null) {
+                    btnSaveJobDescriptionTagEdit.setOnClickListener {
+                        if (editTxtOfficeBranchEdit != null) {
+                            if(editTxtOfficeBranchEdit.text.toString().trim().uppercase().isEmpty()){
+                                Toast.makeText(this,"OFFICE/ SITE BRANCH REQUIRED",Toast.LENGTH_SHORT).show()
+                            } else if (editTxtDepartmentEdit != null) {
+                                if(editTxtDepartmentEdit.text.toString().trim().uppercase().isEmpty()){
+                                    Toast.makeText(this,"DEPARTMENT REQUIRED",Toast.LENGTH_SHORT).show()
+                                } else if (editTxtJobTitleEdit != null) {
+                                    if(editTxtJobTitleEdit.text.toString().trim().uppercase().isEmpty()){
+                                        Toast.makeText(this,"JOB TITLE REQUIRED",Toast.LENGTH_SHORT).show()
+                                    } else{
+                                        val db = DBHelper(this, null)
+                                        val cursor = db.getLoginDetails()
+
+                                        if(cursor!!.moveToFirst()){
+                                            do{
+                                                val namePrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.NAME_COL))
+                                                val idPrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.ID_COL))
+
+                                                if(nameVerify == namePrint.toString()){
+                                                    val id = idPrint.toLong()
+                                                    val saveOfficeSiteBranch = editTxtOfficeBranchEdit.text.toString().trim().uppercase()
+                                                    val saveDepartment = editTxtDepartmentEdit.text.toString().trim().uppercase()
+                                                    val saveJobTitle = editTxtJobTitleEdit.text.toString().trim().uppercase()
+
+
+                                                    db.updateJobDescription(id, saveOfficeSiteBranch, saveDepartment, saveJobTitle)
+                                                    db.close()
+
+                                                    Toast.makeText(this,"SAVED", Toast.LENGTH_SHORT).show()
+                                                }
+                                            } while(cursor.moveToNext())
+                                        }
+                                        cursor.close()
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                val btnCancelJobDescriptionTagEdit = dialog.findViewById<Button>(R.id.btnCancelJobDescriptionEdit)
+                if (btnCancelJobDescriptionTagEdit != null) {
+                    btnCancelJobDescriptionTagEdit.setOnClickListener {
+                        dialog.dismiss()
+                    }
+                }
+                dialog.show()
+                dialog.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+                dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                dialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
+                dialog.window!!.setGravity(Gravity.BOTTOM)
                 return true
             }
             R.id.subItemEditContactInformation -> {
-                val intent = Intent(this,ContactInformationEditActivity::class.java)
-                val passName = getName
+                val dialog = BottomSheetDialog(this)
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                dialog.setContentView(R.layout.bottomsheet_contactinformationedit)
 
-                intent.putExtra("darkStatusBar", false)
-                intent.putExtra("NameVerify",passName)
-                startActivity(intent)
+                val nameVerify = getName
+
+                val editTxtEmailAddressEdit = dialog.findViewById<EditText>(R.id.editTxtEmailAddressEdit)
+                val editTxtTelephoneNumberEdit = dialog.findViewById<EditText>(R.id.editTxtTelephoneNumberEdit)
+
+                val btnSaveContactInformationTagEdit = dialog.findViewById<Button>(R.id.btnSaveContactInformationEdit)
+                if (btnSaveContactInformationTagEdit != null) {
+                    btnSaveContactInformationTagEdit.setOnClickListener {
+                        if (editTxtEmailAddressEdit != null) {
+                            if(editTxtEmailAddressEdit.text.toString().trim().uppercase().isEmpty()){
+                                Toast.makeText(this,"EMAIL ADDRESS REQUIRED",Toast.LENGTH_SHORT).show()
+                            } else if (editTxtTelephoneNumberEdit != null) {
+                                if(editTxtTelephoneNumberEdit.text.toString().trim().uppercase().isEmpty()){
+                                    Toast.makeText(this,"TELEPHONE NO. REQUIRED",Toast.LENGTH_SHORT).show()
+                                } else{
+                                    val db = DBHelper(this, null)
+                                    val cursor = db.getLoginDetails()
+
+                                    if(cursor!!.moveToFirst()){
+                                        do{
+                                            val namePrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.NAME_COL))
+                                            val idPrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.ID_COL))
+
+                                            if(nameVerify == namePrint.toString()){
+                                                val id = idPrint.toLong()
+                                                val saveEmailAddress = editTxtEmailAddressEdit.text.toString().trim()
+                                                val saveTelephoneNumber = editTxtTelephoneNumberEdit.text.toString().trim()
+
+
+                                                db.updateContactInformation(id, saveEmailAddress, saveTelephoneNumber)
+                                                db.close()
+
+                                                Toast.makeText(this,"SAVED", Toast.LENGTH_SHORT).show()
+                                            }
+                                        } while(cursor.moveToNext())
+                                    }
+                                    cursor.close()
+                                }
+                            }
+                        }
+                    }
+                }
+
+                val btnCancelContactInformationTagEdit = dialog.findViewById<Button>(R.id.btnCancelContactInformationEdit)
+                if (btnCancelContactInformationTagEdit != null) {
+                    btnCancelContactInformationTagEdit.setOnClickListener {
+                        dialog.dismiss()
+                    }
+                }
+                dialog.show()
+                dialog.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+                dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                dialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
+                dialog.window!!.setGravity(Gravity.BOTTOM)
                 return true
             }
             R.id.itemViewChangePIN -> {
-                val intent = Intent(this,SecurityEditActivity::class.java)
-                val passName = getName
+                val dialog = BottomSheetDialog(this)
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                dialog.setContentView(R.layout.bottomsheet_securityedit)
 
-                intent.putExtra("darkStatusBar", false)
-                intent.putExtra("NameVerify",passName)
-                startActivity(intent)
+                val nameVerify = getName
+
+                val editTxtOldPINEdit = dialog.findViewById<EditText>(R.id.editTxtOldPINEdit)
+                val editTxtNewPINEdit = dialog.findViewById<EditText>(R.id.editTxtNewPINEdit)
+                val editTxtConfirmNewPINEdit = dialog.findViewById<EditText>(R.id.editTxtConfirmNewPINEdit)
+
+                val btnSavePINEdit = dialog.findViewById<Button>(R.id.btnSavePINEdit)
+                if (btnSavePINEdit != null) {
+                    btnSavePINEdit.setOnClickListener {
+                        val db = DBHelper(this, null)
+                        val cursor = db.getLoginDetails()
+
+                        if(cursor!!.moveToFirst()){
+                            do{
+                                val namePrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.NAME_COL))
+                                val pinPrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.PIN_NUMBER))
+
+                                if(nameVerify == namePrint.toString()){
+                                    val oldPin = pinPrint.toString()
+
+                                    if (editTxtOldPINEdit != null) {
+                                        if(editTxtOldPINEdit.text.toString().trim() != oldPin){
+                                            Toast.makeText(this,"INCORRECT CURRENT PIN", Toast.LENGTH_SHORT).show()
+                                        } else if (editTxtNewPINEdit != null) {
+                                            if(editTxtNewPINEdit.text.toString().trim().length != 4){
+                                                Toast.makeText(this,"4-DIGIT PIN REQUIRED", Toast.LENGTH_SHORT).show()
+                                            } else if (editTxtConfirmNewPINEdit != null) {
+                                                if(editTxtNewPINEdit.text.toString().trim() != editTxtConfirmNewPINEdit.text.toString().trim()){
+                                                    Toast.makeText(this,"MATCHING PINS REQUIRED", Toast.LENGTH_SHORT).show()
+                                                } else if(oldPin == editTxtOldPINEdit.text.toString().trim()){
+                                                    if(cursor.moveToFirst()){
+                                                        do{
+                                                            val namePrint1 = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.NAME_COL))
+                                                            val idPrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.ID_COL))
+
+                                                            if(nameVerify == namePrint1.toString() && editTxtNewPINEdit.text.toString().trim() == editTxtConfirmNewPINEdit.text.toString().trim()){
+                                                                val id = idPrint.toLong()
+
+                                                                val savePIN = editTxtConfirmNewPINEdit.text.toString().trim()
+
+                                                                db.updatePIN(id, savePIN)
+                                                                db.close()
+
+                                                                val intent = Intent(this,LoginActivity::class.java)
+                                                                startActivity(intent)
+
+                                                                Toast.makeText(this,"$nameVerify: CHANGED PIN", Toast.LENGTH_SHORT).show()
+                                                            }
+                                                        } while(cursor.moveToNext())
+                                                    }
+                                                    cursor.close()
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            } while(cursor.moveToNext())
+                        }
+                        cursor.close()
+                    }
+                }
+
+                val btnCancelPINEdit = dialog.findViewById<Button>(R.id.btnCancelPINEdit)
+                if (btnCancelPINEdit != null) {
+                    btnCancelPINEdit.setOnClickListener {
+                        dialog.dismiss()
+                    }
+                }
+                dialog.show()
+                dialog.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+                dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                dialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
+                dialog.window!!.setGravity(Gravity.BOTTOM)
                 return true
             }
             R.id.itemViewDeleteProfile -> {

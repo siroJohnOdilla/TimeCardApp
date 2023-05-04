@@ -37,13 +37,6 @@
         <activity android:name=".ApproveLeaveActivity"/>
         <activity android:name=".ProfileViewListActivity"/>
         <activity android:name=".ProfileViewActivity"/>
-        <activity android:name=".AccountTagEditActivity"/>
-        <activity android:name=".NameEditActivity"/>
-        <activity android:name=".PersonalDetailsEditActivity"/>
-        <activity android:name=".JobDescriptionEditActivity"/>
-        <activity android:name=".ContactInformationEditActivity"/>
-        <activity android:name=".SecurityEditActivity"/>
-        <activity android:name=".CompanyEditActivity"/>
         <activity android:name=".SettingsActivity"/>
         <activity android:name=".RegisterGuestActivity"/>
         <activity android:name=".VisitorBookViewActivity"/>

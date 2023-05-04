@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:background="@drawable/rounded_dialog">
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:startIconDrawable="@drawable/key"
+        app:endIconMode="password_toggle"
+        android:backgroundTint="#700DEA"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Company Admission Key">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTxtJoinCompanyAdmissionKeyEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:backgroundTint="#700DEA"
+            android:textColor="#F8DD30" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btnSaveCompanyEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/design_default_color_background"
+        android:text="SAVE"
+        android:textColor="#39C83B"
+        android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/btnCancelCompanyEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/design_default_color_background"
+        android:text="CLOSE"
+        android:textColor="#F40519"
+        android:textStyle="bold"/>
+
+</LinearLayout>
