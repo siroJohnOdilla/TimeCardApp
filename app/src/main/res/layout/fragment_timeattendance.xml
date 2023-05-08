@@ -33,6 +33,10 @@
                     android:backgroundTint="#700DEA"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:boxCornerRadiusTopStart="30dp"
+                    app:boxCornerRadiusBottomStart="30dp"
+                    app:boxCornerRadiusTopEnd="30dp"
+                    app:boxCornerRadiusBottomEnd="30dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -51,11 +55,7 @@
                         android:focusable="false"
                         android:focusableInTouchMode="false"
                         android:inputType="date"
-                        android:textColor="#F8DD30"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:textColor="#F8DD30"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -65,6 +65,10 @@
                     android:backgroundTint="#700DEA"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:boxCornerRadiusTopStart="30dp"
+                    app:boxCornerRadiusBottomStart="30dp"
+                    app:boxCornerRadiusTopEnd="30dp"
+                    app:boxCornerRadiusBottomEnd="30dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -82,24 +86,24 @@
                         android:focusable="false"
                         android:focusableInTouchMode="false"
                         android:inputType="date"
-                        android:textColor="#F8DD30"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:textColor="#F8DD30"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:boxCornerRadiusTopStart="30dp"
+                    app:boxCornerRadiusBottomStart="30dp"
+                    app:boxCornerRadiusTopEnd="30dp"
+                    app:boxCornerRadiusBottomEnd="30dp"
                     app:startIconDrawable="@drawable/user"
                     android:backgroundTint="#700DEA"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.063"
+                    app:layout_constraintVertical_bias="0.0"
                     android:hint="Employee Name">
 
                     <AutoCompleteTextView
@@ -115,15 +119,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Generate attendance record"
-                    android:backgroundTint="#39C83B"
-                    android:textColor="@color/black"
+                    android:background="@drawable/rounded_button"
+                    app:backgroundTint="#39C83B"
+                    android:textColor="@color/white"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.949"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.971" />
+                    app:layout_constraintVertical_bias="1.0" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>

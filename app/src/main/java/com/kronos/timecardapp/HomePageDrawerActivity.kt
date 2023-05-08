@@ -146,6 +146,9 @@ class HomePageDrawerActivity : AppCompatActivity() {
                 R.id.itemVisitorBook -> {
                     displayActionBarTitle = "Visitor Book"
                     actionBar.title = displayActionBarTitle
+
+                    val passName = getName
+
                     val fragmentManager1: FragmentManager = supportFragmentManager
                     val fragmentTransaction1: FragmentTransaction = fragmentManager1.beginTransaction()
 
@@ -155,6 +158,7 @@ class HomePageDrawerActivity : AppCompatActivity() {
 
                     bundle2.putString("companyName",passCompanyName)
                     bundle2.putString("officeSite",passLoginOfficeSiteBranch)
+                    bundle2.putString("nameToCheck",passName)
 
                     myVisitorBookFragment.arguments = bundle2
                     fragmentTransaction1.replace(R.id.frame, myVisitorBookFragment).commit()

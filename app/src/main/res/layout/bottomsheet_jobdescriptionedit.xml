@@ -14,6 +14,11 @@
         android:backgroundTint="#700DEA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        app:boxCornerRadiusTopStart="30dp"
+        app:boxCornerRadiusBottomStart="30dp"
+        app:boxCornerRadiusTopEnd="30dp"
+        app:boxCornerRadiusBottomEnd="30dp"
         android:hint="Office/ Site Branch">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -32,6 +37,11 @@
         android:backgroundTint="#700DEA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        app:boxCornerRadiusTopStart="30dp"
+        app:boxCornerRadiusBottomStart="30dp"
+        app:boxCornerRadiusTopEnd="30dp"
+        app:boxCornerRadiusBottomEnd="30dp"
         android:hint="Department">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -50,6 +60,11 @@
         android:backgroundTint="#700DEA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        app:boxCornerRadiusTopStart="30dp"
+        app:boxCornerRadiusBottomStart="30dp"
+        app:boxCornerRadiusTopEnd="30dp"
+        app:boxCornerRadiusBottomEnd="30dp"
         android:hint="Job Title">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -65,18 +80,21 @@
         android:id="@+id/btnSaveJobDescriptionEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/design_default_color_background"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_button"
+        app:backgroundTint="#39C83B"
         android:text="SAVE"
-        android:textColor="#39C83B"
+        android:textColor="@color/white"
         android:textStyle="bold"/>
 
     <Button
         android:id="@+id/btnCancelJobDescriptionEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/design_default_color_background"
+        android:background="@drawable/rounded_button"
+        android:backgroundTint="#F40519"
         android:text="CLOSE"
-        android:textColor="#F40519"
+        android:textColor="@color/white"
         android:textStyle="bold"/>
 
 </LinearLayout>

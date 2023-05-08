@@ -14,11 +14,11 @@
         android:backgroundTint="#700DEA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.607"
-        app:layout_constraintHorizontal_bias="0.4"
+        android:layout_marginBottom="10dp"
+        app:boxCornerRadiusTopStart="30dp"
+        app:boxCornerRadiusBottomStart="30dp"
+        app:boxCornerRadiusTopEnd="30dp"
+        app:boxCornerRadiusBottomEnd="30dp"
         android:hint="E-mail Address">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -39,6 +39,11 @@
         android:backgroundTint="#700DEA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        app:boxCornerRadiusTopStart="30dp"
+        app:boxCornerRadiusBottomStart="30dp"
+        app:boxCornerRadiusTopEnd="30dp"
+        app:boxCornerRadiusBottomEnd="30dp"
         android:hint="Telephone Number">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -55,18 +60,21 @@
         android:id="@+id/btnSaveContactInformationEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/design_default_color_background"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_button"
+        app:backgroundTint="#39C83B"
         android:text="SAVE"
-        android:textColor="#39C83B"
+        android:textColor="@color/white"
         android:textStyle="bold"/>
 
     <Button
         android:id="@+id/btnCancelContactInformationEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/design_default_color_background"
+        android:background="@drawable/rounded_button"
+        app:backgroundTint="@color/black"
         android:text="CLOSE"
-        android:textColor="#F40519"
+        android:textColor="@color/white"
         android:textStyle="bold"/>
 
 </LinearLayout>

@@ -11,6 +11,11 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        app:boxCornerRadiusTopStart="30dp"
+        app:boxCornerRadiusBottomStart="30dp"
+        app:boxCornerRadiusTopEnd="30dp"
+        app:boxCornerRadiusBottomEnd="30dp"
         app:startIconDrawable="@drawable/user"
         android:backgroundTint="#700DEA"
         android:hint="Account Type">
@@ -27,18 +32,21 @@
         android:id="@+id/btnSaveAccountTagEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/design_default_color_background"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_button"
+        app:backgroundTint="#39C83B"
         android:text="SAVE"
-        android:textColor="#39C83B"
+        android:textColor="@color/white"
         android:textStyle="bold" />
 
     <Button
         android:id="@+id/btnCancelAccountTagEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/rounded_button"
         android:backgroundTint="@color/design_default_color_background"
         android:text="CLOSE"
-        android:textColor="#F40519"
+        android:textColor="@color/white"
         android:textStyle="bold" />
 
 </LinearLayout>

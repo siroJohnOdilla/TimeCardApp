@@ -58,7 +58,6 @@ class Home : Fragment(){
         val getCurrentDate = dateDisplay.format(Date())
         txtDisplayCurrentDate.text = getCurrentDate
 
-
         val btnClockIn = v.findViewById<Button>(R.id.btnClockIn)
         btnClockIn.setOnClickListener {
             val makeDateFormat1 = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())

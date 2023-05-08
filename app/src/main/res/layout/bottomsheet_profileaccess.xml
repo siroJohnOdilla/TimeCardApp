@@ -11,9 +11,11 @@
         android:id="@+id/txtViewDisplayMessageProfileAccess"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:text="TextView"
+        android:textSize="20dp"
         android:textAlignment="center"
-        android:textColor="#700DEA"
+        android:textColor="@color/black"
         android:textStyle="bold"/>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -23,6 +25,11 @@
         android:backgroundTint="#700DEA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        app:boxCornerRadiusTopStart="30dp"
+        app:boxCornerRadiusBottomStart="30dp"
+        app:boxCornerRadiusTopEnd="30dp"
+        app:boxCornerRadiusBottomEnd="30dp"
         android:hint="PIN">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -39,18 +46,21 @@
         android:id="@+id/btnEnterPINProfileAccess"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/design_default_color_background"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_button"
+        app:backgroundTint="#39C83B"
         android:text="ENTER"
-        android:textColor="#39C83B"
+        android:textColor="@color/white"
         android:textStyle="bold" />
 
     <Button
         android:id="@+id/btnCancelPINProfileAccess"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/rounded_button"
         android:backgroundTint="@color/design_default_color_background"
         android:text="Close"
-        android:textColor="#F40519"
+        android:textColor="@color/white"
         android:textStyle="bold" />
 
 </LinearLayout>

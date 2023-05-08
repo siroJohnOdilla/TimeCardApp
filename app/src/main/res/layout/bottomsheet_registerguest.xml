@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:background="@drawable/rounded_dialog">
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:startIconDrawable="@drawable/user"
+        app:endIconMode="clear_text"
+        android:backgroundTint="#700DEA"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        app:boxCornerRadiusTopStart="30dp"
+        app:boxCornerRadiusBottomStart="30dp"
+        app:boxCornerRadiusTopEnd="30dp"
+        app:boxCornerRadiusBottomEnd="30dp"
+        android:hint="Visitor's Name">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTxtNameVisitor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#700DEA"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textColor="#F8DD30"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:startIconDrawable="@drawable/national_id"
+        app:endIconMode="clear_text"
+        android:backgroundTint="#700DEA"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        app:boxCornerRadiusTopStart="30dp"
+        app:boxCornerRadiusBottomStart="30dp"
+        app:boxCornerRadiusTopEnd="30dp"
+        app:boxCornerRadiusBottomEnd="30dp"
+        android:hint="National ID No.">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTxtNationalIDVisitor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#700DEA"
+            android:ems="10"
+            android:inputType="number"
+            android:textColor="#F8DD30"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:startIconDrawable="@drawable/phone"
+        app:endIconMode="clear_text"
+        android:backgroundTint="#700DEA"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        app:boxCornerRadiusTopStart="30dp"
+        app:boxCornerRadiusBottomStart="30dp"
+        app:boxCornerRadiusTopEnd="30dp"
+        app:boxCornerRadiusBottomEnd="30dp"
+        android:hint="Telephone Number">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTxtTelephoneNumberVisitor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#700DEA"
+            android:ems="10"
+            android:inputType="phone"
+            android:textColor="#F8DD30"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:startIconDrawable="@drawable/site_branch"
+        app:endIconMode="clear_text"
+        android:backgroundTint="#700DEA"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        app:boxCornerRadiusTopStart="30dp"
+        app:boxCornerRadiusBottomStart="30dp"
+        app:boxCornerRadiusTopEnd="30dp"
+        app:boxCornerRadiusBottomEnd="30dp"
+        android:hint="Enter Company">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTxtCompanyVisitor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#700DEA"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textColor="#F8DD30"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:startIconDrawable="@drawable/contact_person"
+        app:endIconMode="clear_text"
+        android:backgroundTint="#700DEA"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        app:boxCornerRadiusTopStart="30dp"
+        app:boxCornerRadiusBottomStart="30dp"
+        app:boxCornerRadiusTopEnd="30dp"
+        app:boxCornerRadiusBottomEnd="30dp"
+        android:hint="Contact Person">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTxtCompanyHostVisitor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#700DEA"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textColor="#F8DD30"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:startIconDrawable="@drawable/nature_of_visit"
+        app:endIconMode="clear_text"
+        android:backgroundTint="#700DEA"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        app:boxCornerRadiusTopStart="30dp"
+        app:boxCornerRadiusBottomStart="30dp"
+        app:boxCornerRadiusTopEnd="30dp"
+        app:boxCornerRadiusBottomEnd="30dp"
+        android:hint="Nature of Visit">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTxtNatureOfVisit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#700DEA"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textColor="#F8DD30"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btnRegisterVisitor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_button"
+        app:backgroundTint="#39C83B"
+        android:text="REGISTER"
+        android:textColor="@color/white"/>
+
+    <Button
+        android:id="@+id/btnCancelRegisterVisitor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_button"
+        app:backgroundTint="@color/black"
+        android:text="CLOSE"
+        android:textColor="@color/white"
+        android:textStyle="bold"/>
+
+</LinearLayout>

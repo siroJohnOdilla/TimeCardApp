@@ -2,14 +2,26 @@ package com.kronos.timecardapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class LoginActivity : AppCompatActivity(){
-    private lateinit var editTxtFullNameNationalIdLogIn: EditText
+    private lateinit var editTxtFullNameNationalIdLogIn: AutoCompleteTextView
     private lateinit var editTxtPINLogIn: EditText
+    private lateinit var txtDisplayCurrentDay: TextView
+    private lateinit var txtDisplayCurrentDate: TextView
+    private lateinit var btnClockIn: Button
+    private lateinit var btnClockOut: Button
+    private lateinit var btnCreateAccount: Button
+    private lateinit var employeeList: ArrayList<String>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -20,7 +32,47 @@ class LoginActivity : AppCompatActivity(){
         actionBar.setDisplayHomeAsUpEnabled(true)
         actionBar.setDisplayHomeAsUpEnabled(true)
 
+        txtDisplayCurrentDay = findViewById(R.id.txtDisplayCurrentDay)
+        val dayDisplay = SimpleDateFormat(" EEEE ", Locale.getDefault())
+        val getCurrentDay = dayDisplay.format(Date())
+        txtDisplayCurrentDay.text = getCurrentDay
+
+        txtDisplayCurrentDate = findViewById(R.id.txtDisplayCurrentDate)
+        val dateDisplay = SimpleDateFormat(" MMMM d, yyyy ", Locale.getDefault())
+        val getCurrentDate = dateDisplay.format(Date())
+        txtDisplayCurrentDate.text = getCurrentDate
+
+        btnClockIn = findViewById(R.id.btnClockIn)
+        btnClockIn.setOnClickListener {
+            Toast.makeText(this,"CLOCK IN",Toast.LENGTH_SHORT).show()
+        }
+        btnClockOut = findViewById(R.id.btnClockOut)
+        btnClockOut.setOnClickListener {
+            Toast.makeText(this,"CLOCK OUT",Toast.LENGTH_SHORT).show()
+        }
+
+        employeeList = ArrayList()
+
+        val db = DBHelper(this, null)
+        val cursor = db.getLoginDetails()
+
+        if(cursor!!.moveToFirst()){
+            do{
+                val nameCheck = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.NAME_COL))
+
+                if(nameCheck.toString().isNotEmpty()){
+                    val name = nameCheck.toString()
+                    employeeList.add(name)
+                }
+            } while(cursor.moveToNext())
+        }
+        cursor.close()
+
+        val adapter = ArrayAdapter(this, R.layout.dropdown_item, employeeList)
+
         editTxtFullNameNationalIdLogIn = findViewById(R.id.editTxtFullNameNationalIdLogIn)
+        editTxtFullNameNationalIdLogIn.setAdapter(adapter)
+
         editTxtPINLogIn = findViewById(R.id.editTxtPINLogIn)
 
         val btnLogin = findViewById<Button>(R.id.btnLogin)
@@ -176,7 +228,7 @@ class LoginActivity : AppCompatActivity(){
             }
         }
 
-        val btnCreateAccount = findViewById<Button>(R.id.btnCreateAccount)
+        btnCreateAccount = findViewById(R.id.btnCreateAccount)
         btnCreateAccount.setOnClickListener {
             val intent = Intent(this,MainActivity::class.java)
             startActivity(intent)
