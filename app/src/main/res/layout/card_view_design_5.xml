@@ -3,10 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cardViewVisitorBook"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:layout_margin="10dp"
+    android:layout_height="40dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="5dp"
     android:padding="20dp"
-    app:cardElevation="6dp"
+    app:cardElevation="2dp"
     android:clickable="true"
     android:focusable="true"
     android:foreground="?android:attr/selectableItemBackground">
@@ -16,7 +19,7 @@
         android:layout_height="match_parent">
 
         <TableRow
-            android:background="#700DEA"
+            android:background="@color/white"
             android:padding="10dp">
 
             <TextView
@@ -25,8 +28,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="DATE"
-                android:textAlignment="center"
-                android:textColor="#F8DD30"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <TextView
@@ -35,8 +38,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="VISITOR NAME"
-                android:textAlignment="center"
-                android:textColor="#F8DD30"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <TextView
@@ -45,8 +48,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="NATIONAL ID NO."
-                android:textAlignment="center"
-                android:textColor="#F8DD30"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <TextView
@@ -55,8 +58,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="TELEPHONE NO."
-                android:textAlignment="center"
-                android:textColor="#F8DD30"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <TextView
@@ -65,8 +68,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="COMPANY"
-                android:textAlignment="center"
-                android:textColor="#F8DD30"
+                android:textAlignment="textEnd"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <TextView
@@ -75,8 +78,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="CONTACT PERSON"
-                android:textAlignment="center"
-                android:textColor="#F8DD30"
+                android:textAlignment="textEnd"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <TextView
@@ -85,8 +88,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="NATURE OF VISIT"
-                android:textAlignment="center"
-                android:textColor="#F8DD30"
+                android:textAlignment="textEnd"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <TextView
@@ -95,8 +98,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="TIME IN"
-                android:textAlignment="center"
-                android:textColor="#F8DD30"
+                android:textAlignment="textEnd"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <TextView
@@ -105,8 +108,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="AUTHORIZED TIME IN"
-                android:textAlignment="center"
-                android:textColor="#F8DD30"
+                android:textAlignment="textEnd"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <TextView
@@ -115,8 +118,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="TIME OUT"
-                android:textAlignment="center"
-                android:textColor="#F8DD30"
+                android:textAlignment="textEnd"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
             <TextView
                 android:id="@+id/txtViewAuthorizeTimeOutVisitorBook"
@@ -124,8 +127,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="AUTHORIZED TIME OUT"
-                android:textAlignment="center"
-                android:textColor="#F8DD30"
+                android:textAlignment="textEnd"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
         </TableRow>
 

@@ -19,8 +19,6 @@ import kotlin.collections.ArrayList
 
 class VisitorBook : Fragment() {
     private lateinit var spinnerVisitorBook: AutoCompleteTextView
-    private lateinit var txtDisplayCompanyNameVisitorBook: TextView
-    private lateinit var txtDisplayOfficeSiteVisitorBook: TextView
     private lateinit var editTxtDateStartVisitorBook: EditText
     private lateinit var editTxtDateEndVisitorBook: EditText
     private lateinit var addVisitorBtn: LinearLayout
@@ -36,10 +34,7 @@ class VisitorBook : Fragment() {
         val v =  inflater.inflate(R.layout.fragment_visitorbook, container, false)
 
         val bundle = arguments
-
-        val displayCompanyName = bundle!!.getString("companyName")
-        val displayOfficeSite = bundle.getString("officeSite")
-        val passName = bundle.getString("nameToCheck")
+        val passName = bundle!!.getString("nameToCheck")
 
         addVisitorBtn = v.findViewById(R.id.addVisitorBtn)
         addVisitorBtn.setOnClickListener {
@@ -128,13 +123,6 @@ class VisitorBook : Fragment() {
             dialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
             dialog.window!!.setGravity(Gravity.BOTTOM)
         }
-
-        txtDisplayCompanyNameVisitorBook = v.findViewById(R.id.txtDisplayCompanyNameVisitorBook)
-        txtDisplayCompanyNameVisitorBook.text = displayCompanyName
-
-        txtDisplayOfficeSiteVisitorBook = v.findViewById(R.id.txtDisplayOfficeSiteVisitorBook)
-        txtDisplayOfficeSiteVisitorBook.text = displayOfficeSite
-
         visitorList = ArrayList()
 
         val db = DBHelper4(v.context, null)

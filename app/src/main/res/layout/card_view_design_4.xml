@@ -20,7 +20,7 @@
             android:id="@+id/txtViewTitleProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#700DEA"
+            android:textColor="@color/black"
             android:textStyle="bold"
             android:text="0.TITLE"
             app:layout_constraintBottom_toBottomOf="parent"

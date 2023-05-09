@@ -7,19 +7,23 @@
         android:id="@+id/itemHome"
         android:icon="@drawable/home"
         android:title="Home" />
-    <item
-        android:id="@+id/itemTimeAttendance"
-        android:icon="@drawable/time"
-        android:title="Time Attendance"/>
 
-    <item android:title="Leave">
+    <item android:title="Time Attendance">
 
         <menu>
 
             <item
-                android:id="@+id/itemApplyLeave"
-                android:icon="@drawable/apply_leave"
-                android:title="Apply for Leave"/>
+                android:id="@+id/itemTimeAttendance"
+                android:icon="@drawable/time"
+                android:title="Time Attendance Records"/>
+
+        </menu>
+
+    </item>
+
+    <item android:title="Leave">
+
+        <menu>
 
             <item
                 android:id="@+id/itemLeaveSchedule"
@@ -31,12 +35,8 @@
     </item>
 
     <item android:title="Profile">
-        <menu>
 
-            <item
-                android:id="@+id/itemCreateAccount"
-                android:icon="@drawable/add_profile"
-                android:title="Create New Account"/>
+        <menu>
 
             <item
                 android:id="@+id/itemProfile"
@@ -55,10 +55,6 @@
     <item android:title="Visitor">
 
         <menu>
-            <item
-                android:id="@+id/itemAddVisitor"
-                android:icon="@drawable/add_profile"
-                android:title="Add Visitor"/>
 
             <item
                 android:id="@+id/itemVisitorBook"

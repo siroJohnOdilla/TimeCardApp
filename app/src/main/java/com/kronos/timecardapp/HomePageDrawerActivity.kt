@@ -102,14 +102,6 @@ class HomePageDrawerActivity : AppCompatActivity() {
                         supportFragmentManager.beginTransaction().replace(R.id.frame,TimeAttendance()).commit()
                     }
                 }
-                R.id.itemApplyLeave -> {
-                    val intent = Intent(this@HomePageDrawerActivity,ApplyLeaveActivity::class.java)
-
-                    val passName = getName
-                    intent.putExtra("nameToCheck",passName)
-
-                    startActivity(intent)
-                }
                 R.id.itemLeaveSchedule -> {
                     if(passAccountTag == "USER"){
                         Toast.makeText(this,"ACCESS DENIED",Toast.LENGTH_SHORT).show()
@@ -117,11 +109,20 @@ class HomePageDrawerActivity : AppCompatActivity() {
                         displayActionBarTitle = "Leave Schedule"
                         actionBar.title = displayActionBarTitle
 
-                        supportFragmentManager.beginTransaction().replace(R.id.frame,LeaveSchedule()).commit()
-                    }
-                }
-                R.id.itemCreateAccount -> {
+                        val passName = getName
 
+                        val fragmentManager2: FragmentManager = supportFragmentManager
+                        val fragmentTransaction1: FragmentTransaction = fragmentManager2.beginTransaction()
+
+                        val myLeaveScheduleFragment = LeaveSchedule()
+
+                        val bundle3 = Bundle()
+
+                        bundle3.putString("nameToCheck",passName)
+
+                        myLeaveScheduleFragment.arguments = bundle3
+                        fragmentTransaction1.replace(R.id.frame, myLeaveScheduleFragment).commit()
+                    }
                 }
                 R.id.itemProfile -> {
                     if(passAccountTag == "USER"){
@@ -136,13 +137,6 @@ class HomePageDrawerActivity : AppCompatActivity() {
                 R.id.itemSignOut -> {
                     onBackPressed()
                 }
-                R.id.itemAddVisitor -> {
-                    val intent = Intent(this@HomePageDrawerActivity,RegisterGuestActivity::class.java)
-
-                    val passName = getName
-                    intent.putExtra("nameToCheck",passName)
-                    startActivity(intent)
-                }
                 R.id.itemVisitorBook -> {
                     displayActionBarTitle = "Visitor Book"
                     actionBar.title = displayActionBarTitle
@@ -156,8 +150,6 @@ class HomePageDrawerActivity : AppCompatActivity() {
 
                     val bundle2 = Bundle()
 
-                    bundle2.putString("companyName",passCompanyName)
-                    bundle2.putString("officeSite",passLoginOfficeSiteBranch)
                     bundle2.putString("nameToCheck",passName)
 
                     myVisitorBookFragment.arguments = bundle2
@@ -171,39 +163,13 @@ class HomePageDrawerActivity : AppCompatActivity() {
         if(toggle.onOptionsItemSelected(item)){
             return true
         }
-        when(item.itemId){
-            R.id.itemViewApplyLeave -> {
-                val intent = Intent(this@HomePageDrawerActivity,ApplyLeaveActivity::class.java)
-
-                val passName = getName
-                intent.putExtra("nameToCheck",passName)
-
-                startActivity(intent)
-                Toast.makeText(this@HomePageDrawerActivity,"LEAVE APPLICATION",Toast.LENGTH_SHORT).show()
-                return true
-            }
-            R.id.itemViewRegisterGuest -> {
-                val intent = Intent(this@HomePageDrawerActivity,RegisterGuestActivity::class.java)
-
-                val passName = getName
-                intent.putExtra("nameToCheck",passName)
-                startActivity(intent)
-                return true
-            }
-            R.id.itemViewSettings -> {
-                val intent = Intent(this@HomePageDrawerActivity,SettingsActivity::class.java)
-                startActivity(intent)
-                return true
-            }
-            R.id.itemViewSignOut -> {
-                onBackPressed()
-                return true
-            }
-        }
         return super.onOptionsItemSelected(item)
     }
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
+        displaySignOut()
+    }
+    private fun displaySignOut(){
         val dialog = BottomSheetDialog(this)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.bottomsheet_signout)
@@ -229,10 +195,5 @@ class HomePageDrawerActivity : AppCompatActivity() {
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
         dialog.window!!.setGravity(Gravity.BOTTOM)
-    }
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val inflater: MenuInflater = menuInflater
-        inflater.inflate(R.menu.homepagedrawer_option_menu, menu)
-        return true
     }
 }

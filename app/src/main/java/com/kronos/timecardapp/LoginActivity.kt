@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import kotlin.math.abs
 
 class LoginActivity : AppCompatActivity(){
     private lateinit var editTxtFullNameNationalIdLogIn: AutoCompleteTextView
@@ -44,11 +45,329 @@ class LoginActivity : AppCompatActivity(){
 
         btnClockIn = findViewById(R.id.btnClockIn)
         btnClockIn.setOnClickListener {
-            Toast.makeText(this,"CLOCK IN",Toast.LENGTH_SHORT).show()
+            if(editTxtFullNameNationalIdLogIn.text.toString().trim().isEmpty() && editTxtPINLogIn.text.toString().trim().isEmpty()){
+                Toast.makeText(this,"LOGIN DETAILS REQUIRED",Toast.LENGTH_SHORT).show()
+            } else if(editTxtFullNameNationalIdLogIn.text.toString().trim().isEmpty() && editTxtPINLogIn.text.toString().trim().isNotEmpty()){
+                Toast.makeText(this,"FULL NAME/NATIONAL ID NO. REQUIRED",Toast.LENGTH_SHORT).show()
+            } else if(editTxtFullNameNationalIdLogIn.text.toString().trim().isNotEmpty() && editTxtPINLogIn.text.toString().trim().isEmpty()){
+                Toast.makeText(this,"PIN REQUIRED",Toast.LENGTH_SHORT).show()
+            } else {
+                val db = DBHelper(this,null)
+                val cursor = db.getLoginDetails()
+
+                if (cursor!!.moveToFirst()){
+                    do{
+                        val nameLogIn = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.NAME_COL))
+                        val nationalIdLogIn = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.NATIONAL_ID))
+                        val pinLogIn = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.PIN_NUMBER))
+                        val officeSiteBranchLogIn = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.OFFICE_SITE_BRANCH))
+                        val departmentLogIn = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.DEPARTMENT_NAME))
+                        val jobTitleLogIn = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.JOB_TITLE_NAME))
+                        val companyNameLogIn = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.COMPANY_NAME))
+                        val accountTagLogIn = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.ACCOUNT_TAG))
+
+                        if(editTxtFullNameNationalIdLogIn.text.toString().trim().uppercase() == nameLogIn.toString() && editTxtPINLogIn.text.toString().trim() == pinLogIn.toString() && companyNameLogIn.toString() == "to be set" && accountTagLogIn.toString() == "ADMINISTRATOR"){
+                            Toast.makeText(this,"UNAUTHORIZED CLOCK IN",Toast.LENGTH_SHORT).show()
+
+                        } else if(editTxtFullNameNationalIdLogIn.text.toString().trim().uppercase() == nationalIdLogIn.toString() && editTxtPINLogIn.text.toString().trim() == pinLogIn.toString() && companyNameLogIn.toString() == "to be set" && accountTagLogIn.toString() == "ADMINISTRATOR"){
+                            Toast.makeText(this,"UNAUTHORIZED CLOCK IN",Toast.LENGTH_SHORT).show()
+
+                        } else if(editTxtFullNameNationalIdLogIn.text.toString().trim().uppercase() == nameLogIn.toString() && editTxtPINLogIn.text.toString().trim() == pinLogIn.toString() && companyNameLogIn.toString() == "to be set" && accountTagLogIn.toString() == "USER"){
+                            Toast.makeText(this,"UNAUTHORIZED CLOCK IN",Toast.LENGTH_SHORT).show()
+
+                        } else if(editTxtFullNameNationalIdLogIn.text.toString().trim().uppercase() == nameLogIn.toString() && editTxtPINLogIn.text.toString().trim() == pinLogIn.toString() && companyNameLogIn.toString() == "to be set" && accountTagLogIn.toString() == "USER"){
+                            Toast.makeText(this,"UNAUTHORIZED CLOCK IN",Toast.LENGTH_SHORT).show()
+
+                        } else if(editTxtFullNameNationalIdLogIn.text.toString().trim().uppercase() == nameLogIn.toString() && editTxtPINLogIn.text.toString().trim() == pinLogIn.toString() && companyNameLogIn.toString() != "to be set" && (accountTagLogIn.toString() == "ADMINISTRATOR" || accountTagLogIn.toString() == "USER")){
+                            val displayAccountName = nameLogIn.toString()
+                            val displayOfficeSiteBranch = officeSiteBranchLogIn.toString()
+                            val displayDepartment = departmentLogIn.toString()
+                            val displayJobTitle = jobTitleLogIn.toString()
+
+                            val makeDateFormat1 = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+                            val checkDate = makeDateFormat1.format(Date())
+
+                            val makeDateFormat2 = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
+                            val checkTime = makeDateFormat2.format(Date())
+
+                            val db = DBHelper2(this,null)
+                            val cursor = db.getDetails()
+
+                            if(cursor!!.moveToFirst()){
+                                do {
+                                    val nameCheck = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper2.NAME_COL))
+                                    val dateCheck = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper2.DATE_COL))
+                                    val timeInCheck = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper2.TIME_IN_COL))
+
+                                    if (displayAccountName.toString() == nameCheck.toString() && checkDate.toString() == dateCheck.toString() && checkTime.toString() != timeInCheck.toString()){
+                                        val nameToThrow = nameCheck.toString()
+
+                                        editTxtFullNameNationalIdLogIn.text.clear()
+                                        editTxtPINLogIn.text.clear()
+
+                                        Toast.makeText(this,"$nameToThrow\nHAS ALREADY CLOCKED IN", Toast.LENGTH_SHORT).show()
+                                        break
+                                    }
+                                } while (cursor.moveToNext())
+                            }
+                            cursor.close()
+
+                            val makeDateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+                            val date = makeDateFormat.format(Date())
+
+                            val name = displayAccountName.toString()
+                            val jobTitle = displayJobTitle.toString()
+                            val department = displayDepartment.toString()
+                            val officeBranchSite = displayOfficeSiteBranch.toString()
+
+                            val makeTimeFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
+                            val timeIn = makeTimeFormat.format(Date())
+
+                            val timeOut = "to be set"
+                            val totalTimeWorked = "to be set"
+
+                            db.addDetails(date, name, jobTitle, department, officeBranchSite, timeIn, timeOut, totalTimeWorked)
+
+                            editTxtFullNameNationalIdLogIn.text.clear()
+                            editTxtPINLogIn.text.clear()
+
+                            Toast.makeText(this,"$displayAccountName;\nTIME IN: $timeIn", Toast.LENGTH_SHORT).show()
+
+                        } else if (editTxtFullNameNationalIdLogIn.text.toString().trim() == nationalIdLogIn.toString() && editTxtPINLogIn.text.toString().trim() == pinLogIn.toString() && companyNameLogIn.toString() != "to be set" && (accountTagLogIn.toString() == "ADMINISTRATOR" || accountTagLogIn.toString() == "USER")){
+                            val displayAccountName = nameLogIn.toString()
+                            val displayOfficeSiteBranch = officeSiteBranchLogIn.toString()
+                            val displayDepartment = departmentLogIn.toString()
+                            val displayJobTitle = jobTitleLogIn.toString()
+
+                            val makeDateFormat1 = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+                            val checkDate = makeDateFormat1.format(Date())
+
+                            val makeDateFormat2 = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
+                            val checkTime = makeDateFormat2.format(Date())
+
+                            val db = DBHelper2(this,null)
+                            val cursor = db.getDetails()
+
+                            if(cursor!!.moveToFirst()){
+                                do {
+                                    val nameCheck = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper2.NAME_COL))
+                                    val dateCheck = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper2.DATE_COL))
+                                    val timeInCheck = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper2.TIME_IN_COL))
+
+                                    if (displayAccountName.toString() == nameCheck.toString() && checkDate.toString() == dateCheck.toString() && checkTime.toString() != timeInCheck.toString()){
+                                        val nameToThrow = nameCheck.toString()
+
+                                        editTxtFullNameNationalIdLogIn.text.clear()
+                                        editTxtPINLogIn.text.clear()
+
+                                        Toast.makeText(this,"$nameToThrow\nHAS ALREADY CLOCKED IN", Toast.LENGTH_SHORT).show()
+                                        break
+                                    }
+                                } while (cursor.moveToNext())
+                            }
+                            cursor.close()
+
+                            val makeDateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+                            val date = makeDateFormat.format(Date())
+
+                            val name = displayAccountName.toString()
+                            val jobTitle = displayJobTitle.toString()
+                            val department = displayDepartment.toString()
+                            val officeBranchSite = displayOfficeSiteBranch.toString()
+
+                            val makeTimeFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
+                            val timeIn = makeTimeFormat.format(Date())
+
+                            val timeOut = "to be set"
+                            val totalTimeWorked = "to be set"
+
+                            db.addDetails(date, name, jobTitle, department, officeBranchSite, timeIn, timeOut, totalTimeWorked)
+
+                            editTxtFullNameNationalIdLogIn.text.clear()
+                            editTxtPINLogIn.text.clear()
+
+                            Toast.makeText(this,"$displayAccountName;\nTIME IN: $timeIn", Toast.LENGTH_SHORT).show()
+                        } else if(editTxtFullNameNationalIdLogIn.text.toString().trim().uppercase() == nameLogIn.toString() && editTxtPINLogIn.text.toString().trim() != pinLogIn.toString()){
+                            Toast.makeText(this,"INVALID PIN",Toast.LENGTH_SHORT).show()
+                        } else if(editTxtFullNameNationalIdLogIn.text.toString().trim() == nationalIdLogIn.toString() && editTxtPINLogIn.text.toString().trim() != pinLogIn.toString()){
+                            Toast.makeText(this,"INVALID PIN",Toast.LENGTH_SHORT).show()
+                        }
+                    } while(cursor.moveToNext())
+                }
+                cursor.close()
+            }
         }
         btnClockOut = findViewById(R.id.btnClockOut)
         btnClockOut.setOnClickListener {
-            Toast.makeText(this,"CLOCK OUT",Toast.LENGTH_SHORT).show()
+            if(editTxtFullNameNationalIdLogIn.text.toString().trim().isEmpty() && editTxtPINLogIn.text.toString().trim().isEmpty()){
+                Toast.makeText(this,"LOGIN DETAILS REQUIRED",Toast.LENGTH_SHORT).show()
+            } else if(editTxtFullNameNationalIdLogIn.text.toString().trim().isEmpty() && editTxtPINLogIn.text.toString().trim().isNotEmpty()){
+                Toast.makeText(this,"FULL NAME/NATIONAL ID NO. REQUIRED",Toast.LENGTH_SHORT).show()
+            } else if(editTxtFullNameNationalIdLogIn.text.toString().trim().isNotEmpty() && editTxtPINLogIn.text.toString().trim().isEmpty()){
+                Toast.makeText(this,"PIN REQUIRED",Toast.LENGTH_SHORT).show()
+            } else {
+                val db = DBHelper(this,null)
+                val cursor = db.getLoginDetails()
+
+                if (cursor!!.moveToFirst()){
+                    do{
+                        val nameLogIn = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.NAME_COL))
+                        val nationalIdLogIn = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.NATIONAL_ID))
+                        val pinLogIn = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.PIN_NUMBER))
+                        val companyNameLogIn = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.COMPANY_NAME))
+                        val accountTagLogIn = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.ACCOUNT_TAG))
+
+                        if(editTxtFullNameNationalIdLogIn.text.toString().trim().uppercase() == nameLogIn.toString() && editTxtPINLogIn.text.toString().trim() == pinLogIn.toString() && companyNameLogIn.toString() == "to be set" && accountTagLogIn.toString() == "ADMINISTRATOR"){
+                            Toast.makeText(this,"UNAUTHORIZED CLOCK OUT",Toast.LENGTH_SHORT).show()
+
+                        } else if(editTxtFullNameNationalIdLogIn.text.toString().trim().uppercase() == nationalIdLogIn.toString() && editTxtPINLogIn.text.toString().trim() == pinLogIn.toString() && companyNameLogIn.toString() == "to be set" && accountTagLogIn.toString() == "ADMINISTRATOR"){
+                            Toast.makeText(this,"UNAUTHORIZED CLOCK OUT",Toast.LENGTH_SHORT).show()
+
+                        } else if(editTxtFullNameNationalIdLogIn.text.toString().trim().uppercase() == nameLogIn.toString() && editTxtPINLogIn.text.toString().trim() == pinLogIn.toString() && companyNameLogIn.toString() == "to be set" && accountTagLogIn.toString() == "USER"){
+                            Toast.makeText(this,"UNAUTHORIZED CLOCK OUT",Toast.LENGTH_SHORT).show()
+
+                        } else if(editTxtFullNameNationalIdLogIn.text.toString().trim().uppercase() == nameLogIn.toString() && editTxtPINLogIn.text.toString().trim() == pinLogIn.toString() && companyNameLogIn.toString() == "to be set" && accountTagLogIn.toString() == "USER"){
+                            Toast.makeText(this,"UNAUTHORIZED CLOCK OUT",Toast.LENGTH_SHORT).show()
+
+                        } else if(editTxtFullNameNationalIdLogIn.text.toString().trim().uppercase() == nameLogIn.toString() && editTxtPINLogIn.text.toString().trim() == pinLogIn.toString() && companyNameLogIn.toString() != "to be set" && (accountTagLogIn.toString() == "ADMINISTRATOR" || accountTagLogIn.toString() == "USER")){
+                            val displayAccountName = nameLogIn.toString()
+
+                            val makeDateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+                            val dateCheck = makeDateFormat.format(Date())
+
+                            val db = DBHelper2(this, null)
+                            val cursor = db.getDetails()
+
+                            if (cursor!!.moveToFirst()) {
+                                do {
+                                    val nameCheck = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper2.NAME_COL))
+                                    val checkDate = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper2.DATE_COL))
+                                    val jobTitleCheck = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper2.JOB_TITLE_COL))
+                                    val departmentCheck = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper2.DEPARTMENT_COL))
+                                    val officeBranchSiteCheck = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper2.OFFICE_SITE_COL))
+                                    val timeInCheck = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper2.TIME_IN_COL))
+                                    val timeOutCheck = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper2.TIME_OUT_COL))
+                                    val totalTimeWorkedCheck = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper2.TOTAL_TIME_WORKED_COL))
+                                    val idCheck = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper2.ID_COL))
+
+                                    if (displayAccountName.toString() == nameCheck.toString() && dateCheck.toString() == checkDate.toString() && timeOutCheck.toString() == "to be set") {
+                                        val id = idCheck.toLong()
+
+                                        val date1 = checkDate.toString()
+                                        val name1 = nameCheck.toString()
+                                        val jobTitle1 = jobTitleCheck.toString()
+                                        val department1 = departmentCheck.toString()
+                                        val officeBranchSite1 = officeBranchSiteCheck.toString()
+                                        val timeIn1 = timeInCheck.toString()
+
+                                        val makeTimeFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
+                                        val timeOut1 = makeTimeFormat.format(Date())
+
+                                        val d1: Date = makeTimeFormat.parse(timeInCheck) as Date
+                                        val d2: Date = makeTimeFormat.parse(timeOut1) as Date
+
+                                        val difference: Long = abs(d2.time - d1.time)
+                                        val differenceHours = (difference / (1000 * 60 * 60)) % 24
+                                        val differenceMinutes = (difference / (1000 * 60)) % 60
+                                        val differenceSeconds = (difference / 1000) % 60
+
+                                        val totalTimeWorked1 = ("$differenceHours HRS $differenceMinutes MIN $differenceSeconds SEC")
+
+                                        db.updateDetails(id, date1, name1, jobTitle1, department1, officeBranchSite1, timeIn1, timeOut1, totalTimeWorked1)
+                                        db.close()
+
+                                        editTxtFullNameNationalIdLogIn.text.clear()
+                                        editTxtPINLogIn.text.clear()
+
+                                        Toast.makeText(this, "$name1;\nTIME OUT: $timeOut1", Toast.LENGTH_SHORT).show()
+                                        Toast.makeText(this, "TOTAL TIME WORKED:\n$totalTimeWorked1", Toast.LENGTH_SHORT).show()
+
+                                    } else if (displayAccountName.toString() == nameCheck.toString() && dateCheck.toString() == checkDate.toString() && totalTimeWorkedCheck.toString() != "to be set") {
+                                        val nameToThrow = nameCheck.toString()
+
+                                        editTxtFullNameNationalIdLogIn.text.clear()
+                                        editTxtPINLogIn.text.clear()
+
+                                        Toast.makeText(this,"$nameToThrow\nHAS ALREADY CLOCKED OUT", Toast.LENGTH_SHORT).show()
+                                        break
+                                    }
+                                } while (cursor.moveToNext())
+                            }
+                            cursor.close()
+                        } else if(editTxtFullNameNationalIdLogIn.text.toString().trim() == nationalIdLogIn.toString() && editTxtPINLogIn.text.toString().trim() == pinLogIn.toString() && companyNameLogIn.toString() != "to be set" && (accountTagLogIn.toString() == "ADMINISTRATOR" || accountTagLogIn.toString() == "USER")){
+                            val displayAccountName = nameLogIn.toString()
+
+                            val makeDateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+                            val dateCheck = makeDateFormat.format(Date())
+
+                            val db = DBHelper2(this, null)
+                            val cursor = db.getDetails()
+
+                            if (cursor!!.moveToFirst()) {
+                                do {
+                                    val nameCheck = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper2.NAME_COL))
+                                    val checkDate = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper2.DATE_COL))
+                                    val jobTitleCheck = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper2.JOB_TITLE_COL))
+                                    val departmentCheck = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper2.DEPARTMENT_COL))
+                                    val officeBranchSiteCheck = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper2.OFFICE_SITE_COL))
+                                    val timeInCheck = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper2.TIME_IN_COL))
+                                    val timeOutCheck = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper2.TIME_OUT_COL))
+                                    val totalTimeWorkedCheck = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper2.TOTAL_TIME_WORKED_COL))
+                                    val idCheck = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper2.ID_COL))
+
+                                    if (displayAccountName.toString() == nameCheck.toString() && dateCheck.toString() == checkDate.toString() && timeOutCheck.toString() == "to be set") {
+                                        val id = idCheck.toLong()
+
+                                        val date1 = checkDate.toString()
+                                        val name1 = nameCheck.toString()
+                                        val jobTitle1 = jobTitleCheck.toString()
+                                        val department1 = departmentCheck.toString()
+                                        val officeBranchSite1 = officeBranchSiteCheck.toString()
+                                        val timeIn1 = timeInCheck.toString()
+
+                                        val makeTimeFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
+                                        val timeOut1 = makeTimeFormat.format(Date())
+
+                                        val d1: Date = makeTimeFormat.parse(timeInCheck) as Date
+                                        val d2: Date = makeTimeFormat.parse(timeOut1) as Date
+
+                                        val difference: Long = abs(d2.time - d1.time)
+                                        val differenceHours = (difference / (1000 * 60 * 60)) % 24
+                                        val differenceMinutes = (difference / (1000 * 60)) % 60
+                                        val differenceSeconds = (difference / 1000) % 60
+
+                                        val totalTimeWorked1 = ("$differenceHours HRS $differenceMinutes MIN $differenceSeconds SEC")
+
+                                        db.updateDetails(id, date1, name1, jobTitle1, department1, officeBranchSite1, timeIn1, timeOut1, totalTimeWorked1)
+                                        db.close()
+
+                                        editTxtFullNameNationalIdLogIn.text.clear()
+                                        editTxtPINLogIn.text.clear()
+
+                                        Toast.makeText(this, "$name1;\nTIME OUT: $timeOut1", Toast.LENGTH_SHORT).show()
+                                        Toast.makeText(this, "TOTAL TIME WORKED:\n$totalTimeWorked1", Toast.LENGTH_SHORT).show()
+
+                                    } else if (displayAccountName.toString() == nameCheck.toString() && dateCheck.toString() == checkDate.toString() && totalTimeWorkedCheck.toString() != "to be set") {
+                                        val nameToThrow = nameCheck.toString()
+
+                                        editTxtFullNameNationalIdLogIn.text.clear()
+                                        editTxtPINLogIn.text.clear()
+
+                                        Toast.makeText(this,"$nameToThrow\nHAS ALREADY CLOCKED OUT", Toast.LENGTH_SHORT).show()
+                                        break
+                                    }
+                                } while (cursor.moveToNext())
+                            }
+                            cursor.close()
+                        } else if(editTxtFullNameNationalIdLogIn.text.toString().trim().uppercase() == nameLogIn.toString() && editTxtPINLogIn.text.toString().trim() != pinLogIn.toString()){
+                            Toast.makeText(this,"INVALID PIN",Toast.LENGTH_SHORT).show()
+                        } else if(editTxtFullNameNationalIdLogIn.text.toString().trim() == nationalIdLogIn.toString() && editTxtPINLogIn.text.toString().trim() != pinLogIn.toString()){
+                            Toast.makeText(this,"INVALID PIN",Toast.LENGTH_SHORT).show()
+                        }
+                    } while(cursor.moveToNext())
+                }
+                cursor.close()
+            }
         }
 
         employeeList = ArrayList()
@@ -227,7 +546,6 @@ class LoginActivity : AppCompatActivity(){
                 cursor.close()
             }
         }
-
         btnCreateAccount = findViewById(R.id.btnCreateAccount)
         btnCreateAccount.setOnClickListener {
             val intent = Intent(this,MainActivity::class.java)
