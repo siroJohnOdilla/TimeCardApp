@@ -38,25 +38,37 @@
         android:textColor="@color/black"
         android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/btnYesSignOut"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        app:backgroundTint="#39C83B"
-        android:text="YES"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:background="@drawable/rounded_button"/>
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/btnNoSignOut"
+        <Button
+            android:id="@+id/btnNoSignOut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="170dp"
+            android:layout_marginBottom="10dp"
+            app:backgroundTint="#F40519"
+            android:text="NO"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:background="@drawable/rounded_button" />
+
+        <Button
+            android:id="@+id/btnYesSignOut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:backgroundTint="#39C83B"
+            android:text="YES"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:background="@drawable/rounded_button"/>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:backgroundTint="#F40519"
-        android:text="NO"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:background="@drawable/rounded_button"/>
+        android:layout_height="40dp"/>
 
 </LinearLayout>

@@ -96,7 +96,7 @@ class HomePageDrawerActivity : AppCompatActivity() {
                     if(passAccountTag == "USER"){
                         Toast.makeText(this,"ACCESS DENIED",Toast.LENGTH_SHORT).show()
                     } else{
-                        displayActionBarTitle = "Time Attendance"
+                        displayActionBarTitle = "Attendance Records"
                         actionBar.title = displayActionBarTitle
 
                         supportFragmentManager.beginTransaction().replace(R.id.frame,TimeAttendance()).commit()
@@ -123,6 +123,9 @@ class HomePageDrawerActivity : AppCompatActivity() {
                         myLeaveScheduleFragment.arguments = bundle3
                         fragmentTransaction1.replace(R.id.frame, myLeaveScheduleFragment).commit()
                     }
+                }
+                R.id.itemProfileView -> {
+
                 }
                 R.id.itemProfile -> {
                     if(passAccountTag == "USER"){
@@ -187,7 +190,6 @@ class HomePageDrawerActivity : AppCompatActivity() {
                 val intent = Intent(this,LoginActivity::class.java)
                 startActivity(intent)
 
-                Toast.makeText(this,"SUCCESSFULLY SIGNED OUT", Toast.LENGTH_SHORT).show()
             }
         }
         dialog.show()

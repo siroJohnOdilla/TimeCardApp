@@ -1,7 +1,12 @@
 package com.kronos.timecardapp
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.view.Gravity
+import android.view.ViewGroup
+import android.view.Window
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
@@ -9,11 +14,11 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import kotlin.math.abs
-
 class LoginActivity : AppCompatActivity(){
     private lateinit var editTxtFullNameNationalIdLogIn: AutoCompleteTextView
     private lateinit var editTxtPINLogIn: EditText
@@ -34,12 +39,12 @@ class LoginActivity : AppCompatActivity(){
         actionBar.setDisplayHomeAsUpEnabled(true)
 
         txtDisplayCurrentDay = findViewById(R.id.txtDisplayCurrentDay)
-        val dayDisplay = SimpleDateFormat(" EEEE ", Locale.getDefault())
+        val dayDisplay = SimpleDateFormat("EEEE", Locale.getDefault())
         val getCurrentDay = dayDisplay.format(Date())
         txtDisplayCurrentDay.text = getCurrentDay
 
         txtDisplayCurrentDate = findViewById(R.id.txtDisplayCurrentDate)
-        val dateDisplay = SimpleDateFormat(" MMMM d, yyyy ", Locale.getDefault())
+        val dateDisplay = SimpleDateFormat("MMMM d, yyyy", Locale.getDefault())
         val getCurrentDate = dateDisplay.format(Date())
         txtDisplayCurrentDate.text = getCurrentDate
 
@@ -131,7 +136,35 @@ class LoginActivity : AppCompatActivity(){
                             editTxtFullNameNationalIdLogIn.text.clear()
                             editTxtPINLogIn.text.clear()
 
-                            Toast.makeText(this,"$displayAccountName;\nTIME IN: $timeIn", Toast.LENGTH_SHORT).show()
+                            val dialog = BottomSheetDialog(this)
+                            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                            dialog.setContentView(R.layout.bottomsheet_confirmattendance)
+
+                            val attendanceMessage = dialog.findViewById<TextView>(R.id.attendanceMessage)
+                            val displayMessage = "CLOCK IN SUCCESSFUL!"
+                            if (attendanceMessage != null) {
+                                attendanceMessage.text = displayMessage
+                            }
+                            val txtAttendanceConfirm = dialog.findViewById<TextView>(R.id.txtAttendanceConfirm)
+                            if (txtAttendanceConfirm != null) {
+                                txtAttendanceConfirm.text = displayAccountName
+                            }
+                            val txtTimeAttendanceConfirm = dialog.findViewById<TextView>(R.id.txtTimeAttendanceConfirm)
+                            if (txtTimeAttendanceConfirm != null) {
+                                val displayTime = "TIME IN:\n$timeIn"
+                                txtTimeAttendanceConfirm.text = displayTime
+                            }
+                            val btnOkAttendanceConfirm = dialog.findViewById<Button>(R.id.btnOkAttendanceConfirm)
+                            if (btnOkAttendanceConfirm != null) {
+                                btnOkAttendanceConfirm.setOnClickListener {
+                                    dialog.dismiss()
+                                }
+                            }
+                            dialog.show()
+                            dialog.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+                            dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                            dialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
+                            dialog.window!!.setGravity(Gravity.BOTTOM)
 
                         } else if (editTxtFullNameNationalIdLogIn.text.toString().trim() == nationalIdLogIn.toString() && editTxtPINLogIn.text.toString().trim() == pinLogIn.toString() && companyNameLogIn.toString() != "to be set" && (accountTagLogIn.toString() == "ADMINISTRATOR" || accountTagLogIn.toString() == "USER")){
                             val displayAccountName = nameLogIn.toString()
@@ -186,7 +219,36 @@ class LoginActivity : AppCompatActivity(){
                             editTxtFullNameNationalIdLogIn.text.clear()
                             editTxtPINLogIn.text.clear()
 
-                            Toast.makeText(this,"$displayAccountName;\nTIME IN: $timeIn", Toast.LENGTH_SHORT).show()
+                            val dialog = BottomSheetDialog(this)
+                            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                            dialog.setContentView(R.layout.bottomsheet_confirmattendance)
+
+                            val attendanceMessage = dialog.findViewById<TextView>(R.id.attendanceMessage)
+                            val displayMessage = "CLOCK IN SUCCESSFUL!"
+                            if (attendanceMessage != null) {
+                                attendanceMessage.text = displayMessage
+                            }
+                            val txtAttendanceConfirm = dialog.findViewById<TextView>(R.id.txtAttendanceConfirm)
+                            if (txtAttendanceConfirm != null) {
+                                txtAttendanceConfirm.text = displayAccountName
+                            }
+                            val txtTimeAttendanceConfirm = dialog.findViewById<TextView>(R.id.txtTimeAttendanceConfirm)
+                            if (txtTimeAttendanceConfirm != null) {
+                                val displayTime = "TIME IN:\n$timeIn"
+                                txtTimeAttendanceConfirm.text = displayTime
+                            }
+                            val btnOkAttendanceConfirm = dialog.findViewById<Button>(R.id.btnOkAttendanceConfirm)
+                            if (btnOkAttendanceConfirm != null) {
+                                btnOkAttendanceConfirm.setOnClickListener {
+                                    dialog.dismiss()
+                                }
+                            }
+                            dialog.show()
+                            dialog.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+                            dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                            dialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
+                            dialog.window!!.setGravity(Gravity.BOTTOM)
+
                         } else if(editTxtFullNameNationalIdLogIn.text.toString().trim().uppercase() == nameLogIn.toString() && editTxtPINLogIn.text.toString().trim() != pinLogIn.toString()){
                             Toast.makeText(this,"INVALID PIN",Toast.LENGTH_SHORT).show()
                         } else if(editTxtFullNameNationalIdLogIn.text.toString().trim() == nationalIdLogIn.toString() && editTxtPINLogIn.text.toString().trim() != pinLogIn.toString()){
@@ -279,8 +341,35 @@ class LoginActivity : AppCompatActivity(){
                                         editTxtFullNameNationalIdLogIn.text.clear()
                                         editTxtPINLogIn.text.clear()
 
-                                        Toast.makeText(this, "$name1;\nTIME OUT: $timeOut1", Toast.LENGTH_SHORT).show()
-                                        Toast.makeText(this, "TOTAL TIME WORKED:\n$totalTimeWorked1", Toast.LENGTH_SHORT).show()
+                                        val dialog = BottomSheetDialog(this)
+                                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                                        dialog.setContentView(R.layout.bottomsheet_confirmattendance)
+
+                                        val attendanceMessage = dialog.findViewById<TextView>(R.id.attendanceMessage)
+                                        val displayMessage = "CLOCK OUT SUCCESSFUL!"
+                                        if (attendanceMessage != null) {
+                                            attendanceMessage.text = displayMessage
+                                        }
+                                        val txtAttendanceConfirm = dialog.findViewById<TextView>(R.id.txtAttendanceConfirm)
+                                        if (txtAttendanceConfirm != null) {
+                                            txtAttendanceConfirm.text = name1
+                                        }
+                                        val txtTimeAttendanceConfirm = dialog.findViewById<TextView>(R.id.txtTimeAttendanceConfirm)
+                                        if (txtTimeAttendanceConfirm != null) {
+                                            val display = "TIME OUT: $timeOut1\n$totalTimeWorked1"
+                                            txtTimeAttendanceConfirm.text = display
+                                        }
+                                        val btnOkAttendanceConfirm = dialog.findViewById<Button>(R.id.btnOkAttendanceConfirm)
+                                        if (btnOkAttendanceConfirm != null) {
+                                            btnOkAttendanceConfirm.setOnClickListener {
+                                                dialog.dismiss()
+                                            }
+                                        }
+                                        dialog.show()
+                                        dialog.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+                                        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                                        dialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
+                                        dialog.window!!.setGravity(Gravity.BOTTOM)
 
                                     } else if (displayAccountName.toString() == nameCheck.toString() && dateCheck.toString() == checkDate.toString() && totalTimeWorkedCheck.toString() != "to be set") {
                                         val nameToThrow = nameCheck.toString()
@@ -344,8 +433,35 @@ class LoginActivity : AppCompatActivity(){
                                         editTxtFullNameNationalIdLogIn.text.clear()
                                         editTxtPINLogIn.text.clear()
 
-                                        Toast.makeText(this, "$name1;\nTIME OUT: $timeOut1", Toast.LENGTH_SHORT).show()
-                                        Toast.makeText(this, "TOTAL TIME WORKED:\n$totalTimeWorked1", Toast.LENGTH_SHORT).show()
+                                        val dialog = BottomSheetDialog(this)
+                                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                                        dialog.setContentView(R.layout.bottomsheet_confirmattendance)
+
+                                        val attendanceMessage = dialog.findViewById<TextView>(R.id.attendanceMessage)
+                                        val displayMessage = "CLOCK OUT SUCCESSFUL!"
+                                        if (attendanceMessage != null) {
+                                            attendanceMessage.text = displayMessage
+                                        }
+                                        val txtAttendanceConfirm = dialog.findViewById<TextView>(R.id.txtAttendanceConfirm)
+                                        if (txtAttendanceConfirm != null) {
+                                            txtAttendanceConfirm.text = name1
+                                        }
+                                        val txtTimeAttendanceConfirm = dialog.findViewById<TextView>(R.id.txtTimeAttendanceConfirm)
+                                        if (txtTimeAttendanceConfirm != null) {
+                                            val display = "TIME OUT: $timeOut1\n$totalTimeWorked1"
+                                            txtTimeAttendanceConfirm.text = display
+                                        }
+                                        val btnOkAttendanceConfirm = dialog.findViewById<Button>(R.id.btnOkAttendanceConfirm)
+                                        if (btnOkAttendanceConfirm != null) {
+                                            btnOkAttendanceConfirm.setOnClickListener {
+                                                dialog.dismiss()
+                                            }
+                                        }
+                                        dialog.show()
+                                        dialog.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+                                        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                                        dialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
+                                        dialog.window!!.setGravity(Gravity.BOTTOM)
 
                                     } else if (displayAccountName.toString() == nameCheck.toString() && dateCheck.toString() == checkDate.toString() && totalTimeWorkedCheck.toString() != "to be set") {
                                         val nameToThrow = nameCheck.toString()
@@ -434,7 +550,6 @@ class LoginActivity : AppCompatActivity(){
                             editTxtPINLogIn.text.clear()
 
                             startActivity(intent)
-                            Toast.makeText(this,"CREATE COMPANY",Toast.LENGTH_SHORT).show()
 
                         } else if(editTxtFullNameNationalIdLogIn.text.toString().trim().uppercase() == nationalIdLogIn.toString() && editTxtPINLogIn.text.toString().trim() == pinLogIn.toString() && companyNameLogIn.toString() == "to be set" && accountTagLogIn.toString() == "ADMINISTRATOR"){
                             val displayAccountName = nameLogIn.toString()
@@ -453,7 +568,6 @@ class LoginActivity : AppCompatActivity(){
                             editTxtPINLogIn.text.clear()
 
                             startActivity(intent)
-                            Toast.makeText(this,"CREATE COMPANY",Toast.LENGTH_SHORT).show()
 
                         } else if(editTxtFullNameNationalIdLogIn.text.toString().trim().uppercase() == nameLogIn.toString() && editTxtPINLogIn.text.toString().trim() == pinLogIn.toString() && companyNameLogIn.toString() == "to be set" && accountTagLogIn.toString() == "USER"){
                             val displayAccountName = nameLogIn.toString()
@@ -472,9 +586,8 @@ class LoginActivity : AppCompatActivity(){
                             editTxtPINLogIn.text.clear()
 
                             startActivity(intent)
-                            Toast.makeText(this,"JOIN COMPANY",Toast.LENGTH_SHORT).show()
 
-                        } else if(editTxtFullNameNationalIdLogIn.text.toString().trim().uppercase() == nameLogIn.toString() && editTxtPINLogIn.text.toString().trim() == pinLogIn.toString() && companyNameLogIn.toString() == "to be set" && accountTagLogIn.toString() == "USER"){
+                        } else if(editTxtFullNameNationalIdLogIn.text.toString().trim().uppercase() == nationalIdLogIn.toString() && editTxtPINLogIn.text.toString().trim() == pinLogIn.toString() && companyNameLogIn.toString() == "to be set" && accountTagLogIn.toString() == "USER"){
                             val displayAccountName = nameLogIn.toString()
                             val displayOfficeSiteBranch = officeSiteBranchLogIn.toString()
                             val displayDepartment = departmentLogIn.toString()
@@ -491,7 +604,6 @@ class LoginActivity : AppCompatActivity(){
                             editTxtPINLogIn.text.clear()
 
                             startActivity(intent)
-                            Toast.makeText(this,"JOIN COMPANY",Toast.LENGTH_SHORT).show()
 
                         } else if(editTxtFullNameNationalIdLogIn.text.toString().trim().uppercase() == nameLogIn.toString() && editTxtPINLogIn.text.toString().trim() == pinLogIn.toString() && companyNameLogIn.toString() != "to be set" && (accountTagLogIn.toString() == "ADMINISTRATOR" || accountTagLogIn.toString() == "USER")){
                             val displayAccountName = nameLogIn.toString()
@@ -508,12 +620,34 @@ class LoginActivity : AppCompatActivity(){
                             intent.putExtra("displayJobTitleKey1",displayJobTitle)
                             intent.putExtra("accountTagCheck1",accountTagCheck)
                             intent.putExtra("displayCompanyNameKey1",displayCompanyName)
-
                             editTxtFullNameNationalIdLogIn.text.clear()
                             editTxtPINLogIn.text.clear()
+
                             startActivity(intent)
 
-                            Toast.makeText(this,"LOGIN SUCCESSFUL;\nWELCOME $displayAccountName",Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this,"WELCOME\n$displayAccountName",Toast.LENGTH_SHORT).show()
+
+                        } else if(editTxtFullNameNationalIdLogIn.text.toString().trim().uppercase() == nationalIdLogIn.toString() && editTxtPINLogIn.text.toString().trim() == pinLogIn.toString() && companyNameLogIn.toString() != "to be set" && (accountTagLogIn.toString() == "ADMINISTRATOR" || accountTagLogIn.toString() == "USER")){
+                            val displayAccountName = nameLogIn.toString()
+                            val displayOfficeSiteBranch = officeSiteBranchLogIn.toString()
+                            val displayDepartment = departmentLogIn.toString()
+                            val displayJobTitle = jobTitleLogIn.toString()
+                            val accountTagCheck = accountTagLogIn.toString()
+                            val displayCompanyName = companyNameLogIn.toString()
+
+                            val intent = Intent(this,HomePageDrawerActivity::class.java)
+                            intent.putExtra("nameLogInKey1",displayAccountName)
+                            intent.putExtra("displayOfficeSiteBranchKey1",displayOfficeSiteBranch)
+                            intent.putExtra("displayDepartmentKey1",displayDepartment)
+                            intent.putExtra("displayJobTitleKey1",displayJobTitle)
+                            intent.putExtra("accountTagCheck1",accountTagCheck)
+                            intent.putExtra("displayCompanyNameKey1",displayCompanyName)
+                            editTxtFullNameNationalIdLogIn.text.clear()
+                            editTxtPINLogIn.text.clear()
+
+                            startActivity(intent)
+
+                            Toast.makeText(this,"WELCOME\n$displayAccountName",Toast.LENGTH_SHORT).show()
 
                         } else if (editTxtFullNameNationalIdLogIn.text.toString().trim() == nationalIdLogIn.toString() && editTxtPINLogIn.text.toString().trim() == pinLogIn.toString() && companyNameLogIn.toString() != "to be set" && (accountTagLogIn.toString() == "ADMINISTRATOR" || accountTagLogIn.toString() == "USER")){
                             val displayAccountName = nameLogIn.toString()
@@ -550,7 +684,6 @@ class LoginActivity : AppCompatActivity(){
         btnCreateAccount.setOnClickListener {
             val intent = Intent(this,MainActivity::class.java)
             startActivity(intent)
-            Toast.makeText(this,"CREATE ACCOUNT",Toast.LENGTH_SHORT).show()
         }
     }
     override fun onSupportNavigateUp(): Boolean{

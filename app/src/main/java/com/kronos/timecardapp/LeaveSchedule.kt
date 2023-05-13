@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.media.Image
 import android.os.Bundle
 import android.view.Gravity
 import androidx.fragment.app.Fragment
@@ -13,6 +14,7 @@ import android.view.ViewGroup
 import android.view.Window
 import android.widget.*
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -23,7 +25,7 @@ class LeaveSchedule : Fragment() {
     private lateinit var editTxtDateStartLeaveSchedule: EditText
     private lateinit var editTxtDateEndLeaveSchedule: EditText
     private lateinit var btnGenerateLeaveSchedule: Button
-    private lateinit var applyLeaveBtn: LinearLayout
+    private lateinit var applyLeaveBtn: FloatingActionButton
     private lateinit var employeeList: ArrayList<String>
     private lateinit var employeeNameList: ArrayList<String>
     private lateinit var relieverNameList: ArrayList<String>
@@ -125,7 +127,12 @@ class LeaveSchedule : Fragment() {
                     datePickerDialog.show()
                 }
             }
-
+            val btnCancelApproveLeave = dialog.findViewById<ImageView>(R.id.btnCancelApproveLeave)
+            if (btnCancelApproveLeave != null) {
+                btnCancelApproveLeave.setOnClickListener {
+                    dialog.dismiss()
+                }
+            }
             val btnNextApproveLeave = dialog.findViewById<Button>(R.id.btnNextApproveLeave)
             if (btnNextApproveLeave != null) {
                 btnNextApproveLeave.setOnClickListener {
@@ -163,24 +170,101 @@ class LeaveSchedule : Fragment() {
                                             val differenceDays = (difference / (24*60*60*1000)) % 365
                                             noOfDays = differenceDays.toString()
 
-                                            val passName = spinnerEmployeeName.text.toString()
-                                            val passLeave = spinnerLeaveSelection.text.toString()
-                                            val passStartDate = editTxtStartDate.text.toString()
-                                            val passEndDate = editTxtEndDate.text.toString()
-                                            val passReliever = spinnerRelieverNames.text.toString()
-                                            val passNoOfDays = noOfDays
+                                            val dialog1 = BottomSheetDialog(v.context)
+                                            dialog1.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                                            dialog1.setContentView(R.layout.bottomsheet_approveleave)
 
-                                            val intent = Intent(v.context,ApproveLeaveActivity::class.java)
+                                            val name = spinnerEmployeeName.text.toString()
+                                            val leaveType = spinnerLeaveSelection.text.toString()
+                                            val dateFrom = editTxtStartDate.text.toString()
+                                            val dateTo = editTxtEndDate.text.toString()
+                                            val noOfDays = noOfDays
+                                            val reliever = spinnerRelieverNames.text.toString()
 
-                                            intent.putExtra("Name",passName)
-                                            intent.putExtra("Leave",passLeave)
-                                            intent.putExtra("StartDate",passStartDate)
-                                            intent.putExtra("EndDate",passEndDate)
-                                            intent.putExtra("Reliever",passReliever)
-                                            intent.putExtra("NoOfDays",passNoOfDays)
+                                            val txtViewLeaveName = dialog1.findViewById<TextView>(R.id.txtViewLeaveName)
+                                            val displayName = name
+                                            if (txtViewLeaveName != null) {
+                                                txtViewLeaveName.text = displayName
+                                            }
 
-                                            startActivity(intent)
-                                            Toast.makeText(v.context,"WAITING APPROVAL...",Toast.LENGTH_SHORT).show()
+                                            val txtViewLeaveType = dialog1.findViewById<TextView>(R.id.txtViewLeaveType)
+                                            val displayLeave = leaveType
+                                            if (txtViewLeaveType != null) {
+                                                txtViewLeaveType.text = displayLeave
+                                            }
+
+                                            val txtViewLeaveStartDate = dialog1.findViewById<TextView>(R.id.txtViewLeaveStartDate)
+                                            val displayStartDate = "START DATE:\n$dateFrom"
+                                            if (txtViewLeaveStartDate != null) {
+                                                txtViewLeaveStartDate.text = displayStartDate
+                                            }
+
+                                            val txtViewLeaveEndDate= dialog1.findViewById<TextView>(R.id.txtViewLeaveEndDate)
+                                            val displayEndDate = "RETURN DATE:\n$dateTo"
+                                            if (txtViewLeaveEndDate != null) {
+                                                txtViewLeaveEndDate.text = displayEndDate
+                                            }
+
+                                            val txtViewLeaveReliever = dialog1.findViewById<TextView>(R.id.txtViewLeaveReliever)
+                                            val displayReliever = "RELIEVER:\n$reliever"
+                                            if (txtViewLeaveReliever != null) {
+                                                txtViewLeaveReliever.text = displayReliever
+                                            }
+
+                                            val txtViewLeaveNoOfDays = dialog1.findViewById<TextView>(R.id.txtViewLeaveNoOfDays)
+                                            val displayNoOfDays = "$noOfDays DAYS"
+                                            if (txtViewLeaveNoOfDays != null) {
+                                                txtViewLeaveNoOfDays.text = displayNoOfDays
+                                            }
+
+                                            val editTxtLeaveAdminKey = dialog1.findViewById<EditText>(R.id.editTxtLeaveAdminKey)
+
+                                            val btnCancelApproveLeave2 = dialog1.findViewById<ImageView>(R.id.btnCancelApproveLeave2)
+                                            if (btnCancelApproveLeave2 != null) {
+                                                btnCancelApproveLeave2.setOnClickListener {
+                                                    dialog1.dismiss()
+                                                }
+                                            }
+                                            val btnFinishLeaveApplication = dialog1.findViewById<Button>(R.id.btnFinishLeaveApplication)
+                                            if (btnFinishLeaveApplication != null) {
+                                                btnFinishLeaveApplication.setOnClickListener {
+                                                    val adminLeaveKey = "0ff1c3-sp4c3"
+
+                                                    val db = DBHelper(v.context, null)
+                                                    val cursor = db.getLoginDetails()
+
+                                                    if (editTxtLeaveAdminKey != null) {
+                                                        if(editTxtLeaveAdminKey.text.toString().trim().isEmpty() || editTxtLeaveAdminKey.text.toString().trim() != adminLeaveKey ){
+                                                            Toast.makeText(v.context,"ENTER VALID ADMIN KEY",Toast.LENGTH_SHORT).show()
+                                                        }  else if(editTxtLeaveAdminKey.text.toString().trim() == adminLeaveKey){
+                                                            if(cursor!!.moveToFirst()){
+                                                                do{
+                                                                    val nameCheck1 = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.NAME_COL))
+                                                                    val accountTagCheck = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.ACCOUNT_TAG))
+
+                                                                    if(accountTagCheck.toString() == "ADMINISTRATOR"){
+                                                                        val authorizedBy = nameCheck1.toString()
+
+                                                                        val db1 = DBHelper3(v.context, null)
+                                                                        db1.addDetails(name, leaveType, dateFrom, dateTo, noOfDays, reliever, authorizedBy)
+
+                                                                        dialog1.dismiss()
+
+                                                                        Toast.makeText(v.context,"LEAVE APPLICATION SUCCESSFUL",Toast.LENGTH_SHORT).show()
+                                                                        break
+                                                                    }
+                                                                } while(cursor.moveToNext())
+                                                            }
+                                                            cursor.close()
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            dialog1.show()
+                                            dialog1.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+                                            dialog1.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                                            dialog1.window!!.attributes.windowAnimations = R.style.DialogAnimation
+                                            dialog1.window!!.setGravity(Gravity.BOTTOM)
                                         }
                                     }
                                 }

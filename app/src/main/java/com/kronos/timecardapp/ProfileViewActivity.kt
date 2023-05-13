@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.provider.ContactsContract.CommonDataKinds.Im
 import android.view.Gravity
 import android.view.Menu
 import android.view.MenuInflater
@@ -15,6 +16,7 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -205,7 +207,7 @@ class ProfileViewActivity : AppCompatActivity() {
                         }
                     }
                 }
-                val btnCancelAccountTagEdit = dialog.findViewById<Button>(R.id.btnCancelAccountTagEdit)
+                val btnCancelAccountTagEdit = dialog.findViewById<ImageView>(R.id.btnCancelAccountTagEdit)
                 if (btnCancelAccountTagEdit != null) {
                     btnCancelAccountTagEdit.setOnClickListener {
                         dialog.dismiss()
@@ -280,7 +282,7 @@ class ProfileViewActivity : AppCompatActivity() {
                         }
                     }
                 }
-                val btnCancelNameTagEdit = dialog.findViewById<Button>(R.id.btnCancelNameEdit)
+                val btnCancelNameTagEdit = dialog.findViewById<ImageView>(R.id.btnCancelNameEdit)
                 if (btnCancelNameTagEdit != null) {
                     btnCancelNameTagEdit.setOnClickListener {
                         dialog.dismiss()
@@ -373,7 +375,7 @@ class ProfileViewActivity : AppCompatActivity() {
                         }
                     }
                 }
-                val btnCancelPersonalDetailsTagEdit = dialog.findViewById<Button>(R.id.btnCancelPersonalDetailsEdit)
+                val btnCancelPersonalDetailsTagEdit = dialog.findViewById<ImageView>(R.id.btnCancelPersonalDetailsEdit)
                 if (btnCancelPersonalDetailsTagEdit != null) {
                     btnCancelPersonalDetailsTagEdit.setOnClickListener {
                         dialog.dismiss()
@@ -441,7 +443,7 @@ class ProfileViewActivity : AppCompatActivity() {
                     }
                 }
 
-                val btnCancelCompanyTagEdit = dialog.findViewById<Button>(R.id.btnCancelCompanyEdit)
+                val btnCancelCompanyTagEdit = dialog.findViewById<ImageView>(R.id.btnCancelCompanyEdit)
                 if (btnCancelCompanyTagEdit != null) {
                     btnCancelCompanyTagEdit.setOnClickListener {
                         dialog.dismiss()
@@ -507,7 +509,7 @@ class ProfileViewActivity : AppCompatActivity() {
                         }
                     }
                 }
-                val btnCancelJobDescriptionTagEdit = dialog.findViewById<Button>(R.id.btnCancelJobDescriptionEdit)
+                val btnCancelJobDescriptionTagEdit = dialog.findViewById<ImageView>(R.id.btnCancelJobDescriptionEdit)
                 if (btnCancelJobDescriptionTagEdit != null) {
                     btnCancelJobDescriptionTagEdit.setOnClickListener {
                         dialog.dismiss()
@@ -568,7 +570,7 @@ class ProfileViewActivity : AppCompatActivity() {
                     }
                 }
 
-                val btnCancelContactInformationTagEdit = dialog.findViewById<Button>(R.id.btnCancelContactInformationEdit)
+                val btnCancelContactInformationTagEdit = dialog.findViewById<ImageView>(R.id.btnCancelContactInformationEdit)
                 if (btnCancelContactInformationTagEdit != null) {
                     btnCancelContactInformationTagEdit.setOnClickListener {
                         dialog.dismiss()
@@ -648,7 +650,7 @@ class ProfileViewActivity : AppCompatActivity() {
                     }
                 }
 
-                val btnCancelPINEdit = dialog.findViewById<Button>(R.id.btnCancelPINEdit)
+                val btnCancelPINEdit = dialog.findViewById<ImageView>(R.id.btnCancelPINEdit)
                 if (btnCancelPINEdit != null) {
                     btnCancelPINEdit.setOnClickListener {
                         dialog.dismiss()

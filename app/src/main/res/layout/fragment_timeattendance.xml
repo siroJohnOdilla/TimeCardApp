@@ -114,6 +114,7 @@
                     android:id="@+id/btnGenerateTimeAttendance"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
                     android:text="Generate attendance record"
                     android:background="@drawable/rounded_button"
                     app:backgroundTint="#39C83B"

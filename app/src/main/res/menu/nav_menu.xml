@@ -15,7 +15,7 @@
             <item
                 android:id="@+id/itemTimeAttendance"
                 android:icon="@drawable/time"
-                android:title="Time Attendance Records"/>
+                android:title="Attendance Records"/>
 
         </menu>
 
@@ -37,6 +37,11 @@
     <item android:title="Profile">
 
         <menu>
+
+            <item
+                android:id="@+id/itemProfileView"
+                android:icon="@drawable/user"
+                android:title="My Profile"/>
 
             <item
                 android:id="@+id/itemProfile"

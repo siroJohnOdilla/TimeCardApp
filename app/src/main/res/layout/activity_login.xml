@@ -31,7 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="25dp"
-        android:format24Hour=" HH : mm . ss "
+        android:format24Hour="HH : mm . ss"
         android:textColor="@color/black"
         android:textSize="40sp"/>
 
@@ -103,27 +103,34 @@
         android:textSize="12sp"
         android:textStyle="bold"/>
 
-    <Button
-        android:id="@+id/btnClockIn"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/rounded_button"
-        app:backgroundTint="#39C83B"
-        android:text="Clock in"
-        android:textColor="@color/white"
-        android:textStyle="bold"/>
+        android:layout_marginBottom="170dp"
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/btnClockOut"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="120dp"
-        android:background="@drawable/rounded_button"
-        app:backgroundTint="#F40519"
-        android:text="Clock Out"
-        android:textColor="@color/white"
-        android:textStyle="bold"/>
+        <Button
+            android:id="@+id/btnClockIn"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="80dp"
+            android:background="@drawable/rounded_button"
+            app:backgroundTint="#39C83B"
+            android:text="Clock in"
+            android:textColor="@color/white"
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/btnClockOut"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_button"
+            android:text="Clock Out"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:backgroundTint="#F40519" />
+
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"

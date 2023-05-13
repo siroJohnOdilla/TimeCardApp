@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.view.Window
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -69,7 +70,7 @@ class CustomAdapter(private val mList: List<ItemsViewModel>) : RecyclerView.Adap
                         val txtViewDisplayMessageProfileAccess = dialog.findViewById<TextView>(R.id.txtViewDisplayMessageProfileAccess)
                         val displayMessage = nameVerify
 
-                        val btnCancelPINProfileAccess = dialog.findViewById<Button>(R.id.btnCancelPINProfileAccess)
+                        val btnCancelPINProfileAccess = dialog.findViewById<ImageView>(R.id.btnCancelPINProfileAccess)
                         if (btnCancelPINProfileAccess != null) {
                             btnCancelPINProfileAccess.setOnClickListener {
                                 dialog.dismiss()
@@ -101,11 +102,10 @@ class CustomAdapter(private val mList: List<ItemsViewModel>) : RecyclerView.Adap
 
                                                     intent.putExtra("NamePass",nameVerify)
                                                     editTxtEnterPINProfileAccess.text.clear()
+                                                    dialog.dismiss()
                                                     ItemView.context.startActivity(intent)
 
-                                                    Toast.makeText(ItemView.context,"FETCHING PROFILE INFORMATION...",Toast.LENGTH_SHORT).show()
                                                 }
-
                                             } while(cursor.moveToNext())
                                         }
                                         cursor.close()
@@ -113,7 +113,6 @@ class CustomAdapter(private val mList: List<ItemsViewModel>) : RecyclerView.Adap
                                 }
                             }
                         }
-
                         dialog.show()
                         dialog.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
                         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))

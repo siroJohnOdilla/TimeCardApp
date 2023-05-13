@@ -57,7 +57,7 @@ class ProfileViewListActivity : AppCompatActivity() {
 
         adapter.setOnClickListener(object: CustomAdapter.onItemClickListener{
             override fun onItemClick(position: Int) {
-                Toast.makeText(this@ProfileViewListActivity,"WAITING FOR APPROVAL...",Toast.LENGTH_SHORT).show()
+
             }
         })
     }

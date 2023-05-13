@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.view.Window
 import android.widget.*
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -21,7 +22,7 @@ class VisitorBook : Fragment() {
     private lateinit var spinnerVisitorBook: AutoCompleteTextView
     private lateinit var editTxtDateStartVisitorBook: EditText
     private lateinit var editTxtDateEndVisitorBook: EditText
-    private lateinit var addVisitorBtn: LinearLayout
+    private lateinit var addVisitorBtn: FloatingActionButton
     private lateinit var btnGenerateVisitorBook: Button
     private lateinit var visitorList: ArrayList<String>
 
@@ -111,7 +112,7 @@ class VisitorBook : Fragment() {
                     }
                 }
             }
-            val btnCancelRegisterVisitor = dialog.findViewById<Button>(R.id.btnCancelRegisterVisitor)
+            val btnCancelRegisterVisitor = dialog.findViewById<ImageView>(R.id.btnCancelRegisterVisitor)
             if (btnCancelRegisterVisitor != null) {
                 btnCancelRegisterVisitor.setOnClickListener {
                     dialog.dismiss()

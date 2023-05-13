@@ -7,11 +7,19 @@
     android:padding="20dp"
     android:background="@drawable/rounded_dialog">
 
+    <ImageView
+        android:id="@+id/btnCancelJobDescriptionEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/close" />
+
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:startIconDrawable="@drawable/site_branch"
         app:endIconMode="clear_text"
-        android:backgroundTint="#700DEA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
@@ -26,15 +34,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:backgroundTint="#700DEA"
-            android:textColor="#F8DD30" />
+            android:textColor="@color/black" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:startIconDrawable="@drawable/department"
         app:endIconMode="clear_text"
-        android:backgroundTint="#700DEA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
@@ -49,18 +55,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:backgroundTint="#700DEA"
-            android:textColor="#F8DD30" />
+            android:textColor="@color/black" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:startIconDrawable="@drawable/job_title"
         app:endIconMode="clear_text"
-        android:backgroundTint="#700DEA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="50dp"
         app:boxCornerRadiusTopStart="30dp"
         app:boxCornerRadiusBottomStart="30dp"
         app:boxCornerRadiusTopEnd="30dp"
@@ -72,8 +76,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:backgroundTint="#700DEA"
-            android:textColor="#F8DD30"/>
+            android:textColor="@color/black"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -84,16 +87,6 @@
         android:background="@drawable/rounded_button"
         app:backgroundTint="#39C83B"
         android:text="SAVE"
-        android:textColor="@color/white"
-        android:textStyle="bold"/>
-
-    <Button
-        android:id="@+id/btnCancelJobDescriptionEdit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rounded_button"
-        android:backgroundTint="#F40519"
-        android:text="CLOSE"
         android:textColor="@color/white"
         android:textStyle="bold"/>
 

@@ -111,10 +111,27 @@
                         android:textColor="@color/black"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/applyLeaveBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:clickable="true"
+                    app:fabSize="normal"
+                    android:src="@drawable/apply_leave"
+                    app:backgroundTint="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.97"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.902" />
+
                 <Button
                     android:id="@+id/btnGenerateLeaveSchedule"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
                     android:background="@drawable/rounded_button"
                     app:backgroundTint="#39C83B"
                     android:text="Open Leave schedule"
@@ -126,33 +143,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="1.0" />
-
-                <LinearLayout
-                    android:id="@+id/applyLeaveBtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:focusable="true"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.466"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.12">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingEnd="10dp"
-                        android:src="@drawable/apply_leave" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Apply for Leave"
-                        android:textSize="18sp"/>
-
-                </LinearLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

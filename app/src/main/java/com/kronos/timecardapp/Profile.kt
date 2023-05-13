@@ -50,7 +50,6 @@ class Profile : Fragment() {
 
             spinnerProfileEmployeeName.text.clear()
             startActivity(intent)
-            Toast.makeText(v.context,"FETCHING PROFILES...",Toast.LENGTH_SHORT).show()
         }
         return v
     }
