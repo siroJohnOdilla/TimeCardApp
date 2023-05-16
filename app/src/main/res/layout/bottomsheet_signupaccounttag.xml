@@ -1,50 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/rounded_dialog"
-    android:padding="20dp">
+    android:padding="20dp"
+    android:background="@drawable/rounded_dialog">
+
+    <ImageView
+        android:id="@+id/btnCancelAccountTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/baseline_arrow_back_ios_new_24" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="1. Account:"
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
 
     <LinearLayout
-        android:id="@+id/linearLayout2"
+        android:id="@+id/btnAdminSignUp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="5dp"
+        android:clickable="true"
+        android:focusable="true"
         android:orientation="horizontal">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingEnd="10dp"
-            android:src="@drawable/delete" />
+            android:src="@drawable/user" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Delete Profile"
+            android:text="ADMINISTRATOR"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:text="Are you sure?"
-        android:textSize="15sp"
-        android:textColor="@color/black"
-        android:textStyle="bold" />
-
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:startIconDrawable="@drawable/key"
-        app:endIconMode="password_toggle"
+        app:endIconMode="clear_text"
+        app:backgroundTint="@color/black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="30dp"
         app:boxCornerRadiusTopStart="30dp"
         app:boxCornerRadiusBottomStart="30dp"
         app:boxCornerRadiusTopEnd="30dp"
@@ -52,7 +64,7 @@
         android:hint="Admin Key">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTxtLeaveAdminKeyDelete"
+            android:id="@+id/editTxtAdminKey"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -60,33 +72,37 @@
             android:textColor="@color/black"/>
     </com.google.android.material.textfield.TextInputLayout>
 
+    <TextView
+        android:id="@+id/txtAdminOrUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:textStyle="bold"/>
+
     <LinearLayout
+        android:id="@+id/btnUserSignUp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:clickable="true"
+        android:focusable="true"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btnNoDelete"
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="170dp"
-            android:background="@drawable/rounded_button"
-            app:backgroundTint="#F40519"
-            android:text="NO"
-            android:textColor="@color/white"
-            android:textStyle="bold"/>
+            android:paddingEnd="10dp"
+            android:src="@drawable/user" />
 
-        <Button
-            android:id="@+id/btnYesDelete"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/rounded_button"
-            app:backgroundTint="#39C83B"
-            android:text="YES"
-            android:textColor="@color/white"
-            android:textStyle="bold"/>
-
+            android:text="USER"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </LinearLayout>

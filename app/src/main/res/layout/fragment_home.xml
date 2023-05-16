@@ -59,44 +59,14 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.069" />
-
-                <TextView
-                    android:id="@+id/txtDisplayCurrentDay"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Sunday"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="55sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.178" />
-
-                <TextView
-                    android:id="@+id/txtDisplayCurrentDate"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="February 12, 2023"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="30sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.316" />
+                    app:layout_constraintVertical_bias="0.054" />
 
                 <TextView
                     android:id="@+id/txtDisplayOfficeSiteBranch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="LANG'ATA HOUSE"
-                    android:textAlignment="textEnd"
+                    android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="15sp"
                     android:textStyle="bold"
@@ -104,69 +74,45 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.689" />
+                    app:layout_constraintVertical_bias="0.206" />
 
                 <TextView
                     android:id="@+id/txtDisplayCompanyName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="PRIME CLEANING SERVICES"
-                    android:textAlignment="textEnd"
+                    android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.2"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.626" />
+                    app:layout_constraintVertical_bias="0.159" />
 
-                <TextClock
-                    android:id="@+id/txtDisplayTime"
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabLayoutTimeCard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:format24Hour=" HH : mm : ss "
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="50sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.475" />
+                    app:layout_constraintVertical_bias="0.288" />
 
-                <Button
-                    android:id="@+id/btnClockIn"
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:backgroundTint="#39C83B"
-                    android:text="Clock in"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.375"
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/viewPagerTimeCard"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintTop_toBottomOf="@+id/tabLayoutTimeCard"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.859" />
-
-                <Button
-                    android:id="@+id/btnClockOut"
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:backgroundTint="#F40519"
-                    android:text="Clock Out"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.375"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="1.0" />
+                    app:layout_constraintBottom_toBottomOf="parent"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
         </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

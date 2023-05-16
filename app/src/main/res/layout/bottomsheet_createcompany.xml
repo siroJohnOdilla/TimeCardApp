@@ -8,7 +8,7 @@
     android:background="@drawable/rounded_dialog">
 
     <ImageView
-        android:id="@+id/btnCancelPersonalDetailsEdit"
+        android:id="@+id/btnCancelCompany"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -17,28 +17,8 @@
         android:src="@drawable/baseline_arrow_back_ios_new_24" />
 
     <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        app:boxCornerRadiusTopStart="30dp"
-        app:boxCornerRadiusBottomStart="30dp"
-        app:boxCornerRadiusTopEnd="30dp"
-        app:boxCornerRadiusBottomEnd="30dp"
-        app:startIconDrawable="@drawable/gender"
-        android:hint="Gender">
-
-        <AutoCompleteTextView
-            android:id="@+id/spinnerGenderEdit"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:textColor="@color/black"/>
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:startIconDrawable="@drawable/national_id"
+        app:startIconDrawable="@drawable/site_branch"
         app:endIconMode="clear_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -47,20 +27,40 @@
         app:boxCornerRadiusBottomStart="30dp"
         app:boxCornerRadiusTopEnd="30dp"
         app:boxCornerRadiusBottomEnd="30dp"
-        android:hint="National ID No.">
+        android:hint="Company Name">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTxtNationalIDNoEdit"
+            android:id="@+id/editTxtCompanyNameCreate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="number"
             android:textColor="@color/black" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:startIconDrawable="@drawable/calender"
+        app:startIconDrawable="@drawable/site_branch"
+        app:endIconMode="clear_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxCornerRadiusTopStart="30dp"
+        app:boxCornerRadiusBottomStart="30dp"
+        app:boxCornerRadiusTopEnd="30dp"
+        app:boxCornerRadiusBottomEnd="30dp"
+        android:layout_marginBottom="10dp"
+        android:hint="Company Initials">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTxtCompanyNameInitials"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:textColor="@color/black"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:startIconDrawable="@drawable/key"
         app:endIconMode="clear_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -69,29 +69,41 @@
         app:boxCornerRadiusBottomStart="30dp"
         app:boxCornerRadiusTopEnd="30dp"
         app:boxCornerRadiusBottomEnd="30dp"
-        android:hint="Date of Birth">
+        android:hint="Admission Key">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTxtDateOfBirthEdit"
+            android:id="@+id/editTxtCompanyAdmissionKey"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="date"
-            android:clickable="false"
-            android:cursorVisible="false"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
             android:textColor="@color/black"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/btnSavePersonalDetailsEdit"
+        android:id="@+id/btnFinishCompanyNameRegistration"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="30dp"
         android:background="@drawable/rounded_button"
         app:backgroundTint="#39C83B"
-        android:text="SAVE"
+        android:text="Finish"
+        android:textColor="@color/white"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Already have a company?..."
+        android:textColor="@color/black"/>
+
+    <Button
+        android:id="@+id/btnJoinCompany2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_button"
+        app:backgroundTint="@color/black"
+        android:text="Join Company"
         android:textColor="@color/white"
         android:textStyle="bold"/>
 

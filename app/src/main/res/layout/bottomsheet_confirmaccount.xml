@@ -7,24 +7,6 @@
     android:padding="20dp"
     android:background="@drawable/rounded_dialog">
 
-    <ImageView
-        android:id="@+id/btnCancelApproveLeave2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:focusable="true"
-        android:layout_marginBottom="20dp"
-        android:src="@drawable/baseline_arrow_back_ios_new_24" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="LEAVE APPLICATION :"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,37 +17,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingEnd="10dp"
-            android:src="@drawable/user" />
+            android:src="@drawable/baseline_check_circle_outline_24" />
 
         <TextView
-            android:id="@+id/txtViewLeaveName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="JOHN ODILLA SIRO"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingEnd="10dp"
-            android:src="@drawable/sign_out" />
-
-        <TextView
-            android:id="@+id/txtViewLeaveType"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="MATERNITY"
-            android:textColor="@color/black"
+            android:text="PROFILE COMPLETE!"
+            android:textColor="#39C83B"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -81,126 +39,202 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingEnd="10dp"
-            android:src="@drawable/calender" />
-
-        <TextView
-            android:id="@+id/txtViewLeaveStartDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="START DATE: 01-01-1900"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingEnd="10dp"
-            android:src="@drawable/calender" />
-
-        <TextView
-            android:id="@+id/txtViewLeaveEndDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="RETURN DATE: 01-03-1900"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingEnd="10dp"
-            android:src="@drawable/time" />
-
-        <TextView
-            android:id="@+id/txtViewLeaveNoOfDays"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="90 DAYS"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingEnd="10dp"
             android:src="@drawable/user" />
 
         <TextView
-            android:id="@+id/txtViewLeaveReliever"
+            android:id="@+id/txtName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="FIRST MIDDLE LAST"
+            android:text="NAME:\nJOHN ODILLA SIRO"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
-
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="APPROVED BY:"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:startIconDrawable="@drawable/key"
-        app:endIconMode="password_toggle"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
-        app:boxCornerRadiusTopStart="30dp"
-        app:boxCornerRadiusBottomStart="30dp"
-        app:boxCornerRadiusTopEnd="30dp"
-        app:boxCornerRadiusBottomEnd="30dp"
-        android:hint="Admin Key">
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTxtLeaveAdminKey"
-            android:layout_width="match_parent"
+        <ImageView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPassword"
-            android:textColor="@color/black"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            android:paddingEnd="10dp"
+            android:src="@drawable/gender" />
+
+        <TextView
+            android:id="@+id/txtGender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GENDER:\nMALE"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingEnd="10dp"
+            android:src="@drawable/national_id" />
+
+        <TextView
+            android:id="@+id/txtNationalId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NATIONAL ID NO.:\n12345678"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingEnd="10dp"
+            android:src="@drawable/calender" />
+
+        <TextView
+            android:id="@+id/txtDateOfBirth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DATE OF BIRTH:\n01-01-1900"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingEnd="10dp"
+            android:src="@drawable/site_branch" />
+
+        <TextView
+            android:id="@+id/txtSiteBranch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OFFICE/SITE BRANCH:\nLANGATA HOUSE"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingEnd="10dp"
+            android:src="@drawable/department" />
+
+        <TextView
+            android:id="@+id/txtDepartment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DEPARTMENT:\nSANITATION"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingEnd="10dp"
+            android:src="@drawable/job_title" />
+
+        <TextView
+            android:id="@+id/txtJobTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="JOB TITLE:\nCLEANER"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingEnd="10dp"
+            android:src="@drawable/email" />
+
+        <TextView
+            android:id="@+id/txtEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="EMAIL:\njohn@outlook.com"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingEnd="10dp"
+            android:src="@drawable/phone" />
+
+        <TextView
+            android:id="@+id/txtTelephone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TELEPHONE NO.:\n0700000000"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <Button
-        android:id="@+id/btnFinishLeaveApplication"
+        android:id="@+id/btnOkAttendanceConfirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Finish"
-        android:background="@drawable/rounded_button"
-        app:backgroundTint="#39C83B"
+        app:backgroundTint="@color/black"
+        android:text="OK"
         android:textColor="@color/white"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:background="@drawable/rounded_button"/>
 
 </LinearLayout>

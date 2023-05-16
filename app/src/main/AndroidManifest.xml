@@ -23,18 +23,9 @@
         tools:targetApi="31">
 
         <activity android:name=".MainActivity"/>
-        <activity android:name=".SignUpNameActivity"/>
-        <activity android:name=".SignUpPersonalDetailsActivity"/>
-        <activity android:name=".SignUpJobDescriptionActivity"/>
-        <activity android:name=".SignUpContactInformationActivity"/>
-        <activity android:name=".SignUpSetPINActivity"/>
-        <activity android:name=".CreateCompanyActivity"/>
-        <activity android:name=".JoinCompanyActivity"/>
         <activity android:name=".HomePageDrawerActivity"/>
         <activity android:name=".TimeAttendanceViewActivity"/>
         <activity android:name=".LeaveScheduleView2Activity"/>
-        <activity android:name=".ApplyLeaveActivity"/>
-        <activity android:name=".ApproveLeaveActivity"/>
         <activity android:name=".ProfileViewListActivity"/>
         <activity android:name=".ProfileViewActivity"/>
         <activity android:name=".SettingsActivity"/>

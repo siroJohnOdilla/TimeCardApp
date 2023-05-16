@@ -14,7 +14,7 @@
         android:clickable="true"
         android:focusable="true"
         android:layout_marginBottom="20dp"
-        android:src="@drawable/close" />
+        android:src="@drawable/baseline_arrow_back_ios_new_24" />
 
     <TextView
         android:id="@+id/txtViewDisplayMessageProfileAccess"
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:text="TextView"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textStyle="bold"/>
@@ -33,6 +33,8 @@
         app:endIconMode="password_toggle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:counterEnabled="true"
+        app:counterMaxLength="4"
         android:layout_marginBottom="50dp"
         app:boxCornerRadiusTopStart="30dp"
         app:boxCornerRadiusBottomStart="30dp"
@@ -44,6 +46,7 @@
             android:id="@+id/editTxtEnterPINProfileAccess"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:maxLength="4"
             android:ems="10"
             android:inputType="numberPassword"
             android:textColor="@color/black" />

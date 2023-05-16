@@ -8,7 +8,7 @@
     android:background="@drawable/rounded_dialog">
 
     <ImageView
-        android:id="@+id/btnCancelAccountTagEdit"
+        android:id="@+id/btnCancelJoinCompany"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -17,7 +17,9 @@
         android:src="@drawable/baseline_arrow_back_ios_new_24" />
 
     <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:startIconDrawable="@drawable/key"
+        app:endIconMode="password_toggle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
@@ -25,26 +27,25 @@
         app:boxCornerRadiusBottomStart="30dp"
         app:boxCornerRadiusTopEnd="30dp"
         app:boxCornerRadiusBottomEnd="30dp"
-        app:startIconDrawable="@drawable/user"
-        android:hint="Account Type">
+        android:hint="Company Admission Key">
 
-        <AutoCompleteTextView
-            android:id="@+id/spinnerAccountTag"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTxtJoinCompanyAdmissionKey"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPassword"
             android:textColor="@color/black"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/btnSaveAccountTagEdit"
+        android:id="@+id/btnSubmitAdmissionKey"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
         android:background="@drawable/rounded_button"
         app:backgroundTint="#39C83B"
-        android:text="SAVE"
+        android:text="SUBMIT"
         android:textColor="@color/white"
-        android:textStyle="bold" />
+        android:textStyle="bold"/>
 
 </LinearLayout>

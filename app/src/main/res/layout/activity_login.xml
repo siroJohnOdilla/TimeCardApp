@@ -46,6 +46,7 @@
         app:boxCornerRadiusBottomEnd="30dp"
         app:backgroundTint="@color/black"
         android:hint="Full Name or National ID No."
+        app:errorEnabled="true"
         app:startIconDrawable="@drawable/user">
 
         <AutoCompleteTextView
@@ -65,16 +66,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
+        app:counterEnabled="true"
+        app:counterMaxLength="4"
         app:boxCornerRadiusTopStart="30dp"
         app:boxCornerRadiusBottomStart="30dp"
         app:boxCornerRadiusTopEnd="30dp"
         app:boxCornerRadiusBottomEnd="30dp"
+        app:errorEnabled="true"
         android:hint="PIN">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTxtPINLogIn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:maxLength="4"
             android:ems="10"
             android:textColor="@color/black"
             android:textColorHighlight="@color/black"
@@ -97,16 +102,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:text="- OR -"
+        android:text="OR"
         android:textColor="@color/black"
         android:textAlignment="center"
-        android:textSize="12sp"
+        android:textSize="15sp"
         android:textStyle="bold"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="170dp"
+        android:layout_marginBottom="130dp"
         android:orientation="horizontal">
 
         <Button
@@ -135,14 +140,14 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Don't have an account?..."
+        android:text="Don't have a profile?..."
         android:textColor="@color/black"/>
 
     <Button
         android:id="@+id/btnCreateAccount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Create account"
+        android:text="Create PROFILE"
         android:textColor="@color/white"
         android:background="@drawable/rounded_button"
         app:backgroundTint="@color/black"
