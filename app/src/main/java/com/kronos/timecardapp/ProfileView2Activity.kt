@@ -5,7 +5,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.provider.ContactsContract.CommonDataKinds.Im
 import android.view.Gravity
 import android.view.Menu
 import android.view.MenuInflater
@@ -17,22 +16,28 @@ import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import java.util.Calendar
-import kotlin.collections.ArrayList
 
-class ProfileViewActivity : AppCompatActivity() {
+class ProfileView2Activity : AppCompatActivity() {
+    private lateinit var txtProfileAccount: TextView
+    private lateinit var txtProfileName: TextView
+    private lateinit var txtProfileGender: TextView
+    private lateinit var txtProfileNationalId: TextView
+    private lateinit var txtProfileDateOfBirth: TextView
+    private lateinit var txtProfileEmail: TextView
+    private lateinit var txtProfileTelephoneNo: TextView
+    private lateinit var txtProfileCompany: TextView
+    private lateinit var txtProfileSiteBranch: TextView
+    private lateinit var txtProfileDepartment: TextView
+    private lateinit var txtProfileJobTitle: TextView
     private lateinit var getName: String
-    private lateinit var titleList: ArrayList<String>
-    private lateinit var infoList: ArrayList<String>
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_profileview)
+        setContentView(R.layout.activity_profileview2)
 
         val actionBar = supportActionBar
         actionBar!!.title = ""
@@ -42,23 +47,8 @@ class ProfileViewActivity : AppCompatActivity() {
 
         val bundle: Bundle? = intent.extras
 
-        val nameFilter = bundle!!.getString("NamePass").toString()
-        getName = nameFilter
-
-        titleList = ArrayList()
-        titleList.add("1.ACCOUNT TYPE")
-        titleList.add("2.NAME")
-        titleList.add("3.PERSONAL DETAILS")
-        titleList.add("4.COMPANY")
-        titleList.add("5.JOB DESCRIPTION")
-        titleList.add("6.CONTACT INFORMATION")
-
-        infoList = ArrayList()
-
-        val recyclerViewDisplayProfile = findViewById<RecyclerView>(R.id.recyclerViewDisplayProfile)
-        recyclerViewDisplayProfile.layoutManager = LinearLayoutManager(this)
-
-        val data = ArrayList<ItemViewModel4>()
+        val passName = bundle!!.getString("passName").toString()
+        getName = passName
 
         val db = DBHelper(this, null)
         val cursor = db.getLoginDetails()
@@ -66,65 +56,71 @@ class ProfileViewActivity : AppCompatActivity() {
         if(cursor!!.moveToFirst()){
             do{
                 val namePrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.NAME_COL))
-                val accountTagPrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.ACCOUNT_TAG))
-                val idNoPrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.NATIONAL_ID))
+                val accountPrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.ACCOUNT_TAG))
                 val genderPrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.GENDER))
+                val nationalIdPrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.NATIONAL_ID))
                 val dateOfBirthPrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.DATE_OF_BIRTH))
+                val emailPrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.EMAIL_ADDRESS_NAME))
+                val telephonePrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.TELEPHONE_NUMBER))
                 val companyPrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.COMPANY_NAME))
                 val companyInitialsPrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.COMPANY_INITIALS))
-                val officeSitePrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.OFFICE_SITE_BRANCH))
+                val siteBranchPrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.OFFICE_SITE_BRANCH))
                 val departmentPrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.DEPARTMENT_NAME))
                 val jobTitlePrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.JOB_TITLE_NAME))
-                val telephonePrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.TELEPHONE_NUMBER))
-                val emailPrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.EMAIL_ADDRESS_NAME))
 
-                if(namePrint.toString() == nameFilter){
-                    val name = namePrint.toString()
+                if(passName == namePrint.toString()){
+                    txtProfileAccount = findViewById(R.id.txtProfileAccount)
+                    val displayAccount = "Account:\n$accountPrint"
+                    txtProfileAccount.text = displayAccount
 
-                    val accountTag = accountTagPrint.toString()
+                    txtProfileName = findViewById(R.id.txtProfileName)
+                    val displayName = "Name:\n$namePrint"
+                    txtProfileName.text = displayName
 
-                    val gender = genderPrint.toString()
-                    val id = idNoPrint.toString()
-                    val dateOfBirth = dateOfBirthPrint.toString()
-                    val detailsJoined = "GENDER: $gender\n\nNATIONAL ID: $id\n\nDATE OF BIRTH: $dateOfBirth"
+                    txtProfileGender = findViewById(R.id.txtProfileGender)
+                    val displayGender = "Gender:\n$genderPrint"
+                    txtProfileGender.text = displayGender
 
-                    val company = companyPrint.toString()
-                    val companyInitials = companyInitialsPrint.toString()
-                    val companyJoined = "$company ($companyInitials)"
+                    txtProfileNationalId = findViewById(R.id.txtProfileNationalId)
+                    val displayNationalId = "National ID No.:\n$nationalIdPrint"
+                    txtProfileNationalId.text = displayNationalId
 
-                    val officeSite = officeSitePrint.toString()
-                    val department = departmentPrint.toString()
-                    val jobTitle = jobTitlePrint.toString()
-                    val jobJoined = "OFFICE SITE: $officeSite\n\nDEPARTMENT: $department\n\nJOB TITLE: $jobTitle"
+                    txtProfileDateOfBirth = findViewById(R.id.txtProfileDateOfBirth)
+                    val displayDateOfBirth = "Date of Birth:\n$dateOfBirthPrint"
+                    txtProfileDateOfBirth.text = displayDateOfBirth
 
-                    val telephone = telephonePrint.toString()
-                    val email = emailPrint.toString()
-                    val contactJoined = "PHONE NO.: $telephone\n\nEMAIL: $email"
+                    txtProfileEmail = findViewById(R.id.txtProfileEmail)
+                    val displayEmail = "E-Mail Address:\n$emailPrint"
+                    txtProfileEmail.text = displayEmail
 
-                    infoList.add(accountTag)
-                    infoList.add(name)
-                    infoList.add(detailsJoined)
-                    infoList.add(companyJoined)
-                    infoList.add(jobJoined)
-                    infoList.add(contactJoined)
+                    txtProfileTelephoneNo = findViewById(R.id.txtProfilePhoneNo)
+                    val displayPhoneNo = "Telephone No.\n$telephonePrint"
+                    txtProfileTelephoneNo.text = displayPhoneNo
 
-                    for(i in 0..5){
-                        val title = titleList[i]
-                        val info = infoList[i]
+                    txtProfileCompany = findViewById(R.id.txtProfileCompany)
+                    val displayCompany = "Company:\n$companyPrint($companyInitialsPrint)"
+                    txtProfileCompany.text = displayCompany
 
-                        data.add(ItemViewModel4(title, info))
-                    }
+                    txtProfileSiteBranch = findViewById(R.id.txtProfileSiteBranch)
+                    val displaySiteBranch = "Office/Site Branch:\n$siteBranchPrint"
+                    txtProfileSiteBranch.text = displaySiteBranch
+
+                    txtProfileDepartment = findViewById(R.id.txtProfileDepartment)
+                    val displayDepartment = "Department:\n$departmentPrint"
+                    txtProfileDepartment.text = displayDepartment
+
+                    txtProfileJobTitle = findViewById(R.id.txtProfileJobTitle)
+                    val displayJobTitle = "Job Title:\n$jobTitlePrint"
+                    txtProfileJobTitle.text = displayJobTitle
                 }
+
             } while(cursor.moveToNext())
         }
-        val adapter = CustomAdapter4(data)
-        recyclerViewDisplayProfile.adapter = adapter
-
-        adapter.setOnClickListener(object: CustomAdapter4.onItemClickListener{
-            override fun onItemClick(position: Int) {
-                getName = nameFilter
-            }
-        })
+        cursor.close()
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater: MenuInflater = menuInflater
@@ -178,7 +174,7 @@ class ProfileViewActivity : AppCompatActivity() {
 
                         if (spinnerAccountTag != null) {
                             if(spinnerAccountTag.text.toString().isEmpty()){
-                                Toast.makeText(this,"SELECT ACCOUNT TAG",Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this,"SELECT ACCOUNT TAG", Toast.LENGTH_SHORT).show()
                             } else {
                                 val db = DBHelper(this, null)
                                 val cursor = db.getLoginDetails()
@@ -236,10 +232,10 @@ class ProfileViewActivity : AppCompatActivity() {
                     btnSaveNameTagEdit.setOnClickListener {
                         if (editTxtFirstNameEdit != null) {
                             if(editTxtFirstNameEdit.text.toString().trim().uppercase().isEmpty()){
-                                Toast.makeText(this,"FIRST NAME REQUIRED",Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this,"FIRST NAME REQUIRED", Toast.LENGTH_SHORT).show()
                             } else if (editTxtLastNameEdit != null) {
                                 if(editTxtLastNameEdit.text.toString().trim().uppercase().isEmpty()){
-                                    Toast.makeText(this,"LAST NAME REQUIRED",Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(this,"LAST NAME REQUIRED", Toast.LENGTH_SHORT).show()
                                 } else {
                                     val db = DBHelper(this, null)
                                     val cursor = db.getLoginDetails()
@@ -339,13 +335,13 @@ class ProfileViewActivity : AppCompatActivity() {
                     btnSavePersonalDetailsTagEdit.setOnClickListener {
                         if (spinnerGenderEdit != null) {
                             if(spinnerGenderEdit.text.toString().isEmpty()){
-                                Toast.makeText(this,"GENDER REQUIRED",Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this,"GENDER REQUIRED", Toast.LENGTH_SHORT).show()
                             } else if (editTxtNationalIDNoEdit != null) {
                                 if(editTxtNationalIDNoEdit.text.toString().isEmpty()){
-                                    Toast.makeText(this,"NATIONAL ID NO. REQUIRED",Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(this,"NATIONAL ID NO. REQUIRED", Toast.LENGTH_SHORT).show()
                                 } else if (editTxtDateOfBirthEdit != null) {
                                     if(editTxtDateOfBirthEdit.text.toString().isEmpty()){
-                                        Toast.makeText(this,"DATE OF BIRTH REQUIRED",Toast.LENGTH_SHORT).show()
+                                        Toast.makeText(this,"DATE OF BIRTH REQUIRED", Toast.LENGTH_SHORT).show()
                                     } else{
                                         val db = DBHelper(this, null)
                                         val cursor = db.getLoginDetails()
@@ -472,13 +468,13 @@ class ProfileViewActivity : AppCompatActivity() {
                     btnSaveJobDescriptionTagEdit.setOnClickListener {
                         if (editTxtOfficeBranchEdit != null) {
                             if(editTxtOfficeBranchEdit.text.toString().trim().uppercase().isEmpty()){
-                                Toast.makeText(this,"OFFICE/ SITE BRANCH REQUIRED",Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this,"OFFICE/ SITE BRANCH REQUIRED", Toast.LENGTH_SHORT).show()
                             } else if (editTxtDepartmentEdit != null) {
                                 if(editTxtDepartmentEdit.text.toString().trim().uppercase().isEmpty()){
-                                    Toast.makeText(this,"DEPARTMENT REQUIRED",Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(this,"DEPARTMENT REQUIRED", Toast.LENGTH_SHORT).show()
                                 } else if (editTxtJobTitleEdit != null) {
                                     if(editTxtJobTitleEdit.text.toString().trim().uppercase().isEmpty()){
-                                        Toast.makeText(this,"JOB TITLE REQUIRED",Toast.LENGTH_SHORT).show()
+                                        Toast.makeText(this,"JOB TITLE REQUIRED", Toast.LENGTH_SHORT).show()
                                     } else{
                                         val db = DBHelper(this, null)
                                         val cursor = db.getLoginDetails()
@@ -537,10 +533,10 @@ class ProfileViewActivity : AppCompatActivity() {
                     btnSaveContactInformationTagEdit.setOnClickListener {
                         if (editTxtEmailAddressEdit != null) {
                             if(editTxtEmailAddressEdit.text.toString().trim().uppercase().isEmpty()){
-                                Toast.makeText(this,"EMAIL ADDRESS REQUIRED",Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this,"EMAIL ADDRESS REQUIRED", Toast.LENGTH_SHORT).show()
                             } else if (editTxtTelephoneNumberEdit != null) {
                                 if(editTxtTelephoneNumberEdit.text.toString().trim().uppercase().isEmpty()){
-                                    Toast.makeText(this,"TELEPHONE NO. REQUIRED",Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(this,"TELEPHONE NO. REQUIRED", Toast.LENGTH_SHORT).show()
                                 } else{
                                     val db = DBHelper(this, null)
                                     val cursor = db.getLoginDetails()
@@ -720,9 +716,5 @@ class ProfileViewActivity : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
-    }
-    override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
-        return true
     }
 }

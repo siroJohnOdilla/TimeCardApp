@@ -7,14 +7,30 @@
     android:padding="20dp"
     android:background="@drawable/rounded_dialog">
 
-    <ImageView
-        android:id="@+id/btnCancelAccountTagEdit"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:focusable="true"
-        android:layout_marginBottom="20dp"
-        android:src="@drawable/baseline_arrow_back_ios_new_24" />
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/btnCancelAccountTagEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingEnd="15dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/baseline_arrow_back_ios_new_24" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Account"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+    </LinearLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
@@ -25,8 +41,7 @@
         app:boxCornerRadiusBottomStart="30dp"
         app:boxCornerRadiusTopEnd="30dp"
         app:boxCornerRadiusBottomEnd="30dp"
-        app:startIconDrawable="@drawable/user"
-        android:hint="Account Type">
+        app:startIconDrawable="@drawable/pin">
 
         <AutoCompleteTextView
             android:id="@+id/spinnerAccountTag"

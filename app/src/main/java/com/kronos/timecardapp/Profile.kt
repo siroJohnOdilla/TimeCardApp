@@ -294,55 +294,55 @@ class Profile : Fragment() {
                                                                                                                                             dialog6.setContentView(R.layout.bottomsheet_confirmaccount)
 
                                                                                                                                             val txtName = dialog6.findViewById<TextView>(R.id.txtName)
-                                                                                                                                            val displayName = "NAME:\n$name"
+                                                                                                                                            val displayName = "Name:\n$name"
                                                                                                                                             if (txtName != null) {
                                                                                                                                                 txtName.text = displayName
                                                                                                                                             }
 
                                                                                                                                             val txtGender = dialog6.findViewById<TextView>(R.id.txtGender)
-                                                                                                                                            val displayGender = "GENDER:\n$gender"
+                                                                                                                                            val displayGender = "Gender:\n$gender"
                                                                                                                                             if (txtGender != null) {
                                                                                                                                                 txtGender.text = displayGender
                                                                                                                                             }
 
                                                                                                                                             val txtNationalId = dialog6.findViewById<TextView>(R.id.txtNationalId)
-                                                                                                                                            val displayNationalId = "NATIONAL ID NO.:\n$nationalId"
+                                                                                                                                            val displayNationalId = "National ID No.:\n$nationalId"
                                                                                                                                             if (txtNationalId != null) {
                                                                                                                                                 txtNationalId.text = displayNationalId
                                                                                                                                             }
 
                                                                                                                                             val txtDateOfBirth = dialog6.findViewById<TextView>(R.id.txtDateOfBirth)
-                                                                                                                                            val displayDateOfBirth = "DATE OF BIRTH:\n$dateOfBirth"
+                                                                                                                                            val displayDateOfBirth = "Date of Birth:\n$dateOfBirth"
                                                                                                                                             if (txtDateOfBirth != null) {
                                                                                                                                                 txtDateOfBirth.text = displayDateOfBirth
                                                                                                                                             }
 
                                                                                                                                             val txtSiteBranch = dialog6.findViewById<TextView>(R.id.txtSiteBranch)
-                                                                                                                                            val displaySiteBranch = "OFFICE/SITE BRANCH:\n$officeSiteBranch"
+                                                                                                                                            val displaySiteBranch = "Office/Site Branch:\n$officeSiteBranch"
                                                                                                                                             if (txtSiteBranch != null) {
                                                                                                                                                 txtSiteBranch.text = displaySiteBranch
                                                                                                                                             }
 
                                                                                                                                             val txtDepartment = dialog6.findViewById<TextView>(R.id.txtDepartment)
-                                                                                                                                            val displayDepartment = "DEPARTMENT:\n$department"
+                                                                                                                                            val displayDepartment = "Department:\n$department"
                                                                                                                                             if (txtDepartment != null) {
                                                                                                                                                 txtDepartment.text = displayDepartment
                                                                                                                                             }
 
                                                                                                                                             val txtJobTitle = dialog6.findViewById<TextView>(R.id.txtJobTitle)
-                                                                                                                                            val displayJobTitle = "JOB TITLE:\n$jobTitle"
+                                                                                                                                            val displayJobTitle = "Job Title:\n$jobTitle"
                                                                                                                                             if (txtJobTitle != null) {
                                                                                                                                                 txtJobTitle.text = displayJobTitle
                                                                                                                                             }
 
                                                                                                                                             val txtEmail = dialog6.findViewById<TextView>(R.id.txtEmail)
-                                                                                                                                            val displayEmail = "E-MAIL ADDRESS:\n$emailAddress"
+                                                                                                                                            val displayEmail = "E-Mail Address:\n$emailAddress"
                                                                                                                                             if (txtEmail != null) {
                                                                                                                                                 txtEmail.text = displayEmail
                                                                                                                                             }
 
                                                                                                                                             val txtTelephone = dialog6.findViewById<TextView>(R.id.txtTelephone)
-                                                                                                                                            val displayTelephone = "TELEPHONE NO.:\n$telephoneNumber"
+                                                                                                                                            val displayTelephone = "Telephone No.:\n$telephoneNumber"
                                                                                                                                             if (txtTelephone != null) {
                                                                                                                                                 txtTelephone.text = displayTelephone
                                                                                                                                             }
@@ -601,55 +601,55 @@ class Profile : Fragment() {
                                                                                                                                             dialog6.setContentView(R.layout.bottomsheet_confirmaccount)
 
                                                                                                                                             val txtName = dialog6.findViewById<TextView>(R.id.txtName)
-                                                                                                                                            val displayName = "NAME:\n$name"
+                                                                                                                                            val displayName = "Name:\n$name"
                                                                                                                                             if (txtName != null) {
                                                                                                                                                 txtName.text = displayName
                                                                                                                                             }
 
                                                                                                                                             val txtGender = dialog6.findViewById<TextView>(R.id.txtGender)
-                                                                                                                                            val displayGender = "GENDER:\n$gender"
+                                                                                                                                            val displayGender = "Gender:\n$gender"
                                                                                                                                             if (txtGender != null) {
                                                                                                                                                 txtGender.text = displayGender
                                                                                                                                             }
 
                                                                                                                                             val txtNationalId = dialog6.findViewById<TextView>(R.id.txtNationalId)
-                                                                                                                                            val displayNationalId = "NATIONAL ID NO.:\n$nationalId"
+                                                                                                                                            val displayNationalId = "National ID No.:\n$nationalId"
                                                                                                                                             if (txtNationalId != null) {
                                                                                                                                                 txtNationalId.text = displayNationalId
                                                                                                                                             }
 
                                                                                                                                             val txtDateOfBirth = dialog6.findViewById<TextView>(R.id.txtDateOfBirth)
-                                                                                                                                            val displayDateOfBirth = "DATE OF BIRTH:\n$dateOfBirth"
+                                                                                                                                            val displayDateOfBirth = "Date of Birth:\n$dateOfBirth"
                                                                                                                                             if (txtDateOfBirth != null) {
                                                                                                                                                 txtDateOfBirth.text = displayDateOfBirth
                                                                                                                                             }
 
                                                                                                                                             val txtSiteBranch = dialog6.findViewById<TextView>(R.id.txtSiteBranch)
-                                                                                                                                            val displaySiteBranch = "OFFICE/SITE BRANCH:\n$officeSiteBranch"
+                                                                                                                                            val displaySiteBranch = "Office/Site Branch:\n$officeSiteBranch"
                                                                                                                                             if (txtSiteBranch != null) {
                                                                                                                                                 txtSiteBranch.text = displaySiteBranch
                                                                                                                                             }
 
                                                                                                                                             val txtDepartment = dialog6.findViewById<TextView>(R.id.txtDepartment)
-                                                                                                                                            val displayDepartment = "DEPARTMENT:\n$department"
+                                                                                                                                            val displayDepartment = "Department:\n$department"
                                                                                                                                             if (txtDepartment != null) {
                                                                                                                                                 txtDepartment.text = displayDepartment
                                                                                                                                             }
 
                                                                                                                                             val txtJobTitle = dialog6.findViewById<TextView>(R.id.txtJobTitle)
-                                                                                                                                            val displayJobTitle = "JOB TITLE:\n$jobTitle"
+                                                                                                                                            val displayJobTitle = "Job Title:\n$jobTitle"
                                                                                                                                             if (txtJobTitle != null) {
                                                                                                                                                 txtJobTitle.text = displayJobTitle
                                                                                                                                             }
 
                                                                                                                                             val txtEmail = dialog6.findViewById<TextView>(R.id.txtEmail)
-                                                                                                                                            val displayEmail = "E-MAIL ADDRESS:\n$emailAddress"
+                                                                                                                                            val displayEmail = "E-Mail Address:\n$emailAddress"
                                                                                                                                             if (txtEmail != null) {
                                                                                                                                                 txtEmail.text = displayEmail
                                                                                                                                             }
 
                                                                                                                                             val txtTelephone = dialog6.findViewById<TextView>(R.id.txtTelephone)
-                                                                                                                                            val displayTelephone = "TELEPHONE NO.:\n$telephoneNumber"
+                                                                                                                                            val displayTelephone = "Telephone No.:\n$telephoneNumber"
                                                                                                                                             if (txtTelephone != null) {
                                                                                                                                                 txtTelephone.text = displayTelephone
                                                                                                                                             }
@@ -966,55 +966,55 @@ class Profile : Fragment() {
                                                                                                                                     dialog6.setContentView(R.layout.bottomsheet_confirmaccount)
 
                                                                                                                                     val txtName = dialog6.findViewById<TextView>(R.id.txtName)
-                                                                                                                                    val displayName = "NAME:\n$name"
+                                                                                                                                    val displayName = "Name:\n$name"
                                                                                                                                     if (txtName != null) {
                                                                                                                                         txtName.text = displayName
                                                                                                                                     }
 
                                                                                                                                     val txtGender = dialog6.findViewById<TextView>(R.id.txtGender)
-                                                                                                                                    val displayGender = "GENDER:\n$gender"
+                                                                                                                                    val displayGender = "Gender:\n$gender"
                                                                                                                                     if (txtGender != null) {
                                                                                                                                         txtGender.text = displayGender
                                                                                                                                     }
 
                                                                                                                                     val txtNationalId = dialog6.findViewById<TextView>(R.id.txtNationalId)
-                                                                                                                                    val displayNationalId = "NATIONAL ID NO.:\n$nationalId"
+                                                                                                                                    val displayNationalId = "National ID No.:\n$nationalId"
                                                                                                                                     if (txtNationalId != null) {
                                                                                                                                         txtNationalId.text = displayNationalId
                                                                                                                                     }
 
                                                                                                                                     val txtDateOfBirth = dialog6.findViewById<TextView>(R.id.txtDateOfBirth)
-                                                                                                                                    val displayDateOfBirth = "DATE OF BIRTH:\n$dateOfBirth"
+                                                                                                                                    val displayDateOfBirth = "Date of Birth:\n$dateOfBirth"
                                                                                                                                     if (txtDateOfBirth != null) {
                                                                                                                                         txtDateOfBirth.text = displayDateOfBirth
                                                                                                                                     }
 
                                                                                                                                     val txtSiteBranch = dialog6.findViewById<TextView>(R.id.txtSiteBranch)
-                                                                                                                                    val displaySiteBranch = "OFFICE/SITE BRANCH:\n$officeSiteBranch"
+                                                                                                                                    val displaySiteBranch = "Office/Site Branch:\n$officeSiteBranch"
                                                                                                                                     if (txtSiteBranch != null) {
                                                                                                                                         txtSiteBranch.text = displaySiteBranch
                                                                                                                                     }
 
                                                                                                                                     val txtDepartment = dialog6.findViewById<TextView>(R.id.txtDepartment)
-                                                                                                                                    val displayDepartment = "DEPARTMENT:\n$department"
+                                                                                                                                    val displayDepartment = "Department:\n$department"
                                                                                                                                     if (txtDepartment != null) {
                                                                                                                                         txtDepartment.text = displayDepartment
                                                                                                                                     }
 
                                                                                                                                     val txtJobTitle = dialog6.findViewById<TextView>(R.id.txtJobTitle)
-                                                                                                                                    val displayJobTitle = "JOB TITLE:\n$jobTitle"
+                                                                                                                                    val displayJobTitle = "Job Title:\n$jobTitle"
                                                                                                                                     if (txtJobTitle != null) {
                                                                                                                                         txtJobTitle.text = displayJobTitle
                                                                                                                                     }
 
                                                                                                                                     val txtEmail = dialog6.findViewById<TextView>(R.id.txtEmail)
-                                                                                                                                    val displayEmail = "E-MAIL ADDRESS:\n$emailAddress"
+                                                                                                                                    val displayEmail = "E-Mail Address:\n$emailAddress"
                                                                                                                                     if (txtEmail != null) {
                                                                                                                                         txtEmail.text = displayEmail
                                                                                                                                     }
 
                                                                                                                                     val txtTelephone = dialog6.findViewById<TextView>(R.id.txtTelephone)
-                                                                                                                                    val displayTelephone = "TELEPHONE NO.:\n$telephoneNumber"
+                                                                                                                                    val displayTelephone = "Telephone No.:\n$telephoneNumber"
                                                                                                                                     if (txtTelephone != null) {
                                                                                                                                         txtTelephone.text = displayTelephone
                                                                                                                                     }
@@ -1274,55 +1274,55 @@ class Profile : Fragment() {
                                                                                                                                     dialog6.setContentView(R.layout.bottomsheet_confirmaccount)
 
                                                                                                                                     val txtName = dialog6.findViewById<TextView>(R.id.txtName)
-                                                                                                                                    val displayName = "NAME:\n$name"
+                                                                                                                                    val displayName = "Name:\n$name"
                                                                                                                                     if (txtName != null) {
                                                                                                                                         txtName.text = displayName
                                                                                                                                     }
 
                                                                                                                                     val txtGender = dialog6.findViewById<TextView>(R.id.txtGender)
-                                                                                                                                    val displayGender = "GENDER:\n$gender"
+                                                                                                                                    val displayGender = "Gender:\n$gender"
                                                                                                                                     if (txtGender != null) {
                                                                                                                                         txtGender.text = displayGender
                                                                                                                                     }
 
                                                                                                                                     val txtNationalId = dialog6.findViewById<TextView>(R.id.txtNationalId)
-                                                                                                                                    val displayNationalId = "NATIONAL ID NO.:\n$nationalId"
+                                                                                                                                    val displayNationalId = "National ID No.:\n$nationalId"
                                                                                                                                     if (txtNationalId != null) {
                                                                                                                                         txtNationalId.text = displayNationalId
                                                                                                                                     }
 
                                                                                                                                     val txtDateOfBirth = dialog6.findViewById<TextView>(R.id.txtDateOfBirth)
-                                                                                                                                    val displayDateOfBirth = "DATE OF BIRTH:\n$dateOfBirth"
+                                                                                                                                    val displayDateOfBirth = "Date of Birth:\n$dateOfBirth"
                                                                                                                                     if (txtDateOfBirth != null) {
                                                                                                                                         txtDateOfBirth.text = displayDateOfBirth
                                                                                                                                     }
 
                                                                                                                                     val txtSiteBranch = dialog6.findViewById<TextView>(R.id.txtSiteBranch)
-                                                                                                                                    val displaySiteBranch = "OFFICE/SITE BRANCH:\n$officeSiteBranch"
+                                                                                                                                    val displaySiteBranch = "Office/Site Branch:\n$officeSiteBranch"
                                                                                                                                     if (txtSiteBranch != null) {
                                                                                                                                         txtSiteBranch.text = displaySiteBranch
                                                                                                                                     }
 
                                                                                                                                     val txtDepartment = dialog6.findViewById<TextView>(R.id.txtDepartment)
-                                                                                                                                    val displayDepartment = "DEPARTMENT:\n$department"
+                                                                                                                                    val displayDepartment = "Department:\n$department"
                                                                                                                                     if (txtDepartment != null) {
                                                                                                                                         txtDepartment.text = displayDepartment
                                                                                                                                     }
 
                                                                                                                                     val txtJobTitle = dialog6.findViewById<TextView>(R.id.txtJobTitle)
-                                                                                                                                    val displayJobTitle = "JOB TITLE:\n$jobTitle"
+                                                                                                                                    val displayJobTitle = "Job Title:\n$jobTitle"
                                                                                                                                     if (txtJobTitle != null) {
                                                                                                                                         txtJobTitle.text = displayJobTitle
                                                                                                                                     }
 
                                                                                                                                     val txtEmail = dialog6.findViewById<TextView>(R.id.txtEmail)
-                                                                                                                                    val displayEmail = "E-MAIL ADDRESS:\n$emailAddress"
+                                                                                                                                    val displayEmail = "E-Mail Address:\n$emailAddress"
                                                                                                                                     if (txtEmail != null) {
                                                                                                                                         txtEmail.text = displayEmail
                                                                                                                                     }
 
                                                                                                                                     val txtTelephone = dialog6.findViewById<TextView>(R.id.txtTelephone)
-                                                                                                                                    val displayTelephone = "TELEPHONE NO.:\n$telephoneNumber"
+                                                                                                                                    val displayTelephone = "Telephone No.:\n$telephoneNumber"
                                                                                                                                     if (txtTelephone != null) {
                                                                                                                                         txtTelephone.text = displayTelephone
                                                                                                                                     }

@@ -20,22 +20,22 @@
 
             <item
                 android:id="@+id/subItemEditAccountTag"
-                android:title="ACCOUNT TYPE"/>
+                android:title="Account"/>
             <item
                 android:id="@+id/subItemEditName"
-                android:title="NAME"/>
+                android:title="Name"/>
             <item
                 android:id="@+id/subItemEditPersonalDetails"
-                android:title="PERSONAL DETAILS"/>
+                android:title="Personal Details"/>
             <item
                 android:id="@+id/subItemEditCompany"
-                android:title="COMPANY"/>
+                android:title="Company"/>
             <item
                 android:id="@+id/subItemEditJobDescription"
-                android:title="JOB DESCRIPTION"/>
+                android:title="Job Description"/>
             <item
                 android:id="@+id/subItemEditContactInformation"
-                android:title="CONTACT INFORMATION"/>
+                android:title="Contact Information"/>
 
         </menu>
 

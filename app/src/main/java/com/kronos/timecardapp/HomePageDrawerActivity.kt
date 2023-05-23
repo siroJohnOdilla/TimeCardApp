@@ -5,8 +5,6 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.Gravity
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.ViewGroup
 import android.view.Window
@@ -90,6 +88,7 @@ class HomePageDrawerActivity : AppCompatActivity() {
                     bundle1.putString("displayCompanyNameKey",passCompanyName)
 
                     myHomeFragment.arguments = bundle1
+
                     fragmentTransaction.replace(R.id.frame, myHomeFragment).commit()
                 }
                 R.id.itemTimeAttendance -> {
@@ -125,7 +124,11 @@ class HomePageDrawerActivity : AppCompatActivity() {
                     }
                 }
                 R.id.itemProfileView -> {
+                    val intent = Intent(this,ProfileView2Activity::class.java)
+                    val passName = getName
+                    intent.putExtra("passName",passName)
 
+                    startActivity(intent)
                 }
                 R.id.itemProfile -> {
                     if(passAccountTag == "USER"){
@@ -144,19 +147,7 @@ class HomePageDrawerActivity : AppCompatActivity() {
                     displayActionBarTitle = "Visitor Book"
                     actionBar.title = displayActionBarTitle
 
-                    val passName = getName
-
-                    val fragmentManager1: FragmentManager = supportFragmentManager
-                    val fragmentTransaction1: FragmentTransaction = fragmentManager1.beginTransaction()
-
-                    val myVisitorBookFragment = VisitorBook()
-
-                    val bundle2 = Bundle()
-
-                    bundle2.putString("nameToCheck",passName)
-
-                    myVisitorBookFragment.arguments = bundle2
-                    fragmentTransaction1.replace(R.id.frame, myVisitorBookFragment).commit()
+                    supportFragmentManager.beginTransaction().replace(R.id.frame,VisitorBook()).commit()
                 }
             }
             true

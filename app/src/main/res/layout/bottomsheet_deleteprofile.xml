@@ -16,7 +16,7 @@
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:paddingEnd="10dp"
             android:src="@drawable/delete" />
 
@@ -34,9 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:text="Are you sure?"
-        android:textSize="15sp"
-        android:textColor="@color/black"
-        android:textStyle="bold" />
+        android:textColor="@color/black"/>
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -60,16 +58,20 @@
             android:textColor="@color/black"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
         <Button
             android:id="@+id/btnNoDelete"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="170dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            android:layout_marginEnd="40dp"
             android:background="@drawable/rounded_button"
             app:backgroundTint="#F40519"
             android:text="NO"
@@ -78,8 +80,13 @@
 
         <Button
             android:id="@+id/btnYesDelete"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             android:layout_marginBottom="10dp"
             android:background="@drawable/rounded_button"
             app:backgroundTint="#39C83B"
@@ -87,6 +94,6 @@
             android:textColor="@color/white"
             android:textStyle="bold"/>
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

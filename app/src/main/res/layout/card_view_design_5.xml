@@ -103,16 +103,6 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/txtViewAuthorizeTimeInVisitorBook"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="AUTHORIZED TIME IN"
-                android:textAlignment="textEnd"
-                android:textColor="@color/black"
-                android:textStyle="bold" />
-
-            <TextView
                 android:id="@+id/txtViewTimeOutVisitorBook"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
@@ -121,15 +111,7 @@
                 android:textAlignment="textEnd"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
-            <TextView
-                android:id="@+id/txtViewAuthorizeTimeOutVisitorBook"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="AUTHORIZED TIME OUT"
-                android:textAlignment="textEnd"
-                android:textColor="@color/black"
-                android:textStyle="bold" />
+
         </TableRow>
 
     </TableLayout>

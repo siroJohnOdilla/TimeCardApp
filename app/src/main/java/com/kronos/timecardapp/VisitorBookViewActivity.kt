@@ -51,11 +51,9 @@ class VisitorBookViewActivity : AppCompatActivity() {
             var companyHost = "CONTACT PERSON"
             var reasonVisit = "REASON FOR VISIT"
             var timeIn = "TIME IN"
-            var authorizedTimeIn = "AUTHORIZED TIME IN"
             var timeOut = "TIME OUT"
-            var authorizedTimeOut = "AUTHORIZED TIME OUT"
 
-            data.add(ItemViewModel5(date, name, nationalId, telephoneNumber, company, companyHost, reasonVisit, timeIn, authorizedTimeIn, timeOut, authorizedTimeOut))
+            data.add(ItemViewModel5(date, name, nationalId, telephoneNumber, company, companyHost, reasonVisit, timeIn, timeOut))
 
             val db = DBHelper4(this,null)
             val cursor = db.getDetails()
@@ -73,9 +71,7 @@ class VisitorBookViewActivity : AppCompatActivity() {
                     val companyHostPrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper4.CONTACT_PERSON))
                     val reasonVisitPrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper4.REASON_FOR_VISIT))
                     val timeInPrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper4.TIME_IN))
-                    val authorizedTimeInPrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper4.AUTHORIZED_TIME_IN))
                     val timeOutPrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper4.TIME_OUT))
-                    val authorizedTimeOutPrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper4.AUTHORIZED_TIME_OUT))
 
                     if((nameFilter == namePrint.toString() || nameFilter.isEmpty()) && (testDate.isAfter(startDate) || testDate.isEqual(startDate)) && (testDate.isBefore(endDate) || testDate.isEqual(endDate))){
                         date = datePrint.toString()
@@ -86,11 +82,9 @@ class VisitorBookViewActivity : AppCompatActivity() {
                         companyHost = companyHostPrint.toString()
                         reasonVisit = reasonVisitPrint.toString()
                         timeIn = timeInPrint.toString()
-                        authorizedTimeIn = authorizedTimeInPrint.toString()
                         timeOut = timeOutPrint.toString()
-                        authorizedTimeOut = authorizedTimeOutPrint.toString()
 
-                        data.add(ItemViewModel5(date, name, nationalId, telephoneNumber, company, companyHost, reasonVisit, timeIn, authorizedTimeIn, timeOut, authorizedTimeOut))
+                        data.add(ItemViewModel5(date, name, nationalId, telephoneNumber, company, companyHost, reasonVisit, timeIn, timeOut))
                     }
                 } while(cursor.moveToNext())
             }
@@ -120,11 +114,9 @@ class VisitorBookViewActivity : AppCompatActivity() {
             var companyHost = "CONTACT PERSON"
             var reasonVisit = "REASON FOR VISIT"
             var timeIn = "TIME IN"
-            var authorizedTimeIn = "AUTHORIZED TIME IN"
             var timeOut = "TIME OUT"
-            var authorizedTimeOut = "AUTHORIZED TIME OUT"
 
-            data.add(ItemViewModel5(date, name, nationalId, telephoneNumber, company, companyHost, reasonVisit, timeIn, authorizedTimeIn, timeOut, authorizedTimeOut))
+            data.add(ItemViewModel5(date, name, nationalId, telephoneNumber, company, companyHost, reasonVisit, timeIn, timeOut))
 
             val db = DBHelper4(this,null)
             val cursor = db.getDetails()
@@ -139,9 +131,7 @@ class VisitorBookViewActivity : AppCompatActivity() {
                     val companyHostPrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper4.CONTACT_PERSON))
                     val reasonVisitPrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper4.REASON_FOR_VISIT))
                     val timeInPrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper4.TIME_IN))
-                    val authorizedTimeInPrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper4.AUTHORIZED_TIME_IN))
                     val timeOutPrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper4.TIME_OUT))
-                    val authorizedTimeOutPrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper4.AUTHORIZED_TIME_OUT))
 
                     if((nameFilter == namePrint.toString() || nameFilter.isEmpty())){
                         date = datePrint.toString()
@@ -152,11 +142,9 @@ class VisitorBookViewActivity : AppCompatActivity() {
                         companyHost = companyHostPrint.toString()
                         reasonVisit = reasonVisitPrint.toString()
                         timeIn = timeInPrint.toString()
-                        authorizedTimeIn = authorizedTimeInPrint.toString()
                         timeOut = timeOutPrint.toString()
-                        authorizedTimeOut = authorizedTimeOutPrint.toString()
 
-                        data.add(ItemViewModel5(date, name, nationalId, telephoneNumber, company, companyHost, reasonVisit, timeIn, authorizedTimeIn, timeOut, authorizedTimeOut))
+                        data.add(ItemViewModel5(date, name, nationalId, telephoneNumber, company, companyHost, reasonVisit, timeIn, timeOut))
                     }
                 } while(cursor.moveToNext())
             }

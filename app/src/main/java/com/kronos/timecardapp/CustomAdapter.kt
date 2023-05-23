@@ -98,9 +98,9 @@ class CustomAdapter(private val mList: List<ItemsViewModel>) : RecyclerView.Adap
                                                 val pinPrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.PIN_NUMBER))
 
                                                 if(nameVerify == namePrint.toString() && editTxtEnterPINProfileAccess.text.toString().trim() == pinPrint.toString()){
-                                                    val intent = Intent(ItemView.context,ProfileViewActivity::class.java)
+                                                    val intent = Intent(ItemView.context,ProfileView2Activity::class.java)
 
-                                                    intent.putExtra("NamePass",nameVerify)
+                                                    intent.putExtra("passName",nameVerify)
                                                     editTxtEnterPINProfileAccess.text.clear()
                                                     dialog.dismiss()
                                                     ItemView.context.startActivity(intent)
