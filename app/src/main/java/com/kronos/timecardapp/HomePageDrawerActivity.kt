@@ -16,6 +16,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.navigation.NavigationView
 
 class HomePageDrawerActivity : AppCompatActivity() {
@@ -27,7 +28,7 @@ class HomePageDrawerActivity : AppCompatActivity() {
         setContentView(R.layout.activity_homepagedrawer)
 
         val actionBar = supportActionBar
-        displayActionBarTitle = "Home"
+        displayActionBarTitle = "My Time Card"
         actionBar!!.title = displayActionBarTitle
 
         val bundle: Bundle? = intent.extras
@@ -70,7 +71,7 @@ class HomePageDrawerActivity : AppCompatActivity() {
             drawer.closeDrawers()
             when(it.itemId){
                 R.id.itemHome -> {
-                    displayActionBarTitle = "Home"
+                    displayActionBarTitle = "My Time Card"
                     actionBar.title = displayActionBarTitle
 
                     val fragmentManager: FragmentManager = supportFragmentManager
@@ -124,11 +125,22 @@ class HomePageDrawerActivity : AppCompatActivity() {
                     }
                 }
                 R.id.itemProfileView -> {
-                    val intent = Intent(this,ProfileView2Activity::class.java)
-                    val passName = getName
-                    intent.putExtra("passName",passName)
+                    displayActionBarTitle = "My Profile"
+                    actionBar.title = displayActionBarTitle
 
-                    startActivity(intent)
+                    val passName = getName
+
+                    val fragmentManager4: FragmentManager = supportFragmentManager
+                    val fragmentTransaction4: FragmentTransaction = fragmentManager4.beginTransaction()
+
+                    val myMyProfileFragment = MyProfile()
+
+                    val bundle5 = Bundle()
+
+                    bundle5.putString("passName",passName)
+
+                    myMyProfileFragment.arguments = bundle5
+                    fragmentTransaction4.replace(R.id.frame, myMyProfileFragment).commit()
                 }
                 R.id.itemProfile -> {
                     if(passAccountTag == "USER"){
@@ -164,9 +176,7 @@ class HomePageDrawerActivity : AppCompatActivity() {
         displaySignOut()
     }
     private fun displaySignOut(){
-        val dialog = BottomSheetDialog(this)
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setContentView(R.layout.bottomsheet_signout)
+        val dialog = MaterialAlertDialogBuilder(this,R.style.RoundedMaterialDialog).setView(R.layout.dialog_signout).show()
 
         val btnNoSignOut = dialog.findViewById<Button>(R.id.btnNoSignOut)
         if (btnNoSignOut != null) {
@@ -183,10 +193,5 @@ class HomePageDrawerActivity : AppCompatActivity() {
 
             }
         }
-        dialog.show()
-        dialog.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
-        dialog.window!!.setGravity(Gravity.BOTTOM)
     }
 }

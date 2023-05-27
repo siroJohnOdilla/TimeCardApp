@@ -20,6 +20,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.util.Calendar
 
 class ProfileView2Activity : AppCompatActivity() {
@@ -70,27 +71,27 @@ class ProfileView2Activity : AppCompatActivity() {
 
                 if(passName == namePrint.toString()){
                     txtProfileAccount = findViewById(R.id.txtProfileAccount)
-                    val displayAccount = "Account:\n$accountPrint"
+                    val displayAccount = "Account\n$accountPrint"
                     txtProfileAccount.text = displayAccount
 
                     txtProfileName = findViewById(R.id.txtProfileName)
-                    val displayName = "Name:\n$namePrint"
+                    val displayName = "Name\n$namePrint"
                     txtProfileName.text = displayName
 
                     txtProfileGender = findViewById(R.id.txtProfileGender)
-                    val displayGender = "Gender:\n$genderPrint"
+                    val displayGender = "Gender\n$genderPrint"
                     txtProfileGender.text = displayGender
 
                     txtProfileNationalId = findViewById(R.id.txtProfileNationalId)
-                    val displayNationalId = "National ID No.:\n$nationalIdPrint"
+                    val displayNationalId = "National ID No.\n$nationalIdPrint"
                     txtProfileNationalId.text = displayNationalId
 
                     txtProfileDateOfBirth = findViewById(R.id.txtProfileDateOfBirth)
-                    val displayDateOfBirth = "Date of Birth:\n$dateOfBirthPrint"
+                    val displayDateOfBirth = "Date of Birth\n$dateOfBirthPrint"
                     txtProfileDateOfBirth.text = displayDateOfBirth
 
                     txtProfileEmail = findViewById(R.id.txtProfileEmail)
-                    val displayEmail = "E-Mail Address:\n$emailPrint"
+                    val displayEmail = "E-Mail Address\n$emailPrint"
                     txtProfileEmail.text = displayEmail
 
                     txtProfileTelephoneNo = findViewById(R.id.txtProfilePhoneNo)
@@ -98,19 +99,19 @@ class ProfileView2Activity : AppCompatActivity() {
                     txtProfileTelephoneNo.text = displayPhoneNo
 
                     txtProfileCompany = findViewById(R.id.txtProfileCompany)
-                    val displayCompany = "Company:\n$companyPrint($companyInitialsPrint)"
+                    val displayCompany = "Company\n$companyPrint($companyInitialsPrint)"
                     txtProfileCompany.text = displayCompany
 
                     txtProfileSiteBranch = findViewById(R.id.txtProfileSiteBranch)
-                    val displaySiteBranch = "Office/Site Branch:\n$siteBranchPrint"
+                    val displaySiteBranch = "Office/Site Branch\n$siteBranchPrint"
                     txtProfileSiteBranch.text = displaySiteBranch
 
                     txtProfileDepartment = findViewById(R.id.txtProfileDepartment)
-                    val displayDepartment = "Department:\n$departmentPrint"
+                    val displayDepartment = "Department\n$departmentPrint"
                     txtProfileDepartment.text = displayDepartment
 
                     txtProfileJobTitle = findViewById(R.id.txtProfileJobTitle)
-                    val displayJobTitle = "Job Title:\n$jobTitlePrint"
+                    val displayJobTitle = "Job Title\n$jobTitlePrint"
                     txtProfileJobTitle.text = displayJobTitle
                 }
 
@@ -660,9 +661,7 @@ class ProfileView2Activity : AppCompatActivity() {
                 return true
             }
             R.id.itemViewDeleteProfile -> {
-                val dialog = BottomSheetDialog(this)
-                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-                dialog.setContentView(R.layout.bottomsheet_deleteprofile)
+                val dialog = MaterialAlertDialogBuilder(this,R.style.RoundedMaterialDialog).setView(R.layout.dialog_deleteprofile).show()
 
                 val nameVerify = getName
 
@@ -707,11 +706,6 @@ class ProfileView2Activity : AppCompatActivity() {
                         dialog.dismiss()
                     }
                 }
-                dialog.show()
-                dialog.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-                dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                dialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
-                dialog.window!!.setGravity(Gravity.BOTTOM)
                 return true
             }
         }

@@ -137,7 +137,7 @@ class LeaveSchedule : Fragment() {
             if (btnNextApproveLeave != null) {
                 btnNextApproveLeave.setOnClickListener {
                     val bundle = arguments
-                    val nameCheckPass = bundle!!.getString("nameToCheck")
+                    val nameCheckPass = bundle!!.getString("nameToCheck").toString()
 
                     if (spinnerEmployeeName != null) {
                         if(spinnerEmployeeName.text.toString() != nameCheckPass || spinnerEmployeeName.text.toString().isEmpty()){
@@ -182,31 +182,31 @@ class LeaveSchedule : Fragment() {
                                             val reliever = spinnerRelieverNames.text.toString()
 
                                             val txtViewLeaveName = dialog1.findViewById<TextView>(R.id.txtViewLeaveName)
-                                            val displayName = "Name:\n$name"
+                                            val displayName = "Name\n$name"
                                             if (txtViewLeaveName != null) {
                                                 txtViewLeaveName.text = displayName
                                             }
 
                                             val txtViewLeaveType = dialog1.findViewById<TextView>(R.id.txtViewLeaveType)
-                                            val displayLeave = "Leave:\n$leaveType"
+                                            val displayLeave = "Leave\n$leaveType"
                                             if (txtViewLeaveType != null) {
                                                 txtViewLeaveType.text = displayLeave
                                             }
 
                                             val txtViewLeaveStartDate = dialog1.findViewById<TextView>(R.id.txtViewLeaveStartDate)
-                                            val displayStartDate = "Start Date:\n$dateFrom"
+                                            val displayStartDate = "Start Date\n$dateFrom"
                                             if (txtViewLeaveStartDate != null) {
                                                 txtViewLeaveStartDate.text = displayStartDate
                                             }
 
                                             val txtViewLeaveEndDate= dialog1.findViewById<TextView>(R.id.txtViewLeaveEndDate)
-                                            val displayEndDate = "Return Date:\n$dateTo"
+                                            val displayEndDate = "Return Date\n$dateTo"
                                             if (txtViewLeaveEndDate != null) {
                                                 txtViewLeaveEndDate.text = displayEndDate
                                             }
 
                                             val txtViewLeaveReliever = dialog1.findViewById<TextView>(R.id.txtViewLeaveReliever)
-                                            val displayReliever = "Reliever:\n$reliever"
+                                            val displayReliever = "Reliever\n$reliever"
                                             if (txtViewLeaveReliever != null) {
                                                 txtViewLeaveReliever.text = displayReliever
                                             }

@@ -20,6 +20,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class CustomAdapter(private val mList: List<ItemsViewModel>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>(){
     private lateinit var mListener: onItemClickListener
@@ -61,9 +62,7 @@ class CustomAdapter(private val mList: List<ItemsViewModel>) : RecyclerView.Adap
 
                 when(val position = ItemView.tag){
                     position -> {
-                        val dialog = BottomSheetDialog(ItemView.context)
-                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-                        dialog.setContentView(R.layout.bottomsheet_profileaccess)
+                        val dialog = MaterialAlertDialogBuilder(ItemView.context,R.style.RoundedMaterialDialog).setView(R.layout.dialog_profileaccess).show()
 
                         val nameVerify = txtViewNameProfile.text.toString()
 
@@ -113,11 +112,6 @@ class CustomAdapter(private val mList: List<ItemsViewModel>) : RecyclerView.Adap
                                 }
                             }
                         }
-                        dialog.show()
-                        dialog.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-                        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                        dialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
-                        dialog.window!!.setGravity(Gravity.BOTTOM)
                     }
                 }
             }

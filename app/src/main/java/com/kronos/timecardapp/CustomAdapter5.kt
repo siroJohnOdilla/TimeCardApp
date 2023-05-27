@@ -16,6 +16,7 @@ import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -69,9 +70,7 @@ class CustomAdapter5(private val mList: List<ItemViewModel5>) : RecyclerView.Ada
                         if(txtViewTimeOutVisitorBook.text.toString().isNotEmpty()){
                             Toast.makeText(ItemView.context,"YOU HAVE ALREADY SIGNED OUT",Toast.LENGTH_SHORT).show()
                         } else{
-                            val dialog = BottomSheetDialog(ItemView.context)
-                            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-                            dialog.setContentView(R.layout.bottomsheet_profileaccess)
+                            val dialog = MaterialAlertDialogBuilder(ItemView.context,R.style.RoundedMaterialDialog).setView(R.layout.dialog_profileaccess).show()
 
                             val txtViewDisplayMessageProfileAccess = dialog.findViewById<TextView>(R.id.txtViewDisplayMessageProfileAccess)
                             val displayName = txtViewNameVisitorBook.text.toString()
@@ -115,9 +114,7 @@ class CustomAdapter5(private val mList: List<ItemViewModel5>) : RecyclerView.Ada
                                                 db.updateVisitor(id, timeOut)
                                                 dialog.dismiss()
 
-                                                val dialog1 = BottomSheetDialog(ItemView.context)
-                                                dialog1.requestWindowFeature(Window.FEATURE_NO_TITLE)
-                                                dialog1.setContentView(R.layout.bottomsheet_confirmattendance)
+                                                val dialog1 = MaterialAlertDialogBuilder(ItemView.context,R.style.RoundedMaterialDialog).setView(R.layout.dialog_confirmattendance).show()
 
                                                 val attendanceMessage = dialog1.findViewById<TextView>(R.id.attendanceMessage)
                                                 val displayMessage = "LOG OUT SUCCESSFUL!"
@@ -141,11 +138,6 @@ class CustomAdapter5(private val mList: List<ItemViewModel5>) : RecyclerView.Ada
                                                         dialog1.onBackPressed()
                                                     }
                                                 }
-                                                dialog1.show()
-                                                dialog1.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-                                                dialog1.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                                                dialog1.window!!.attributes.windowAnimations = R.style.DialogAnimation
-                                                dialog1.window!!.setGravity(Gravity.BOTTOM)
                                             }
 
                                         } while(cursor.moveToNext())
@@ -153,11 +145,6 @@ class CustomAdapter5(private val mList: List<ItemViewModel5>) : RecyclerView.Ada
                                     cursor.close()
                                 }
                             }
-                            dialog.show()
-                            dialog.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-                            dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                            dialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
-                            dialog.window!!.setGravity(Gravity.BOTTOM)
                         }
                     }
                 }

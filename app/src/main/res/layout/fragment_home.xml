@@ -15,7 +15,7 @@
         android:layout_gravity="center"
         android:layout_margin="5dp"
         app:cardElevation="5dp"
-        app:cardCornerRadius="10dp"
+        app:cardCornerRadius="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.4"
@@ -28,52 +28,105 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/txtDisplayNameLogin"
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="20dp"
-                android:paddingTop="10dp"
-                android:text="JOHN ODILLA SIRO"
-                android:textAlignment="textStart"
-                android:textColor="@color/black"
-                android:textStyle="bold"/>
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                app:cardBackgroundColor="@color/black"
+                app:cardElevation="2dp"
+                app:cardCornerRadius="30dp">
 
-            <TextView
-                android:id="@+id/txtDisplayJobTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="20dp"
-                android:text="CLEANER (SANITATION)"
-                android:layout_marginBottom="50dp"
-                android:textAlignment="textStart"
-                android:textColor="@color/black"
-                android:textStyle="bold"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/txtDisplayCompanyName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="PRIME CLEANING SERVICES"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textStyle="bold"/>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:paddingEnd="10dp"
+                        android:src="@drawable/user_white"/>
+                    <TextView
+                        android:id="@+id/txtDisplayNameLogin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="JOHN ODILLA SIRO"
+                        android:textColor="@color/white"/>
 
-            <TextView
-                android:id="@+id/txtDisplayOfficeSiteBranch"
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardViewCompany"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"
-                android:text="LANG'ATA HOUSE"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textStyle="bold"/>
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                app:cardBackgroundColor="@color/black"
+                app:cardElevation="2dp"
+                app:cardCornerRadius="30dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:paddingEnd="10dp"
+                            android:src="@drawable/company_white"/>
+                        <TextView
+                            android:id="@+id/txtDisplayCompanyName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="NOTHING HERE LTD (LANGATA HOUSE)"
+                            android:textColor="@color/white"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:paddingEnd="10dp"
+                            android:src="@drawable/job_title_white"/>
+                        <TextView
+                            android:id="@+id/txtDisplayJobTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ADMIN (ADMINISTRATION)"
+                            android:textColor="@color/white"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
 
             <FrameLayout
                 android:id="@+id/frameRecentDisplay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/txtDisplayOfficeSiteBranch">
+                app:layout_constraintTop_toBottomOf="@id/cardViewCompany">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerViewRecent"

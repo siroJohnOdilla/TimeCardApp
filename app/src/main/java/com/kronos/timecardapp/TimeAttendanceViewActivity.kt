@@ -53,12 +53,12 @@ class TimeAttendanceViewActivity : AppCompatActivity() {
             var timeOut = "TIME OUT"
             var timeWorked = "TOTAL TIME WORKED"
 
-            data.add(ItemViewModel2(date, name, officeSiteBranch, department, jobTitle, timeIn, timeOut, timeWorked))
+            //data.add(ItemViewModel2(date, name, officeSiteBranch, department, jobTitle, timeIn, timeOut, timeWorked))
 
             val db = DBHelper2(this,null)
             val cursor = db.getDetails()
 
-            if(cursor!!.moveToFirst()){
+            if(cursor!!.moveToLast()){
                 do{
                     val datePrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper2.DATE_COL))
                     val dtf2 = DateTimeFormatter.ofPattern("dd-MM-yyyy",Locale.getDefault())
@@ -84,7 +84,7 @@ class TimeAttendanceViewActivity : AppCompatActivity() {
 
                         data.add(ItemViewModel2(date, name, officeSiteBranch, department, jobTitle, timeIn, timeOut, timeWorked))
                     }
-                } while(cursor.moveToNext())
+                } while(cursor.moveToPrevious())
             }
             cursor.close()
 
@@ -105,12 +105,12 @@ class TimeAttendanceViewActivity : AppCompatActivity() {
             var timeOut = "TIME OUT"
             var timeWorked = "TOTAL TIME WORKED"
 
-            data.add(ItemViewModel2(date, name, officeSiteBranch, department, jobTitle, timeIn, timeOut, timeWorked))
+            //data.add(ItemViewModel2(date, name, officeSiteBranch, department, jobTitle, timeIn, timeOut, timeWorked))
 
             val db = DBHelper2(this,null)
             val cursor = db.getDetails()
 
-            if(cursor!!.moveToFirst()){
+            if(cursor!!.moveToLast()){
                 do{
                     val datePrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper2.DATE_COL))
                     val namePrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper2.NAME_COL))
@@ -133,7 +133,7 @@ class TimeAttendanceViewActivity : AppCompatActivity() {
 
                         data.add(ItemViewModel2(date, name, officeSiteBranch, department, jobTitle, timeIn, timeOut, timeWorked))
                     }
-                } while(cursor.moveToNext())
+                } while(cursor.moveToPrevious())
             }
             cursor.close()
 

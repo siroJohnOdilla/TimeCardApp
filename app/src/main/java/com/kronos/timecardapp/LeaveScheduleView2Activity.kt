@@ -51,12 +51,12 @@ class LeaveScheduleView2Activity : AppCompatActivity() {
             var reliever = "RELIEVER"
             var authorizedBy= "AUTHORIZED BY"
 
-            data.add(ItemViewModel3(name, leave, startDate, endDate, noOfDays, reliever, authorizedBy))
+            //data.add(ItemViewModel3(name, leave, startDate, endDate, noOfDays, reliever, authorizedBy))
 
             val db = DBHelper3(this,null)
             val cursor = db.getDetails()
 
-            if(cursor!!.moveToFirst()){
+            if(cursor!!.moveToLast()){
                 do{
                     val dtf2 = DateTimeFormatter.ofPattern("dd-MM-yyyy", Locale.getDefault())
 
@@ -84,7 +84,7 @@ class LeaveScheduleView2Activity : AppCompatActivity() {
                         data.add(ItemViewModel3(name, leave, startDate, endDate, noOfDays, reliever, authorizedBy))
 
                     }
-                } while(cursor.moveToNext())
+                } while(cursor.moveToPrevious())
             }
             cursor.close()
 
@@ -104,12 +104,12 @@ class LeaveScheduleView2Activity : AppCompatActivity() {
             var reliever = "RELIEVER"
             var authorizedBy= "AUTHORIZED BY"
 
-            data.add(ItemViewModel3(name, leave, startDate, endDate, noOfDays, reliever, authorizedBy))
+            //data.add(ItemViewModel3(name, leave, startDate, endDate, noOfDays, reliever, authorizedBy))
 
             val db = DBHelper3(this,null)
             val cursor = db.getDetails()
 
-            if(cursor!!.moveToFirst()){
+            if(cursor!!.moveToLast()){
                 do{
                     val startDatePrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper3.DATE_FROM))
                     val endDatePrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper3.DATE_TO))
@@ -131,7 +131,7 @@ class LeaveScheduleView2Activity : AppCompatActivity() {
                         data.add(ItemViewModel3(name, leave, startDate, endDate, noOfDays, reliever, authorizedBy))
 
                     }
-                } while(cursor.moveToNext())
+                } while(cursor.moveToPrevious())
             }
             cursor.close()
 

@@ -56,10 +56,8 @@ class Home : Fragment(){
         txtDisplayJobTitle.text = display
 
         txtDisplayCompanyName = v.findViewById(R.id.txtDisplayCompanyName)
-        txtDisplayCompanyName.text = displayCompanyName
-
-        txtDisplayOfficeSiteBranch = v.findViewById(R.id.txtDisplayOfficeSiteBranch)
-        txtDisplayOfficeSiteBranch.text = displayLoginOfficeSiteBranch
+        val display1 = "${displayCompanyName.toString()} (${displayLoginOfficeSiteBranch.toString()})"
+        txtDisplayCompanyName.text = display1
 
         val recyclerViewRecent = v.findViewById<RecyclerView>(R.id.recyclerViewRecent)
         recyclerViewRecent.layoutManager = LinearLayoutManager(v.context)

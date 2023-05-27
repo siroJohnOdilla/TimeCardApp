@@ -53,12 +53,12 @@ class VisitorBookViewActivity : AppCompatActivity() {
             var timeIn = "TIME IN"
             var timeOut = "TIME OUT"
 
-            data.add(ItemViewModel5(date, name, nationalId, telephoneNumber, company, companyHost, reasonVisit, timeIn, timeOut))
+            //data.add(ItemViewModel5(date, name, nationalId, telephoneNumber, company, companyHost, reasonVisit, timeIn, timeOut))
 
             val db = DBHelper4(this,null)
             val cursor = db.getDetails()
 
-            if(cursor!!.moveToFirst()){
+            if(cursor!!.moveToLast()){
                 do{
                     val datePrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper4.DATE_COL))
                     val dtf2 = DateTimeFormatter.ofPattern("dd-MM-yyyy", Locale.getDefault())
@@ -86,7 +86,7 @@ class VisitorBookViewActivity : AppCompatActivity() {
 
                         data.add(ItemViewModel5(date, name, nationalId, telephoneNumber, company, companyHost, reasonVisit, timeIn, timeOut))
                     }
-                } while(cursor.moveToNext())
+                } while(cursor.moveToPrevious())
             }
             cursor.close()
 
@@ -116,12 +116,12 @@ class VisitorBookViewActivity : AppCompatActivity() {
             var timeIn = "TIME IN"
             var timeOut = "TIME OUT"
 
-            data.add(ItemViewModel5(date, name, nationalId, telephoneNumber, company, companyHost, reasonVisit, timeIn, timeOut))
+            //data.add(ItemViewModel5(date, name, nationalId, telephoneNumber, company, companyHost, reasonVisit, timeIn, timeOut))
 
             val db = DBHelper4(this,null)
             val cursor = db.getDetails()
 
-            if(cursor!!.moveToFirst()){
+            if(cursor!!.moveToLast()){
                 do{
                     val datePrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper4.DATE_COL))
                     val namePrint = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper4.NAME_COL))
@@ -146,7 +146,7 @@ class VisitorBookViewActivity : AppCompatActivity() {
 
                         data.add(ItemViewModel5(date, name, nationalId, telephoneNumber, company, companyHost, reasonVisit, timeIn, timeOut))
                     }
-                } while(cursor.moveToNext())
+                } while(cursor.moveToPrevious())
             }
             cursor.close()
 
